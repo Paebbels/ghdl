@@ -38,7 +38,7 @@ from typing import Callable, List, Dict, Any, TypeVar
 
 from pydecor import export
 
-from pyGHDL.libghdl import libghdl
+from pyGHDL.libghdl import libghdl, _types
 
 
 @export
@@ -101,6 +101,13 @@ class __Environment():
 			except KeyError:
 				raise KeyError("Symbol {0} not found in environments.".format(key))
 
+		for key in _types.__all__:
+			try:
+				typeVar = getattr(_types, key)
+				if isinstance(typeVar, TypeVar):
+					self.globals[key] = typeVar
+			except Exception:
+				raise Exception("Type '{0}' listed in 'pyGHDL.libghdl._types.__all__' does not exist.".format(key))
 
 # Create environment once and store it in a private variable
 __environment = __Environment()
