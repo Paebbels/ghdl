@@ -37,6 +37,7 @@ from ctypes import c_void_p
 from pydecor import export
 
 from pyGHDL.libghdl import libghdl
+from pyGHDL.libghdl._decorator import BindToLibGHDL
 from pyGHDL.libghdl._types import NameId, SourceFileEntry
 
 __all__ = [
@@ -208,18 +209,18 @@ def Set_File_Length(File: SourceFileEntry, Length: int) -> None:
     libghdl.files_map__set_file_length(File, Length)
 
 
-@export
+#@export
+@BindToLibGHDL("files_map__read_source_file")
 def Read_Source_File(Directory: NameId, Name: NameId) -> SourceFileEntry:
-    """
-    Return an entry for a filename.
+	"""
+	Return an entry for a filename.
 
-    Load the filename if necessary.
+	Load the filename if necessary.
 
-    :param Directory: ``Null_Identifier`` for :obj:`DirectoryId` means current directory.
-    :param Name:      File name
-    :return:          Return ``No_Source_File_Entry``, if the file does not exist.
-    """
-    return libghdl.files_map__read_source_file(Directory, Name)
+	:param Directory: ``Null_Identifier`` for :obj:`DirectoryId` means current directory.
+	:param Name:      File name
+	:return:          Return ``No_Source_File_Entry``, if the file does not exist.
+	"""
 
 
 @export

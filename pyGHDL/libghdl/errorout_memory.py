@@ -37,6 +37,7 @@ from ctypes import c_int8, c_int32, c_char_p, Structure
 from pydecor import export
 
 from pyGHDL.libghdl import libghdl
+from pyGHDL.libghdl._decorator import BindToLibGHDL
 from pyGHDL.libghdl._types import ErrorIndex
 
 
@@ -80,20 +81,20 @@ Msg_Related = 2
 Msg_Last = 3
 
 
-@export
+#@export
+@BindToLibGHDL("errorout__memory__install_handler")
 def Install_Handler() -> None:
-    """Install the handlers for reporting errors."""
-    libghdl.errorout__memory__install_handler()
+	"""Install the handlers for reporting errors."""
 
 
-@export
+#@export
+@BindToLibGHDL("errorout__memory__get_nbr_messages")
 def Get_Nbr_Messages() -> ErrorIndex:
-    """
-    Get number of error messages available.
+	"""
+	Get number of error messages available.
 
-    :return: Number of messages available.
-    """
-    return libghdl.errorout__memory__get_nbr_messages()
+	:return: Number of messages available.
+	"""
 
 
 @export
@@ -126,7 +127,7 @@ def Get_Error_Message(Idx: ErrorIndex) -> str:
     return func(Idx).decode("utf-8")
 
 
-@export
+#@export
+@BindToLibGHDL("errorout__memory__clear_errors")
 def Clear_Errors() -> None:
-    """Remove all error messages."""
-    libghdl.errorout__memory__clear_errors()
+	"""Remove all error messages."""
