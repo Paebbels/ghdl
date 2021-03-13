@@ -42,99 +42,104 @@ from pyGHDL.libghdl import libghdl
 
 @export
 def EnumLookupTable(cls) -> Callable:
-	"""
-	Decorator to precalculate a enum lookup table (LUT) for enum position to
-	enum literal name.
+    """
+    Decorator to precalculate a enum lookup table (LUT) for enum position to
+    enum literal name.
 
-	:param cls: Enumerator class for which a LUT shall be pre-calculated.
-	"""
-	def decorator(func) -> Callable:
-		def gen() -> List[str]:
-			d = [e for e in dir(cls) if e[0] != "_"]
-			res = [None] * len(d)
-			for e in d:
-				res[getattr(cls, e)] = e
-			return res
+    :param cls: Enumerator class for which a LUT shall be pre-calculated.
+    """
 
-		__lut = gen()
+    def decorator(func) -> Callable:
+        def gen() -> List[str]:
+            d = [e for e in dir(cls) if e[0] != "_"]
+            res = [None] * len(d)
+            for e in d:
+                res[getattr(cls, e)] = e
+            return res
 
-		@wraps(func)
-		def wrapper(id: int) -> str:
-			# function that replaces the placeholder function
-			return __lut[id]
+        __lut = gen()
 
-		return wrapper
+        @wraps(func)
+        def wrapper(id: int) -> str:
+            # function that replaces the placeholder function
+            return __lut[id]
 
-	return decorator
+        return wrapper
+
+    return decorator
 
 
 def BindToLibGHDL(subprogramName):
-	"""
-	This decorator creates a Python function to interface with subprograms in
-	libghdl via :mod:`ctypes`.
+    """
+    This decorator creates a Python function to interface with subprograms in
+    libghdl via :mod:`ctypes`.
 
-	:param subprogramName: Name of the subprogram in *libghdl*.
-	"""
-	def wrapper(func: Callable):
-		typeHints: Dict[str, Any] = func.__annotations__
-		typeHintCount = len(typeHints)
+    :param subprogramName: Name of the subprogram in *libghdl*.
+    """
 
-		if typeHintCount == 0:
-			raise ValueError("Function {0} is not annotated with types.".format(func.__name__))
+    def wrapper(func: Callable):
+        typeHints: Dict[str, Any] = func.__annotations__
+        typeHintCount = len(typeHints)
 
-		try:
-			returnType = typeHints['return']
-		except KeyError:
-			raise ValueError("Function {0} is not annotated with a return type.".format(func.__name__))
+        if typeHintCount == 0:
+            raise ValueError("Function {0} is not annotated with types.".format(func.__name__))
 
-		if (typeHintCount - 1) != func.__code__.co_argcount:
-			raise ValueError("Number of type annotations ({0}) for function '{1}' does not match number of parameters ({2}).".format(
-				typeHintCount - 1,
-				func.__name__,
-				func.__code__.co_argcount)
-			)
+        try:
+            returnType = typeHints['return']
+        except KeyError:
+            raise ValueError("Function {0} is not annotated with a return type.".format(func.__name__))
 
-#		print(typeHints)
+        if (typeHintCount - 1) != func.__code__.co_argcount:
+            raise ValueError(
+                "Number of type annotations ({0}) for function '{1}' does not match number of parameters ({2}).".format(
+                    typeHintCount - 1,
+                    func.__name__,
+                    func.__code__.co_argcount)
+            )
 
-		parameters = typeHints.copy()
-		del parameters['return']
+        #		print(typeHints)
 
-		parameterTypes = []
-		for parameter in parameters.values():
-			if parameter is int:
-				parameterTypes.append(c_int32)
-			elif parameter is c_char_p:
-				parameterTypes.append(c_char_p)
-			elif isinstance(parameter, TypeVar):
-				if parameter.__bound__ is int:
-					parameterTypes.append(c_int32)
-				else:
-					raise TypeError("Unsupported parameter type '{0!s}' in function '{1}'.".format(parameter, func.__name__))
-			else:
-				raise TypeError("Unsupported parameter type '{0!s}' in function '{1}'.".format(parameter, func.__name__))
+        parameters = typeHints.copy()
+        del parameters['return']
 
-		if returnType is None:
-			resultType = None
-		elif returnType is c_char_p:
-			resultType = c_char_p
-		elif (returnType is int):
-			resultType = c_int32
-		elif isinstance(returnType, TypeVar):
-			if (returnType.__bound__ is int):
-				resultType = c_int32
-			else:
-				raise Exception("Unsupported return type '{0!s}' in function '{1}'.".format(returnType, func.__name__))
-		else:
-			raise Exception("Unsupported return type '{0!s}' in function '{1}'.".format(returnType, func.__name__))
+        parameterTypes = []
+        for parameter in parameters.values():
+            if parameter is int:
+                parameterTypes.append(c_int32)
+            elif parameter is c_char_p:
+                parameterTypes.append(c_char_p)
+            elif isinstance(parameter, TypeVar):
+                if parameter.__bound__ is int:
+                    parameterTypes.append(c_int32)
+                else:
+                    raise TypeError(
+                        "Unsupported parameter type '{0!s}' in function '{1}'.".format(parameter, func.__name__))
+            else:
+                raise TypeError(
+                    "Unsupported parameter type '{0!s}' in function '{1}'.".format(parameter, func.__name__))
 
-		functionPointer = getattr(libghdl, subprogramName)
-		functionPointer.parameterTypes = parameterTypes
-		functionPointer.restype = resultType
+        if returnType is None:
+            resultType = None
+        elif returnType is c_char_p:
+            resultType = c_char_p
+        elif (returnType is int):
+            resultType = c_int32
+        elif isinstance(returnType, TypeVar):
+            if (returnType.__bound__ is int):
+                resultType = c_int32
+            else:
+                raise Exception("Unsupported return type '{0!s}' in function '{1}'.".format(returnType, func.__name__))
+        else:
+            raise Exception("Unsupported return type '{0!s}' in function '{1}'.".format(returnType, func.__name__))
 
-		@wraps(func)
-		def inner(*args):
-			return functionPointer(*args)
+        functionPointer = getattr(libghdl, subprogramName)
+        functionPointer.parameterTypes = parameterTypes
+        functionPointer.restype = resultType
 
-		return inner
+        @wraps(func)
+        def inner(*args):
+            return functionPointer(*args)
 
-	return wrapper
+        return inner
+
+    return wrapper

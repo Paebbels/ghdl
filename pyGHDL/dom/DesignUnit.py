@@ -41,27 +41,25 @@ This module contains all DOM classes for VHDL's design units (:class:`entity <En
 """
 from pydecor import export
 
-from pyVHDLModel.VHDLModel import Entity as VHDLModel_Entity
-from pyVHDLModel.VHDLModel import Architecture as VHDLModel_Architecture
-from pyVHDLModel.VHDLModel import Package as VHDLModel_Package
-from pyVHDLModel.VHDLModel import PackageBody as VHDLModel_PackageBody
-from pyVHDLModel.VHDLModel import Context as VHDLModel_Context
+from pyVHDLModel.VHDLModel import Entity        as VHDLModel_Entity
+from pyVHDLModel.VHDLModel import Architecture  as VHDLModel_Architecture
+from pyVHDLModel.VHDLModel import Package       as VHDLModel_Package
+from pyVHDLModel.VHDLModel import PackageBody   as VHDLModel_PackageBody
+from pyVHDLModel.VHDLModel import Context       as VHDLModel_Context
 from pyVHDLModel.VHDLModel import Configuration as VHDLModel_Configuration
 
-from pyGHDL.libghdl.vhdl import nodes
+from pyGHDL.libghdl.vhdl   import nodes
 import pyGHDL.libghdl.utils as pyutils
 
-from pyGHDL.dom.Common import GHDLMixin
-from pyGHDL.dom.InterfaceItem import (
-    GenericConstantInterfaceItem,
-    PortSignalInterfaceItem,
-)
+from pyGHDL.dom.Common        import GHDLMixin
+from pyGHDL.dom.InterfaceItem import GenericConstantInterfaceItem, PortSignalInterfaceItem
 
 __all__ = []
 
 
 @export
 class Entity(VHDLModel_Entity, GHDLMixin):
+
     @classmethod
     def parse(cls, libraryUnit):
         name = cls._ghdlNodeToName(libraryUnit)
@@ -113,6 +111,7 @@ class Architecture(VHDLModel_Architecture, GHDLMixin):
 
 @export
 class Package(VHDLModel_Package, GHDLMixin):
+
     @classmethod
     def parse(cls, libraryUnit):
         name = cls._ghdlNodeToName(libraryUnit)
@@ -121,6 +120,7 @@ class Package(VHDLModel_Package, GHDLMixin):
 
 @export
 class PackageBody(VHDLModel_PackageBody, GHDLMixin):
+
     @classmethod
     def parse(cls, libraryUnit):
         name = cls._ghdlNodeToName(libraryUnit)
@@ -129,6 +129,7 @@ class PackageBody(VHDLModel_PackageBody, GHDLMixin):
 
 @export
 class Context(VHDLModel_Context, GHDLMixin):
+
     @classmethod
     def parse(cls, libraryUnit):
         name = cls._ghdlNodeToName(libraryUnit)
@@ -137,6 +138,7 @@ class Context(VHDLModel_Context, GHDLMixin):
 
 @export
 class Configuration(VHDLModel_Configuration, GHDLMixin):
+
     @classmethod
     def parse(cls, libraryUnit):
         name = cls._ghdlNodeToName(libraryUnit)

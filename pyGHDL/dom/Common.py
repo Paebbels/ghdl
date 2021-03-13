@@ -63,11 +63,11 @@ class GHDLException(GHDLBaseException):
 @export
 class GHDLMixin:
     _MODE_TRANSLATION = {
-        nodes.Iir_Mode.In_Mode: Mode.In,
-        nodes.Iir_Mode.Out_Mode: Mode.Out,
-        nodes.Iir_Mode.Inout_Mode: Mode.InOut,
-        nodes.Iir_Mode.Buffer_Mode: Mode.Buffer,
-        nodes.Iir_Mode.Linkage_Mode: Mode.Linkage,
+        nodes.Iir_Mode.In_Mode:      Mode.In,
+        nodes.Iir_Mode.Out_Mode:     Mode.Out,
+        nodes.Iir_Mode.Inout_Mode:   Mode.InOut,
+        nodes.Iir_Mode.Buffer_Mode:  Mode.Buffer,
+        nodes.Iir_Mode.Linkage_Mode: Mode.Linkage
     }
 
     @classmethod
