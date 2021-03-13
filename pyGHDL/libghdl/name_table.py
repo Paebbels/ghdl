@@ -6,9 +6,9 @@
 # | .__/ \__, |\____|_| |_|____/|_____(_)_|_|_.__/ \__, |_| |_|\__,_|_|
 # |_|    |___/                                     |___/
 # =============================================================================
-#  Authors:
-#    Tristan Gingold
-#    Patrick Lehmann
+# Authors:
+#   Tristan Gingold
+#   Patrick Lehmann
 #
 # Package package:  Python binding and low-level API for shared library 'libghdl'.
 #
@@ -39,9 +39,8 @@ from pyGHDL.libghdl._decorator import BindToLibGHDL
 
 
 __all__ = [
-	'Null_Identifier'
+    "Null_Identifier"
 ]
-
 
 Null_Identifier = 0
 
@@ -49,39 +48,39 @@ Null_Identifier = 0
 #@export
 @BindToLibGHDL("name_table__get_name_length")
 def Get_Name_Length(Id: NameId) -> int:
-	"""
-	Get the length of an identifier denoted by a ``NameId``.
+    """
+    Get the length of an identifier denoted by a ``NameId``.
 
-	:param Id: NameId for the identifier to query.
-	:return:   Length of the identifier.
-	"""
+    :param Id: NameId for the identifier to query.
+    :return:   Length of the identifier.
+    """
 
 
 #@export
 @BindToLibGHDL("name_table__get_name_ptr")
 def Get_Name_Ptr(Id: NameId) -> str:
-	"""
-	Get the address of the first character of ID.  The address is valid until
-	the next call to Get_Identifier (which may reallocate the string table).
-	The string is NUL-terminated (this is done by get_identifier).
+    """
+    Get the address of the first character of ID.  The address is valid until
+    the next call to Get_Identifier (which may reallocate the string table).
+    The string is NUL-terminated (this is done by get_identifier).
 
-	:param Id: NameId for the identifier to query.
-	:return:
-	"""
+    :param Id: NameId for the identifier to query.
+    :return:
+    """
 
 
 #@export
 @BindToLibGHDL("name_table__get_identifier_with_len")
 def Get_Identifier(string: str) -> NameId:
-	"""
-	Get or create an entry in the name table.
+    """
+    Get or create an entry in the name table.
 
-	.. note::
+    .. note::
 
-	   * an identifier is represented in all lower case letter,
-	   * an extended identifier is represented in backslashes, double internal
-	     backslashes are simplified.
+       * an identifier is represented in all lower case letter,
+       * an extended identifier is represented in backslashes, double internal
+         backslashes are simplified.
 
-	:param string: String to create or lookup.
-	:return:       Id in name table.
-	"""
+    :param string: String to create or lookup.
+    :return:       Id in name table.
+    """

@@ -6,9 +6,9 @@
 # | .__/ \__, |\____|_| |_|____/|_____(_)_|_|_.__/ \__, |_| |_|\__,_|_|
 # |_|    |___/                                     |___/
 # =============================================================================
-#  Authors:
-#    Tristan Gingold
-#    Patrick Lehmann
+# Authors:
+#   Tristan Gingold
+#   Patrick Lehmann
 #
 # Package package:  Python binding and low-level API for shared library 'libghdl'.
 #
@@ -84,17 +84,17 @@ Msg_Last = 3
 #@export
 @BindToLibGHDL("errorout__memory__install_handler")
 def Install_Handler() -> None:
-	"""Install the handlers for reporting errors."""
+    """Install the handlers for reporting errors."""
 
 
 #@export
 @BindToLibGHDL("errorout__memory__get_nbr_messages")
 def Get_Nbr_Messages() -> ErrorIndex:
-	"""
-	Get number of error messages available.
+    """
+    Get number of error messages available.
 
-	:return: Number of messages available.
-	"""
+    :return: Number of messages available.
+    """
 
 
 @export
@@ -114,15 +114,15 @@ def Get_Error_Record(Idx: ErrorIndex) -> Error_Message:
 
 @export
 def Get_Error_Message(Idx: ErrorIndex) -> str:
-	"""
-	Get error messages by index :obj:`Idx` as string.
+    """
+    Get error messages by index :obj:`Idx` as string.
 
-	:param Idx: Index from 1 to ``Nbr_Messages`` See :func:`Get_Nbr_Messages`.
-	:return:    Error message.
-	"""
-	func = libghdl.errorout__memory__get_error_message_addr
-	func.argstype = [c_int32]
-	func.restype = c_char_p
+    :param Idx: Index from 1 to ``Nbr_Messages`` See :func:`Get_Nbr_Messages`.
+    :return:    Error message.
+    """
+    func = libghdl.errorout__memory__get_error_message_addr
+    func.argstype = [c_int32]
+    func.restype = c_char_p
 
     return func(Idx).decode("utf-8")
 
@@ -130,4 +130,4 @@ def Get_Error_Message(Idx: ErrorIndex) -> str:
 #@export
 @BindToLibGHDL("errorout__memory__clear_errors")
 def Clear_Errors() -> None:
-	"""Remove all error messages."""
+    """Remove all error messages."""

@@ -6,9 +6,9 @@
 # | .__/ \__, |\____|_| |_|____/|_____(_)_|_|_.__/ \__, |_| |_|\__,_|_|
 # |_|    |___/                                     |___/
 # =============================================================================
-#  Authors:
-#    Tristan Gingold
-#    Patrick Lehmann
+# Authors:
+#   Tristan Gingold
+#   Patrick Lehmann
 #
 # Package module:   Python binding and low-level API for shared library 'libghdl'.
 #
@@ -41,7 +41,11 @@ from pyGHDL.libghdl import libghdl
 
 @export
 class Iterator(Structure):
-    _fields_ = [("chunk", c_int32), ("chunk_idx", c_int32), ("remain", c_int32)]
+    _fields_ = [
+        ("chunk", c_int32),
+        ("chunk_idx", c_int32),
+        ("remain", c_int32)
+    ]
 
 
 @export
@@ -74,8 +78,8 @@ def Is_Valid(it: Iterator) -> bool:
     """
     Check if iterator reached the end.
 
-    :param Iterator: Iterator to check.
-    :return:         False, if iterator has reached the end.
+    :param it: Iterator to check.
+    :return:   ``False``, if iterator has reached the end.
     """
     func = libghdl.vhdl__lists__is_valid
     func.argstype = [POINTER(Iterator)]
@@ -85,18 +89,18 @@ def Is_Valid(it: Iterator) -> bool:
 
 
 @export
-def Next(it: Iterator):
+def Next(it: Iterator) -> bool:
     """
     Move iterator to the next element.
 
-    :param Iterator: Iterator to increment.
-    :return:         False, if iterator has reached the end.
+    :param it: Iterator to increment.
+    :return:   ``False``, if iterator has reached the end.
     """
     func = libghdl.vhdl__lists__next
     func.argstype = [POINTER(Iterator)]
     func.restype = None
 
-    func(it)
+    return func(it)
 
 
 @export
@@ -104,8 +108,8 @@ def Get_Element(it: Iterator) -> int:
     """
     Get the current element from iterator.
 
-    :param Iterator: Iterator the get the element from.
-    :return:         The current element the iterator points to. Type: ``El_Type``
+    :param it: Iterator the get the element from.
+    :return:   The current element the iterator points to. Type: ``El_Type``
     """
     func = libghdl.vhdl__lists__get_element
     func.argstype = [POINTER(Iterator)]
@@ -136,7 +140,7 @@ def Create_Iir_List() -> int:
     """
     Create a list.
 
-    :return: Type: ``List_Type``
+    :return: undocumented; Type: ``List_Type``
     """
     return libghdl.vhdl__lists__create_list()
 

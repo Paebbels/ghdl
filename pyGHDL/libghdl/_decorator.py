@@ -6,8 +6,8 @@
 # | .__/ \__, |\____|_| |_|____/|_____(_)_|_|_.__/ \__, |_| |_|\__,_|_|
 # |_|    |___/                                     |___/
 # =============================================================================
-#  Authors:
-#    Patrick Lehmann
+# Authors:
+#   Patrick Lehmann
 #
 # Package module:   Python binding and low-level API for shared library 'libghdl'.
 #
@@ -90,11 +90,10 @@ def BindToLibGHDL(subprogramName):
             raise ValueError("Function {0} is not annotated with a return type.".format(func.__name__))
 
         if (typeHintCount - 1) != func.__code__.co_argcount:
-            raise ValueError(
-                "Number of type annotations ({0}) for function '{1}' does not match number of parameters ({2}).".format(
-                    typeHintCount - 1,
-                    func.__name__,
-                    func.__code__.co_argcount)
+            raise ValueError("Number of type annotations ({0}) for function '{1}' does not match number of parameters ({2}).".format(
+                typeHintCount - 1,
+                func.__name__,
+                func.__code__.co_argcount)
             )
 
         #		print(typeHints)
@@ -112,11 +111,9 @@ def BindToLibGHDL(subprogramName):
                 if parameter.__bound__ is int:
                     parameterTypes.append(c_int32)
                 else:
-                    raise TypeError(
-                        "Unsupported parameter type '{0!s}' in function '{1}'.".format(parameter, func.__name__))
+                    raise TypeError("Unsupported parameter type '{0!s}' in function '{1}'.".format(parameter, func.__name__))
             else:
-                raise TypeError(
-                    "Unsupported parameter type '{0!s}' in function '{1}'.".format(parameter, func.__name__))
+                raise TypeError("Unsupported parameter type '{0!s}' in function '{1}'.".format(parameter, func.__name__))
 
         if returnType is None:
             resultType = None

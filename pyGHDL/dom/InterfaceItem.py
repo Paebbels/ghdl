@@ -1,13 +1,13 @@
 # =============================================================================
-#                ____ _   _ ____  _          _
-#   _ __  _   _ / ___| | | |  _ \| |      __| | ___  _ __ ___
-#  | '_ \| | | | |  _| |_| | | | | |     / _` |/ _ \| '_ ` _ \
-#  | |_) | |_| | |_| |  _  | |_| | |___ | (_| | (_) | | | | | |
-#  | .__/ \__, |\____|_| |_|____/|_____(_)__,_|\___/|_| |_| |_|
-#  |_|    |___/
+#               ____ _   _ ____  _          _
+#  _ __  _   _ / ___| | | |  _ \| |      __| | ___  _ __ ___
+# | '_ \| | | | |  _| |_| | | | | |     / _` |/ _ \| '_ ` _ \
+# | |_) | |_| | |_| |  _  | |_| | |___ | (_| | (_) | | | | | |
+# | .__/ \__, |\____|_| |_|____/|_____(_)__,_|\___/|_| |_| |_|
+# |_|    |___/
 # =============================================================================
-#  Authors:
-#    Patrick Lehmann
+# Authors:
+#   Patrick Lehmann
 #
 # Package module:   DOM: Interface items (e.g. generic or port)
 #
@@ -33,12 +33,8 @@
 
 from pydecor import export
 
-from pyVHDLModel.VHDLModel import (
-    PortSignalInterfaceItem as VHDLModel_PortSignalInterfaceItem,
-)
-from pyVHDLModel.VHDLModel import (
-    GenericConstantInterfaceItem as VHDLModel_GenericConstantInterfaceItem,
-)
+from pyVHDLModel.VHDLModel import PortSignalInterfaceItem      as VHDLModel_PortSignalInterfaceItem
+from pyVHDLModel.VHDLModel import GenericConstantInterfaceItem as VHDLModel_GenericConstantInterfaceItem
 
 from pyGHDL.dom.Common import GHDLMixin
 

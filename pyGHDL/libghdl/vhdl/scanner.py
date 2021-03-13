@@ -6,9 +6,9 @@
 # | .__/ \__, |\____|_| |_|____/|_____(_)_|_|_.__/ \__, |_| |_|\__,_|_|
 # |_|    |___/                                     |___/
 # =============================================================================
-#  Authors:
-#    Tristan Gingold
-#    Patrick Lehmann
+# Authors:
+#   Tristan Gingold
+#   Patrick Lehmann
 #
 # Package module:   Python binding and low-level API for shared library 'libghdl'.
 #
@@ -39,8 +39,10 @@ from pydecor import export
 from pyGHDL.libghdl import libghdl
 from pyGHDL.libghdl._types import SourceFileEntry, NameId
 
-
-__all__ = ["Current_Token", "Flag_Comment"]
+__all__ = [
+    "Current_Token",
+    "Flag_Comment"
+]
 
 # This is a c_int, so you want to use its .value
 Current_Token = c_int.in_dll(libghdl, "vhdl__scanner__current_token")

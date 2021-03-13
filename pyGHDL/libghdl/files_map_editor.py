@@ -6,9 +6,9 @@
 # | .__/ \__, |\____|_| |_|____/|_____(_)_|_|_.__/ \__, |_| |_|\__,_|_|
 # |_|    |___/                                     |___/
 # =============================================================================
-#  Authors:
-#    Tristan Gingold
-#    Patrick Lehmann
+# Authors:
+#   Tristan Gingold
+#   Patrick Lehmann
 #
 # Package module:   Python binding and low-level API for shared library 'libghdl'.
 #
@@ -86,9 +86,7 @@ def Fill_Text(File: SourceFileEntry, Text_Pointer, Text_Length: int) -> None:
 
 
 @export
-def Check_Buffer_Content(
-    File: SourceFileEntry, String_Pointer, String_Length: int
-) -> None:
+def Check_Buffer_Content(File: SourceFileEntry, String_Pointer, String_Length: int) -> None:
     """
     Check that content of :obj:`File` is STR[1 .. STR_LEN].
 

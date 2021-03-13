@@ -1,19 +1,19 @@
 # =============================================================================
-#                ____ _   _ ____  _          _
-#   _ __  _   _ / ___| | | |  _ \| |      __| | ___  _ __ ___
-#  | '_ \| | | | |  _| |_| | | | | |     / _` |/ _ \| '_ ` _ \
-#  | |_) | |_| | |_| |  _  | |_| | |___ | (_| | (_) | | | | | |
-#  | .__/ \__, |\____|_| |_|____/|_____(_)__,_|\___/|_| |_| |_|
-#  |_|    |___/
+#               ____ _   _ ____  _          _
+#  _ __  _   _ / ___| | | |  _ \| |      __| | ___  _ __ ___
+# | '_ \| | | | |  _| |_| | | | | |     / _` |/ _ \| '_ ` _ \
+# | |_) | |_| | |_| |  _  | |_| | |___ | (_| | (_) | | | | | |
+# | .__/ \__, |\____|_| |_|____/|_____(_)__,_|\___/|_| |_| |_|
+# |_|    |___/
 # =============================================================================
-#  Authors:
-#    Patrick Lehmann
+# Authors:
+#   Patrick Lehmann
 #
 # Package module:   DOM: Elements not covered by the VHDL standard.
 #
 # License:
 # ============================================================================
-#  Copyright (C) 2019-2020 Tristan Gingold
+#  Copyright (C) 2019-2021 Tristan Gingold
 #
 #  This program is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -40,9 +40,9 @@ from typing  import Any
 
 from pydecor import export
 
-from pyVHDLModel.VHDLModel  import Design        as VHDLModel_Design
-from pyVHDLModel.VHDLModel  import Library       as VHDLModel_Library
-from pyVHDLModel.VHDLModel  import Document      as VHDLModel_Document
+from pyVHDLModel.VHDLModel import Design        as VHDLModel_Design
+from pyVHDLModel.VHDLModel import Library       as VHDLModel_Library
+from pyVHDLModel.VHDLModel import Document      as VHDLModel_Document
 
 import pyGHDL.libghdl       as libghdl
 from pyGHDL.libghdl         import name_table, files_map, errorout_memory

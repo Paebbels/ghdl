@@ -7,8 +7,8 @@
 # |_|    |___/                                     |___/
 # =============================================================================
 # Authors:
-#    Tristan Gingold
-#    Patrick Lehmann
+#   Tristan Gingold
+#   Patrick Lehmann
 #
 # Package module:   Python binding and low-level API for shared library 'libghdl'.
 #

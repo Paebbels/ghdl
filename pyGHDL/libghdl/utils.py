@@ -6,8 +6,8 @@
 # | .__/ \__, |\____|_| |_|____/|_____(_)_|_|_.__/ \__, |_| |_|\__,_|_|
 # |_|    |___/                                     |___/
 # =============================================================================
-#  Authors:
-#    Tristan Gingold
+# Authors:
+#   Tristan Gingold
 #
 # Package module:   Generators/iterators and low-level helpers for pyGHDL.libghdl.
 #

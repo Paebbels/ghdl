@@ -6,9 +6,9 @@
 # | .__/ \__, |\____|_| |_|____/|_____(_)_|_|_.__/ \__, |_| |_|\__,_|_|
 # |_|    |___/                                     |___/
 # =============================================================================
-#  Authors:
-#    Tristan Gingold
-#    Patrick Lehmann
+# Authors:
+#   Tristan Gingold
+#   Patrick Lehmann
 #
 # Package package:  Python binding and low-level API for shared library 'libghdl'.
 #
@@ -212,15 +212,15 @@ def Set_File_Length(File: SourceFileEntry, Length: int) -> None:
 #@export
 @BindToLibGHDL("files_map__read_source_file")
 def Read_Source_File(Directory: NameId, Name: NameId) -> SourceFileEntry:
-	"""
-	Return an entry for a filename.
+    """
+    Return an entry for a filename.
 
-	Load the filename if necessary.
+    Load the filename if necessary.
 
-	:param Directory: ``Null_Identifier`` for :obj:`DirectoryId` means current directory.
-	:param Name:      File name
-	:return:          Return ``No_Source_File_Entry``, if the file does not exist.
-	"""
+    :param Directory: ``Null_Identifier`` for :obj:`DirectoryId` means current directory.
+    :param Name:      File name
+    :return:          Return ``No_Source_File_Entry``, if the file does not exist.
+    """
 
 
 @export
