@@ -34,10 +34,10 @@
 
 from pydecor import export
 
-from pyGHDL.libghdl import libghdl
+from pyGHDL.libghdl._decorator import BindToLibGHDL
 
 
 @export
+@BindToLibGHDL("errorout__console__install_handler")
 def Install_Handler() -> None:
     """Install the handlers for reporting errors."""
-    libghdl.errorout__console__install_handler()

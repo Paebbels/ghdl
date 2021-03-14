@@ -35,6 +35,8 @@
 from ctypes import c_int32
 
 from pyGHDL.libghdl import libghdl
+from pyGHDL.libghdl._types import Location_Type, Iir_Package_Declaration, Iir_Enumeration_Type_Definition
+
 
 __all__ = [
     "Std_Location",
@@ -42,7 +44,6 @@ __all__ = [
     "Character_Type_Definition"
 ]
 
-from pyGHDL.libghdl._types import Location_Type, Iir_Package_Declaration, Iir_Enumeration_Type_Definition
 
 Std_Location: Location_Type = c_int32.in_dll(libghdl, "vhdl__std_package__std_location")
 """Virtual location for the ``std.standard`` package. Use ``.value`` to access this variable inside libghdl."""

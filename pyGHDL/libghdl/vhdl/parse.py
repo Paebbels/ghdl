@@ -37,16 +37,21 @@ from ctypes import c_bool
 from pydecor import export
 
 from pyGHDL.libghdl import libghdl
+from pyGHDL.libghdl._types import Iir
+from pyGHDL.libghdl._decorator import BindToLibGHDL
+
 
 __all__ = [
     "Flag_Parse_Parenthesis"
 ]
 
+
 Flag_Parse_Parenthesis = c_bool.in_dll(libghdl, "vhdl__parse__flag_parse_parenthesis")
 
 
 @export
-def Parse_Design_File():
+@BindToLibGHDL("vhdl__parse__parse_design_file")
+def Parse_Design_File() -> Iir:
     """
     Parse a file.
 
@@ -54,4 +59,3 @@ def Parse_Design_File():
 
     :return: Return :obj:`~pyGHDL.libghdl.vhdl.nodes.Null_Iir` in case of error. Type: ``Iir_Design_File``
     """
-    return libghdl.vhdl__parse__parse_design_file()

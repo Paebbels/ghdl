@@ -36,9 +36,8 @@ from ctypes import c_int8, c_int32, c_char_p, Structure
 
 from pydecor import export
 
-from pyGHDL.libghdl import libghdl
-from pyGHDL.libghdl._decorator import BindToLibGHDL
 from pyGHDL.libghdl._types import ErrorIndex
+from pyGHDL.libghdl._decorator import BindToLibGHDL
 
 
 @export
@@ -81,13 +80,13 @@ Msg_Related = 2
 Msg_Last = 3
 
 
-#@export
+@export
 @BindToLibGHDL("errorout__memory__install_handler")
 def Install_Handler() -> None:
     """Install the handlers for reporting errors."""
 
 
-#@export
+@export
 @BindToLibGHDL("errorout__memory__get_nbr_messages")
 def Get_Nbr_Messages() -> ErrorIndex:
     """
@@ -98,6 +97,7 @@ def Get_Nbr_Messages() -> ErrorIndex:
 
 
 @export
+@BindToLibGHDL("errorout__memory__get_error_record")
 def Get_Error_Record(Idx: ErrorIndex) -> Error_Message:
     """
     Get error messages by index :obj:`Idy` as structure :class:`Error_Message`.
@@ -105,12 +105,12 @@ def Get_Error_Record(Idx: ErrorIndex) -> Error_Message:
     :param Idx: Index from 1 to ``Nbr_Messages`` See :func:`Get_Nbr_Messages`.
     :return:    Type: ``Error_Message``
     """
-    func = libghdl.errorout__memory__get_error_record
-    func.argstypes = [c_int32]
-    func.restype = Error_Message
 
-    return func(Idx)
 
+#@export
+@BindToLibGHDL("errorout__memory__get_error_message_addr")
+def _Get_Error_Message(Idx: ErrorIndex) -> c_char_p:
+    pass
 
 @export
 def Get_Error_Message(Idx: ErrorIndex) -> str:
@@ -120,14 +120,10 @@ def Get_Error_Message(Idx: ErrorIndex) -> str:
     :param Idx: Index from 1 to ``Nbr_Messages`` See :func:`Get_Nbr_Messages`.
     :return:    Error message.
     """
-    func = libghdl.errorout__memory__get_error_message_addr
-    func.argstype = [c_int32]
-    func.restype = c_char_p
-
-    return func(Idx).decode("utf-8")
+    return _Get_Error_Message(Idx).decode("utf-8")
 
 
-#@export
+@export
 @BindToLibGHDL("errorout__memory__clear_errors")
 def Clear_Errors() -> None:
     """Remove all error messages."""

@@ -31,7 +31,7 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 # ============================================================================
 #
-from ctypes import c_int32, c_char_p
+from ctypes import c_int32, c_char_p, c_bool, Structure
 from functools import wraps
 from typing import Callable, List, Dict, Any, TypeVar
 
@@ -105,10 +105,14 @@ def BindToLibGHDL(subprogramName):
         for parameter in parameters.values():
             if parameter is int:
                 parameterTypes.append(c_int32)
+            elif parameter is bool:
+                parameterTypes.append(c_bool)
+            elif parameter is bytes:
+                parameterTypes.append(c_char_p)
             elif parameter is c_char_p:
                 parameterTypes.append(c_char_p)
             elif isinstance(parameter, TypeVar):
-                if parameter.__bound__ is int:
+                if (parameter.__bound__ is int) or (parameter.__bound__ is c_int32):
                     parameterTypes.append(c_int32)
                 else:
                     raise TypeError("Unsupported parameter type '{0!s}' in function '{1}'.".format(parameter, func.__name__))
@@ -117,15 +121,21 @@ def BindToLibGHDL(subprogramName):
 
         if returnType is None:
             resultType = None
+        elif returnType is bytes:
+            resultType = c_char_p
         elif returnType is c_char_p:
             resultType = c_char_p
         elif (returnType is int):
             resultType = c_int32
+        elif (returnType is bool):
+            resultType = c_bool
         elif isinstance(returnType, TypeVar):
-            if (returnType.__bound__ is int):
+            if (returnType.__bound__ is int) or (returnType.__bound__ is c_int32):
                 resultType = c_int32
             else:
                 raise Exception("Unsupported return type '{0!s}' in function '{1}'.".format(returnType, func.__name__))
+        elif issubclass(returnType, Structure):
+            resultType = returnType
         else:
             raise Exception("Unsupported return type '{0!s}' in function '{1}'.".format(returnType, func.__name__))
 

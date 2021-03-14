@@ -32,11 +32,12 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 # ============================================================================
 #
+from ctypes import c_char_p
+
 from pydecor import export
 
 from pyGHDL.libghdl._types import NameId
 from pyGHDL.libghdl._decorator import BindToLibGHDL
-
 
 __all__ = [
     "Null_Identifier"
@@ -45,7 +46,7 @@ __all__ = [
 Null_Identifier = 0
 
 
-#@export
+@export
 @BindToLibGHDL("name_table__get_name_length")
 def Get_Name_Length(Id: NameId) -> int:
     """
@@ -58,6 +59,11 @@ def Get_Name_Length(Id: NameId) -> int:
 
 #@export
 @BindToLibGHDL("name_table__get_name_ptr")
+def _Get_Name_Ptr(Id: NameId) -> c_char_p:
+    """"""
+
+
+@export
 def Get_Name_Ptr(Id: NameId) -> str:
     """
     Get the address of the first character of ID.  The address is valid until
@@ -67,10 +73,16 @@ def Get_Name_Ptr(Id: NameId) -> str:
     :param Id: NameId for the identifier to query.
     :return:
     """
+    return _Get_Name_Ptr(Id).decode("utf-8")
 
 
 #@export
 @BindToLibGHDL("name_table__get_identifier_with_len")
+def _Get_Identifier(string: c_char_p, length: int) -> NameId:
+    """"""
+
+
+@export
 def Get_Identifier(string: str) -> NameId:
     """
     Get or create an entry in the name table.
@@ -84,3 +96,5 @@ def Get_Identifier(string: str) -> NameId:
     :param string: String to create or lookup.
     :return:       Id in name table.
     """
+    string = string.encode("utf-8")
+    return _Get_Identifier(c_char_p(string), len(string))

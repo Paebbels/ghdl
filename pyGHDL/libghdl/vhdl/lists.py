@@ -37,6 +37,7 @@ from ctypes import c_int32, c_bool, POINTER, Structure
 from pydecor import export
 
 from pyGHDL.libghdl import libghdl
+from pyGHDL.libghdl._decorator import BindToLibGHDL
 
 
 @export
@@ -49,7 +50,8 @@ class Iterator(Structure):
 
 
 @export
-def Iterate(List) -> Iterator:
+@BindToLibGHDL("vhdl__lists__iterate")
+def Iterate(List: int) -> Iterator:
     """
     Create an iterator for a given list.
 
@@ -66,14 +68,10 @@ def Iterate(List) -> Iterator:
     :param List: List to create an iterator from.
     :return:     Iterator structure.
     """
-    func = libghdl.vhdl__lists__iterate
-    func.argstype = [c_int32]
-    func.restype = Iterator
-
-    return func(List)
 
 
 @export
+#@BindToLibGHDL("vhdl__lists__is_valid")
 def Is_Valid(it: Iterator) -> bool:
     """
     Check if iterator reached the end.
@@ -89,6 +87,7 @@ def Is_Valid(it: Iterator) -> bool:
 
 
 @export
+#@BindToLibGHDL("vhdl__lists__next")
 def Next(it: Iterator) -> bool:
     """
     Move iterator to the next element.
@@ -104,6 +103,7 @@ def Next(it: Iterator) -> bool:
 
 
 @export
+#@BindToLibGHDL("vhdl__lists__get_element")
 def Get_Element(it: Iterator) -> int:
     """
     Get the current element from iterator.
@@ -119,7 +119,8 @@ def Get_Element(it: Iterator) -> int:
 
 
 @export
-def Get_Nbr_Elements(List) -> int:
+@BindToLibGHDL("vhdl__lists__get_nbr_elements")
+def Get_Nbr_Elements(List: int) -> int:
     """
     Return the number of elements in the list.
 
@@ -128,28 +129,23 @@ def Get_Nbr_Elements(List) -> int:
     :param List: The list to use.
     :return:     Number of list elements.
     """
-    func = libghdl.vhdl__lists__get_nbr_elements
-    func.argtype = [c_int32]
-    func.restype = c_int32
-
-    return func(List)
 
 
 @export
+@BindToLibGHDL("vhdl__lists__create_list")
 def Create_Iir_List() -> int:
     """
     Create a list.
 
     :return: undocumented; Type: ``List_Type``
     """
-    return libghdl.vhdl__lists__create_list()
 
 
 @export
-def Destroy_Iir_List(List) -> None:
+@BindToLibGHDL("vhdl__lists__destroy_list")
+def Destroy_Iir_List(List: int) -> None:
     """
     Destroy a list.
 
     :param List: List to destroy.
     """
-    libghdl.vhdl__lists__destroy_list(List)
