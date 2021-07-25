@@ -345,9 +345,10 @@ def GetScalarConstrainedSubtypeFromNode(
 ) -> ConstrainedScalarSubtypeSymbol:
     typeMark = nodes.Get_Subtype_Type_Mark(subtypeIndicationNode)
     typeMarkName = GetNameOfNode(typeMark)
+    simpleTypeMark = SimpleName(typeMark, typeMarkName)
     rangeConstraint = nodes.Get_Range_Constraint(subtypeIndicationNode)
     r = GetRangeFromNode(rangeConstraint)
-    return ConstrainedScalarSubtypeSymbol(subtypeIndicationNode, typeMarkName, r)
+    return ConstrainedScalarSubtypeSymbol(subtypeIndicationNode, simpleTypeMark, r)
 
 
 @export
@@ -356,10 +357,11 @@ def GetCompositeConstrainedSubtypeFromNode(
 ) -> ConstrainedCompositeSubtypeSymbol:
     typeMark = nodes.Get_Subtype_Type_Mark(subtypeIndicationNode)
     typeMarkName = GetNameOfNode(typeMark)
+    simpleTypeMark = SimpleName(typeMark, typeMarkName)
 
     constraints = GetArrayConstraintsFromSubtypeIndication(subtypeIndicationNode)
     return ConstrainedCompositeSubtypeSymbol(
-        subtypeIndicationNode, typeMarkName, constraints
+        subtypeIndicationNode, simpleTypeMark, constraints
     )
 
 
