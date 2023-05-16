@@ -1,0 +1,262 @@
+.. # Template modified  by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+=========================
+``pyGHDL.dom.Sequential``
+=========================
+
+.. automodule:: pyGHDL.dom.Sequential
+
+
+.. currentmodule:: pyGHDL.dom.Sequential
+
+
+**Classes**
+
+- :py:class:`IfBranch`:
+  A ``Branch`` is a base-class for all branches in a if statement.
+
+- :py:class:`ElsifBranch`:
+  A ``Branch`` is a base-class for all branches in a if statement.
+
+- :py:class:`ElseBranch`:
+  A ``Branch`` is a base-class for all branches in a if statement.
+
+- :py:class:`IfStatement`:
+  A ``CompoundStatement`` is a base-class for all compound statements.
+
+- :py:class:`IndexedChoice`:
+  A ``SequentialChoice`` is a base-class for all sequential choices (in case statements).
+
+- :py:class:`RangedChoice`:
+  A ``SequentialChoice`` is a base-class for all sequential choices (in case statements).
+
+- :py:class:`Case`:
+  A ``Case`` is a base-class for all cases.
+
+- :py:class:`OthersCase`:
+  A ``Case`` is a base-class for all cases.
+
+- :py:class:`CaseStatement`:
+  A ``CompoundStatement`` is a base-class for all compound statements.
+
+- :py:class:`ForLoopStatement`:
+  A ``LoopStatement`` is a base-class for all loop statements.
+
+- :py:class:`SequentialSimpleSignalAssignment`:
+  A ``SequentialStatement`` is a base-class for all sequential statements.
+
+- :py:class:`SequentialProcedureCall`:
+  A ``SequentialStatement`` is a base-class for all sequential statements.
+
+- :py:class:`SequentialAssertStatement`:
+  A ``SequentialStatement`` is a base-class for all sequential statements.
+
+- :py:class:`SequentialReportStatement`:
+  A ``SequentialStatement`` is a base-class for all sequential statements.
+
+- :py:class:`NullStatement`:
+  A ``SequentialStatement`` is a base-class for all sequential statements.
+
+- :py:class:`ExitStatement`:
+  A ``LoopControlStatement`` is a base-class for all loop controlling statements.
+
+- :py:class:`WaitStatement`:
+  A ``SequentialStatement`` is a base-class for all sequential statements.
+
+
+
+---------------------
+
+**Classes**
+
+
+
+
+.. autoclass:: IfBranch
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: IfBranch
+      :parts: 1
+
+.. autoclass:: ElsifBranch
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ElsifBranch
+      :parts: 1
+
+.. autoclass:: ElseBranch
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ElseBranch
+      :parts: 1
+
+.. autoclass:: IfStatement
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: IfStatement
+      :parts: 1
+
+.. autoclass:: IndexedChoice
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: IndexedChoice
+      :parts: 1
+
+.. autoclass:: RangedChoice
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: RangedChoice
+      :parts: 1
+
+.. autoclass:: Case
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Case
+      :parts: 1
+
+.. autoclass:: OthersCase
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: OthersCase
+      :parts: 1
+
+.. autoclass:: CaseStatement
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: CaseStatement
+      :parts: 1
+
+.. autoclass:: ForLoopStatement
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ForLoopStatement
+      :parts: 1
+
+.. autoclass:: SequentialSimpleSignalAssignment
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: SequentialSimpleSignalAssignment
+      :parts: 1
+
+.. autoclass:: SequentialProcedureCall
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: SequentialProcedureCall
+      :parts: 1
+
+.. autoclass:: SequentialAssertStatement
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: SequentialAssertStatement
+      :parts: 1
+
+.. autoclass:: SequentialReportStatement
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: SequentialReportStatement
+      :parts: 1
+
+.. autoclass:: NullStatement
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: NullStatement
+      :parts: 1
+
+.. autoclass:: ExitStatement
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ExitStatement
+      :parts: 1
+
+.. autoclass:: WaitStatement
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: WaitStatement
+      :parts: 1

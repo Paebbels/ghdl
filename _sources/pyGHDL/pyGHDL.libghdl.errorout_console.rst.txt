@@ -1,0 +1,27 @@
+.. # Template modified  by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+===================================
+``pyGHDL.libghdl.errorout_console``
+===================================
+
+.. automodule:: pyGHDL.libghdl.errorout_console
+
+
+.. currentmodule:: pyGHDL.libghdl.errorout_console
+
+
+**Functions**
+
+- :py:func:`Install_Handler`:
+  Install the handlers for reporting errors.
+
+
+
+---------------------
+
+**Functions**
+
+
+.. autofunction:: Install_Handler

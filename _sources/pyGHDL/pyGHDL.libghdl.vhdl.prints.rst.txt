@@ -1,0 +1,47 @@
+.. # Template modified  by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+==============================
+``pyGHDL.libghdl.vhdl.prints``
+==============================
+
+.. automodule:: pyGHDL.libghdl.vhdl.prints
+
+
+.. currentmodule:: pyGHDL.libghdl.vhdl.prints
+
+
+**Functions**
+
+- :py:func:`Print_String`:
+  Reindent all lines of F between [First_Line; Last_Line] to :obj:`Handle`.
+
+- :py:func:`Allocate_Handle`:
+  .. todo:: Undocumented in Ada code.
+
+- :py:func:`Get_Length`:
+  .. todo:: Undocumented in Ada code.
+
+- :py:func:`Get_C_String`:
+  .. todo:: Undocumented in Ada code.
+
+- :py:func:`Free_Handle`:
+  .. todo:: Undocumented in Ada code.
+
+
+
+---------------------
+
+**Functions**
+
+
+.. autofunction:: Print_String
+
+.. autofunction:: Allocate_Handle
+
+.. autofunction:: Get_Length
+
+.. autofunction:: Get_C_String
+
+.. autofunction:: Free_Handle

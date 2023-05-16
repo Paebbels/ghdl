@@ -1,0 +1,73 @@
+.. # Template modified  by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+==================================
+``pyGHDL.libghdl.errorout_memory``
+==================================
+
+.. automodule:: pyGHDL.libghdl.errorout_memory
+
+
+.. currentmodule:: pyGHDL.libghdl.errorout_memory
+
+
+**Functions**
+
+- :py:func:`Install_Handler`:
+  Install the handlers for reporting errors.
+
+- :py:func:`Get_Nbr_Messages`:
+  Get number of error messages available.
+
+- :py:func:`Get_Error_Record`:
+  Get error messages by index :obj:`Idy` as structure :class:`Error_Message`.
+
+- :py:func:`Get_Error_Message`:
+  Get error messages by index :obj:`Idx` as string.
+
+- :py:func:`Clear_Errors`:
+  Remove all error messages.
+
+
+
+**Classes**
+
+- :py:class:`Error_Message`:
+  Id : Msgid_Type
+
+
+
+---------------------
+
+**Functions**
+
+
+.. autofunction:: Install_Handler
+
+.. autofunction:: Get_Nbr_Messages
+
+.. autofunction:: Get_Error_Record
+
+.. autofunction:: Get_Error_Message
+
+.. autofunction:: Clear_Errors
+
+
+---------------------
+
+**Classes**
+
+
+
+
+.. autoclass:: Error_Message
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Error_Message
+      :parts: 1

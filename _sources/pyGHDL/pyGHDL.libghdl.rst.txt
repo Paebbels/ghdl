@@ -1,0 +1,146 @@
+.. # Template modified  by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+==================
+``pyGHDL.libghdl``
+==================
+
+.. automodule:: pyGHDL.libghdl
+
+
+
+**Submodules**
+
+
+.. toctree::
+
+   pyGHDL.libghdl._decorator
+   pyGHDL.libghdl._types
+   pyGHDL.libghdl.errorout
+   pyGHDL.libghdl.errorout_console
+   pyGHDL.libghdl.errorout_memory
+   pyGHDL.libghdl.file_comments
+   pyGHDL.libghdl.files_map
+   pyGHDL.libghdl.files_map_editor
+   pyGHDL.libghdl.flags
+   pyGHDL.libghdl.libraries
+   pyGHDL.libghdl.name_table
+   pyGHDL.libghdl.std_names
+   pyGHDL.libghdl.str_table
+   pyGHDL.libghdl.utils
+   pyGHDL.libghdl.vhdl
+
+.. currentmodule:: pyGHDL.libghdl
+
+
+**Variables**
+
+- :py:data:`ENCODING`
+  
+
+
+**Functions**
+
+- :py:func:`_get_libghdl_name`:
+  Get the name of the libghdl library (with version and extension).
+
+- :py:func:`_check_libghdl_libdir`:
+  Returns libghdl path in :obj:`libdir`, if found.
+
+- :py:func:`_check_libghdl_bindir`:
+  Undocumented.
+
+- :py:func:`_get_libghdl_path`:
+  Locate the directory where the shared library is installed.
+
+- :py:func:`_initialize`:
+  Undocumented.
+
+- :py:func:`finalize`:
+  Free all the memory, be ready for a new initialization.
+
+- :py:func:`initialize`:
+  Initialize or re-initialize the shared library.
+
+- :py:func:`set_option`:
+  Set option :obj:`opt`.
+
+- :py:func:`analyze_init`:
+  Initialize the analyzer.
+
+- :py:func:`analyze_init_status`:
+  Initialize the analyzer.
+
+- :py:func:`analyze_file`:
+  Analyze a given filename :obj:`fname`.
+
+- :py:func:`disp_config`:
+  Display the configured prefixes for libghdl.
+
+
+
+**Exceptions**
+
+- :py:exc:`LibGHDLException`:
+  Common base class for all non-exit exceptions.
+
+
+
+---------------------
+
+**Variables**
+
+
+
+
+.. autodata:: ENCODING
+   :annotation:
+
+   .. code-block:: text
+
+      'latin-1'
+
+
+---------------------
+
+**Functions**
+
+
+.. autofunction:: _get_libghdl_name
+
+.. autofunction:: _check_libghdl_libdir
+
+.. autofunction:: _check_libghdl_bindir
+
+.. autofunction:: _get_libghdl_path
+
+.. autofunction:: _initialize
+
+.. autofunction:: finalize
+
+.. autofunction:: initialize
+
+.. autofunction:: set_option
+
+.. autofunction:: analyze_init
+
+.. autofunction:: analyze_init_status
+
+.. autofunction:: analyze_file
+
+.. autofunction:: disp_config
+
+
+---------------------
+
+**Exceptions**
+
+
+
+
+.. autoexception:: LibGHDLException
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: LibGHDLException
+      :parts: 1

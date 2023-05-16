@@ -1,0 +1,38 @@
+.. # Template modified  by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+==================
+``pyGHDL.cli.dom``
+==================
+
+.. automodule:: pyGHDL.cli.dom
+
+
+.. currentmodule:: pyGHDL.cli.dom
+
+
+**Classes**
+
+- :py:class:`Application`:
+  A mixin class (interface) to provide class-local terminal writing methods.
+
+
+
+---------------------
+
+**Classes**
+
+
+
+
+.. autoclass:: Application
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Application
+      :parts: 1

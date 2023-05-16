@@ -1,0 +1,52 @@
+.. # Template modified  by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+=========================
+``pyGHDL.dom.Subprogram``
+=========================
+
+.. automodule:: pyGHDL.dom.Subprogram
+
+
+.. currentmodule:: pyGHDL.dom.Subprogram
+
+
+**Classes**
+
+- :py:class:`Function`:
+  ``ModelEntity`` is the base-class for all classes in the VHDL language model, except for mixin classes (see multiple
+
+- :py:class:`Procedure`:
+  ``ModelEntity`` is the base-class for all classes in the VHDL language model, except for mixin classes (see multiple
+
+
+
+---------------------
+
+**Classes**
+
+
+
+
+.. autoclass:: Function
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Function
+      :parts: 1
+
+.. autoclass:: Procedure
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Procedure
+      :parts: 1

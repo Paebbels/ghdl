@@ -1,0 +1,27 @@
+.. # Template modified  by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+=============================
+``pyGHDL.libghdl._decorator``
+=============================
+
+.. automodule:: pyGHDL.libghdl._decorator
+
+
+.. currentmodule:: pyGHDL.libghdl._decorator
+
+
+**Functions**
+
+- :py:func:`EnumLookupTable`:
+  Decorator to precalculate an enum lookup table (LUT) for enum position to
+
+
+
+---------------------
+
+**Functions**
+
+
+.. autofunction:: EnumLookupTable

@@ -1,0 +1,118 @@
+.. # Template modified  by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+=========================
+``pyGHDL.libghdl._types``
+=========================
+
+.. automodule:: pyGHDL.libghdl._types
+
+
+.. currentmodule:: pyGHDL.libghdl._types
+
+
+**Variables**
+
+- :py:data:`ErrorIndex`
+  
+- :py:data:`MessageIdWarnings`
+  
+- :py:data:`NameId`
+  
+- :py:data:`SourceFileEntry`
+  
+- :py:data:`Iir`
+  
+- :py:data:`IirKind`
+  
+
+
+**Classes**
+
+- :py:class:`TriStateType`:
+  An enumeration.
+
+- :py:class:`DirectionType`:
+  An enumeration.
+
+
+
+---------------------
+
+**Variables**
+
+
+
+
+.. autodata:: ErrorIndex
+   :annotation:
+
+   .. code-block:: text
+
+      ~ErrorIndex
+
+.. autodata:: MessageIdWarnings
+   :annotation:
+
+   .. code-block:: text
+
+      ~MessageIdWarnings
+
+.. autodata:: NameId
+   :annotation:
+
+   .. code-block:: text
+
+      ~NameId
+
+.. autodata:: SourceFileEntry
+   :annotation:
+
+   .. code-block:: text
+
+      ~SourceFileEntry
+
+.. autodata:: Iir
+   :annotation:
+
+   .. code-block:: text
+
+      ~Iir
+
+.. autodata:: IirKind
+   :annotation:
+
+   .. code-block:: text
+
+      ~IirKind
+
+
+---------------------
+
+**Classes**
+
+
+
+
+.. autoclass:: TriStateType
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: TriStateType
+      :parts: 1
+
+.. autoclass:: DirectionType
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: DirectionType
+      :parts: 1

@@ -1,0 +1,136 @@
+.. # Template modified  by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+======================
+``pyGHDL.dom.Literal``
+======================
+
+.. automodule:: pyGHDL.dom.Literal
+
+
+.. currentmodule:: pyGHDL.dom.Literal
+
+
+**Classes**
+
+- :py:class:`NullLiteral`:
+  A ``Literal`` is a base-class for all literals.
+
+- :py:class:`EnumerationLiteral`:
+  A ``Literal`` is a base-class for all literals.
+
+- :py:class:`IntegerLiteral`:
+  A ``NumericLiteral`` is a base-class for all numeric literals.
+
+- :py:class:`FloatingPointLiteral`:
+  A ``NumericLiteral`` is a base-class for all numeric literals.
+
+- :py:class:`PhysicalIntegerLiteral`:
+  A ``NumericLiteral`` is a base-class for all numeric literals.
+
+- :py:class:`PhysicalFloatingLiteral`:
+  A ``NumericLiteral`` is a base-class for all numeric literals.
+
+- :py:class:`CharacterLiteral`:
+  A ``Literal`` is a base-class for all literals.
+
+- :py:class:`StringLiteral`:
+  A ``Literal`` is a base-class for all literals.
+
+
+
+---------------------
+
+**Classes**
+
+
+
+
+.. autoclass:: NullLiteral
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: NullLiteral
+      :parts: 1
+
+.. autoclass:: EnumerationLiteral
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: EnumerationLiteral
+      :parts: 1
+
+.. autoclass:: IntegerLiteral
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: IntegerLiteral
+      :parts: 1
+
+.. autoclass:: FloatingPointLiteral
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: FloatingPointLiteral
+      :parts: 1
+
+.. autoclass:: PhysicalIntegerLiteral
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: PhysicalIntegerLiteral
+      :parts: 1
+
+.. autoclass:: PhysicalFloatingLiteral
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: PhysicalFloatingLiteral
+      :parts: 1
+
+.. autoclass:: CharacterLiteral
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: CharacterLiteral
+      :parts: 1
+
+.. autoclass:: StringLiteral
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: StringLiteral
+      :parts: 1

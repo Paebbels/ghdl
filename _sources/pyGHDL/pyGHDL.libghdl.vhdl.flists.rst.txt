@@ -1,0 +1,84 @@
+.. # Template modified  by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+==============================
+``pyGHDL.libghdl.vhdl.flists``
+==============================
+
+.. automodule:: pyGHDL.libghdl.vhdl.flists
+
+
+.. currentmodule:: pyGHDL.libghdl.vhdl.flists
+
+
+**Variables**
+
+- :py:data:`Ffirst`
+  
+
+
+**Functions**
+
+- :py:func:`Flast`:
+  Last index of :obj:`FList`.
+
+- :py:func:`Length`:
+  Get the length of :obj:`FList`.
+
+- :py:func:`Get_Nth_Element`:
+  Get the N-th element of :obj:`FList`.
+
+
+
+**Classes**
+
+- :py:class:`Flist_Type`:
+  XXX to be provided
+
+
+
+---------------------
+
+**Variables**
+
+
+
+
+.. autodata:: Ffirst
+   :annotation:
+
+   .. code-block:: text
+
+      0
+
+
+---------------------
+
+**Functions**
+
+
+.. autofunction:: Flast
+
+.. autofunction:: Length
+
+.. autofunction:: Get_Nth_Element
+
+
+---------------------
+
+**Classes**
+
+
+
+
+.. autoclass:: Flist_Type
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Flist_Type
+      :parts: 1

@@ -1,0 +1,553 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="author" title="About these documents" href="../../../about.html" /><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" />
+
+    <link rel="shortcut icon" href="../../../_static/icon.png"/><!-- Generated with Sphinx 6.2.1 and Furo 2023.03.27 -->
+        <title>pyGHDL.cli.lsp - 4.0.0-dev</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/fontawesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/brands.min.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f0f3f3;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../index.html"><div class="brand">4.0.0-dev</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../../../_static/logo.png" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">4.0.0-dev</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting.html">Getting | Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contribute.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licenses.html">Copyrights | Licenses</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">GHDL usage</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../quick_start/index.html">Quick Start Guide</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../quick_start/simulation/index.html">Simulation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../quick_start/simulation/hello/index.html"><cite>Hello world</cite> program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../quick_start/simulation/heartbeat/index.html"><cite>Heartbeat</cite> module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../quick_start/simulation/adder/index.html"><cite>Full adder</cite> module and testbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../quick_start/simulation/DLXModelSuite.html">Working with non-trivial designs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference external" href="https://ghdl.github.io/ghdl-cosim">Co-Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick_start/python/index.html">Python Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../using/InvokingGHDL.html">Invoking GHDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../using/Simulation.html">Simulation (runtime)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../using/Synthesis.html">Synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../using/CommandReference.html">Additional Command Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../using/ImplementationOfVHDL.html">Implementation of VHDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../using/ImplementationOfVITAL.html">Implementation of VITAL</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/Directories.html">Directory structure</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../development/building/index.html">Building GHDL</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../development/building/Sources.html">Sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development/building/mcode.html">mcode backend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development/building/LLVM.html">LLVM backend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development/building/GCC.html">GCC backend</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../pyGHDL/pyGHDL.html">Python Interfaces</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../pyGHDL/pyGHDL.cli.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.cli</span></code></a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.cli.dom.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.cli.dom</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.cli.lsp.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.cli.lsp</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../pyGHDL/pyGHDL.dom.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.dom</span></code></a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.dom.Aggregates.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.dom.Aggregates</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.dom.Attribute.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.dom.Attribute</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.dom.Concurrent</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.dom.DesignUnit.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.dom.DesignUnit</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.dom.Expression.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.dom.Expression</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.dom.InterfaceItem.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.dom.InterfaceItem</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.dom.Literal.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.dom.Literal</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.dom.Misc.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.dom.Misc</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.dom.Names.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.dom.Names</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.dom.NonStandard.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.dom.NonStandard</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.dom.Object.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.dom.Object</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.dom.PSL.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.dom.PSL</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.dom.Range.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.dom.Range</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.dom.Sequential.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.dom.Sequential</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.dom.Subprogram.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.dom.Subprogram</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.dom.Symbol.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.dom.Symbol</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.dom.Type.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.dom.Type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.dom._Translate.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.dom._Translate</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.dom._Utils.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.dom._Utils</span></code></a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../pyGHDL/pyGHDL.dom.formatting.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.dom.formatting</span></code></a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../pyGHDL/pyGHDL.dom.formatting.GraphML.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.dom.formatting.GraphML</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pyGHDL/pyGHDL.dom.formatting.prettyprint.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.dom.formatting.prettyprint</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl</span></code></a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl._decorator.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl._decorator</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl._types.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl._types</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.errorout.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl.errorout</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.errorout_console.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl.errorout_console</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.errorout_memory.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl.errorout_memory</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.file_comments.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl.file_comments</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.files_map.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl.files_map</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.files_map_editor.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl.files_map_editor</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.flags.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl.flags</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.libraries.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl.libraries</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.name_table.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl.name_table</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.std_names.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl.std_names</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.str_table.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl.str_table</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.utils.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl.utils</span></code></a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.vhdl.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl.vhdl</span></code></a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.vhdl.canon.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl.vhdl.canon</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.vhdl.elocations.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl.vhdl.elocations</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.vhdl.flists.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl.vhdl.flists</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.vhdl.formatters.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl.vhdl.formatters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.vhdl.ieee.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl.vhdl.ieee</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.vhdl.lists.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl.vhdl.lists</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.vhdl.nodes.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl.vhdl.nodes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.vhdl.nodes_meta.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl.vhdl.nodes_meta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.vhdl.nodes_utils.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl.vhdl.nodes_utils</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.vhdl.parse.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl.vhdl.parse</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.vhdl.prints.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl.vhdl.prints</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.vhdl.scanner.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl.vhdl.scanner</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.vhdl.sem.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl.vhdl.sem</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.vhdl.sem_lib.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl.vhdl.sem_lib</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.vhdl.std_package.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl.vhdl.std_package</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.vhdl.tokens.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl.vhdl.tokens</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pyGHDL/pyGHDL.libghdl.vhdl.utils.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.libghdl.vhdl.utils</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../pyGHDL/pyGHDL.lsp.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.lsp</span></code></a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.lsp.document.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.lsp.document</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.lsp.lsp.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.lsp.lsp</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.lsp.lsptools.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.lsp.lsptools</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.lsp.references.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.lsp.references</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.lsp.symbols.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.lsp.symbols</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.lsp.version.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.lsp.version</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.lsp.vhdl_ls.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.lsp.vhdl_ls</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyGHDL/pyGHDL.lsp.workspace.html"><code class="docutils literal notranslate"><span class="pre">pyGHDL.lsp.workspace</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ghw/index.html">GHDL Waveform (GHW)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/Debugging.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/CodingStyle.html">Coding Style</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/Scripts.html">Scripts</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Internals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/Frontend.html">Front-end</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/AST.html">AST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/RTI.html">Run Time Information (RTI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gnatdoc/index.html">GNATdoc</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Index</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../py-modindex.html">Python Module Index</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <h1>Source code for pyGHDL.cli.lsp</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># =============================================================================</span>
+<span class="c1">#               ____ _   _ ____  _           _ _</span>
+<span class="c1">#  _ __  _   _ / ___| | | |  _ \| |      ___| (_)</span>
+<span class="c1"># | &#39;_ \| | | | |  _| |_| | | | | |     / __| | |</span>
+<span class="c1"># | |_) | |_| | |_| |  _  | |_| | |___ | (__| | |</span>
+<span class="c1"># | .__/ \__, |\____|_| |_|____/|_____(_)___|_|_|</span>
+<span class="c1"># |_|    |___/</span>
+<span class="c1"># =============================================================================</span>
+<span class="c1"># Authors:</span>
+<span class="c1">#   Tristan Gingold</span>
+<span class="c1">#</span>
+<span class="c1"># Package module:   GHDLs Language Server implementing LSP for VHDL.</span>
+<span class="c1">#</span>
+<span class="c1"># License:</span>
+<span class="c1"># ============================================================================</span>
+<span class="c1">#  Copyright (C) 2019-2021 Tristan Gingold</span>
+<span class="c1">#</span>
+<span class="c1">#  This program is free software: you can redistribute it and/or modify</span>
+<span class="c1">#  it under the terms of the GNU General Public License as published by</span>
+<span class="c1">#  the Free Software Foundation, either version 2 of the License, or</span>
+<span class="c1">#  (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1">#  This program is distributed in the hope that it will be useful,</span>
+<span class="c1">#  but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1">#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1">#  GNU General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1">#  You should have received a copy of the GNU General Public License</span>
+<span class="c1">#  along with this program.  If not, see &lt;gnu.org/licenses&gt;.</span>
+<span class="c1">#</span>
+<span class="c1"># SPDX-License-Identifier: GPL-2.0-or-later</span>
+<span class="c1"># ============================================================================</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
+
+<span class="kn">from</span> <span class="nn">argparse</span> <span class="kn">import</span> <span class="n">ArgumentParser</span>
+<span class="kn">from</span> <span class="nn">logging</span> <span class="kn">import</span> <span class="n">getLogger</span><span class="p">,</span> <span class="n">DEBUG</span><span class="p">,</span> <span class="n">INFO</span><span class="p">,</span> <span class="n">ERROR</span><span class="p">,</span> <span class="n">basicConfig</span>
+<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">argv</span> <span class="k">as</span> <span class="n">sys_argv</span><span class="p">,</span>
+    <span class="n">stdin</span> <span class="k">as</span> <span class="n">sys_stdin</span><span class="p">,</span>
+    <span class="n">stdout</span> <span class="k">as</span> <span class="n">sys_stdout</span><span class="p">,</span>
+    <span class="n">stderr</span> <span class="k">as</span> <span class="n">sys_stderr</span><span class="p">,</span>
+    <span class="n">exit</span> <span class="k">as</span> <span class="n">sys_exit</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">environ</span> <span class="k">as</span> <span class="n">os_environ</span><span class="p">,</span> <span class="n">getcwd</span> <span class="k">as</span> <span class="n">os_getcwd</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">from</span> <span class="nn">pyTooling.Decorators</span> <span class="kn">import</span> <span class="n">export</span>
+
+<span class="kn">from</span> <span class="nn">pyGHDL</span> <span class="kn">import</span> <span class="n">__version__</span> <span class="k">as</span> <span class="n">ghdlVersion</span>
+<span class="kn">import</span> <span class="nn">pyGHDL.libghdl</span> <span class="k">as</span> <span class="nn">libghdl</span>
+<span class="kn">from</span> <span class="nn">pyGHDL.libghdl</span> <span class="kn">import</span> <span class="n">errorout_console</span>
+<span class="kn">from</span> <span class="nn">pyGHDL.lsp</span> <span class="kn">import</span> <span class="n">LSPConnTrace</span>
+<span class="kn">from</span> <span class="nn">pyGHDL.lsp.lsp</span> <span class="kn">import</span> <span class="n">LSPConn</span><span class="p">,</span> <span class="n">LanguageProtocolServer</span>
+<span class="kn">from</span> <span class="nn">pyGHDL.lsp.vhdl_ls</span> <span class="kn">import</span> <span class="n">VhdlLanguageServer</span>
+
+<span class="n">__loggerName</span> <span class="o">=</span> <span class="s2">&quot;ghdl-ls&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">__rotate_log_files</span><span class="p">(</span><span class="n">basename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">num</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Rotate existing log files.&quot;&quot;&quot;</span>
+    <span class="c1"># Remove the oldest file.  This one will be lost.</span>
+    <span class="c1"># Required on Windows as it is an error to rename a file to an existing</span>
+    <span class="c1"># one.</span>
+    <span class="c1"># Note: Path.with_suffix cannot be used as there might be multiple</span>
+    <span class="c1"># suffixes (like in trace.out.0).</span>
+    <span class="n">oldfile</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">basename</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">num</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">oldfile</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+        <span class="n">oldfile</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
+    <span class="c1"># Rotate old files</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">oldfile</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">basename</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">oldfile</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+            <span class="n">oldfile</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">basename</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+    <span class="c1"># Rotate the newest log file.</span>
+    <span class="n">bname</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">basename</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">bname</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+        <span class="n">bname</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">basename</span><span class="si">}</span><span class="s2">.0&quot;</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">_generateCLIParser</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ArgumentParser</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates an CLI argument parser based on ``argparse``.&quot;&quot;&quot;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">ArgumentParser</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;VHDL Language Protocol Server. Find info about clients in `ghdl/ghdl-language-server &lt;https://github.com/ghdl/ghdl-language-server&gt;`__.&quot;</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--version&quot;</span><span class="p">,</span> <span class="s2">&quot;-V&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;version&quot;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(prog)s</span><span class="s2"> &quot;</span> <span class="o">+</span> <span class="n">ghdlVersion</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--verbose&quot;</span><span class="p">,</span> <span class="s2">&quot;-v&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;count&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Show debug output&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--log-file&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Redirect logs to the given file instead of stderr&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--trace-file&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Save RPC data to FILE.in and FILE.out (overrides :envvar:`GHDL_LS_TRACE`)&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--input&quot;</span><span class="p">,</span> <span class="s2">&quot;-i&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Read request from file&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--disp-config&quot;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Display installation configuration and exit&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">parser</span>
+
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.cli.lsp.html#pyGHDL.cli.lsp.main">[docs]</a><span class="nd">@export</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Entrypoint of GHDL&#39;s Language Protocol Server.&quot;&quot;&quot;</span>
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">getLogger</span><span class="p">(</span><span class="n">__loggerName</span><span class="p">)</span>
+
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">_generateCLIParser</span><span class="p">()</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">disp_config</span><span class="p">:</span>
+        <span class="n">errorout_console</span><span class="o">.</span><span class="n">Install_Handler</span><span class="p">()</span>
+        <span class="n">libghdl</span><span class="o">.</span><span class="n">disp_config</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;python:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sys.platform: </span><span class="si">{</span><span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="si">}</span><span class="s2">, os.name: </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="c1"># Setup logging</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">loglevel</span> <span class="o">=</span> <span class="n">DEBUG</span>
+    <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">loglevel</span> <span class="o">=</span> <span class="n">INFO</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">loglevel</span> <span class="o">=</span> <span class="n">ERROR</span>
+
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">log_file</span><span class="p">:</span>
+        <span class="n">__rotate_log_files</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">log_file</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="n">logstream</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">log_file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">logstream</span> <span class="o">=</span> <span class="n">sys_stderr</span>
+
+    <span class="n">basicConfig</span><span class="p">(</span>
+        <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(asctime)-15s</span><span class="s2"> [</span><span class="si">%(levelname)s</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">stream</span><span class="o">=</span><span class="n">logstream</span><span class="p">,</span>
+        <span class="n">level</span><span class="o">=</span><span class="n">loglevel</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">verbose</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">sys_stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Args: </span><span class="si">{</span><span class="n">sys_argv</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">sys_stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Current directory: </span><span class="si">{</span><span class="n">os_getcwd</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Args: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">sys_argv</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Current directory is </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">os_getcwd</span><span class="p">())</span>
+
+    <span class="c1"># Connection</span>
+    <span class="n">instream</span> <span class="o">=</span> <span class="n">sys_stdin</span><span class="o">.</span><span class="n">buffer</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">input</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">instream</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">input</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span>
+
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">LSPConn</span><span class="p">(</span><span class="n">instream</span><span class="p">,</span> <span class="n">sys_stdout</span><span class="o">.</span><span class="n">buffer</span><span class="p">)</span>
+
+    <span class="n">trace_file</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">trace_file</span>
+    <span class="k">if</span> <span class="n">trace_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trace_file</span> <span class="o">=</span> <span class="n">os_environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;GHDL_LS_TRACE&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">trace_file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">input</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">__rotate_log_files</span><span class="p">(</span><span class="n">trace_file</span> <span class="o">+</span> <span class="s2">&quot;.in&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+            <span class="n">__rotate_log_files</span><span class="p">(</span><span class="n">trace_file</span> <span class="o">+</span> <span class="s2">&quot;.out&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+            <span class="n">conn</span> <span class="o">=</span> <span class="n">LSPConnTrace</span><span class="p">(</span><span class="n">trace_file</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Traces disabled when -i/--input&quot;</span><span class="p">)</span>
+
+    <span class="n">handler</span> <span class="o">=</span> <span class="n">VhdlLanguageServer</span><span class="p">()</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">server</span> <span class="o">=</span> <span class="n">LanguageProtocolServer</span><span class="p">(</span><span class="n">handler</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+        <span class="n">server</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Uncaught error&quot;</span><span class="p">)</span>
+        <span class="n">sys_exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2002-2023, Tristan Gingold and contributors
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link fa-solid fa-brands fa-github" href="https://github.com/ghdl/ghdl" aria-label="GitHub ghdl/ghdl"></a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/scripts/furo.js"></script>
+    </body>
+</html>

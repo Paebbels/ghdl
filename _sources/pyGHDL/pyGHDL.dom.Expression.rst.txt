@@ -1,0 +1,654 @@
+.. # Template modified  by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+=========================
+``pyGHDL.dom.Expression``
+=========================
+
+.. automodule:: pyGHDL.dom.Expression
+
+
+.. currentmodule:: pyGHDL.dom.Expression
+
+
+**Classes**
+
+- :py:class:`InverseExpression`:
+  A ``UnaryExpression`` is a base-class for all unary expressions.
+
+- :py:class:`IdentityExpression`:
+  A ``UnaryExpression`` is a base-class for all unary expressions.
+
+- :py:class:`NegationExpression`:
+  A ``UnaryExpression`` is a base-class for all unary expressions.
+
+- :py:class:`AbsoluteExpression`:
+  A ``UnaryExpression`` is a base-class for all unary expressions.
+
+- :py:class:`ParenthesisExpression`:
+  A ``UnaryExpression`` is a base-class for all unary expressions.
+
+- :py:class:`TypeConversion`:
+  A ``UnaryExpression`` is a base-class for all unary expressions.
+
+- :py:class:`FunctionCall`:
+  A ``BaseExpression`` is a base-class for all expressions.
+
+- :py:class:`AscendingRangeExpression`:
+  A ``BinaryExpression`` is a base-class for all binary expressions.
+
+- :py:class:`DescendingRangeExpression`:
+  A ``BinaryExpression`` is a base-class for all binary expressions.
+
+- :py:class:`AdditionExpression`:
+  A ``AddingExpression`` is a base-class for all adding expressions.
+
+- :py:class:`SubtractionExpression`:
+  A ``AddingExpression`` is a base-class for all adding expressions.
+
+- :py:class:`ConcatenationExpression`:
+  A ``AddingExpression`` is a base-class for all adding expressions.
+
+- :py:class:`MultiplyExpression`:
+  A ``MultiplyingExpression`` is a base-class for all multiplying expressions.
+
+- :py:class:`DivisionExpression`:
+  A ``MultiplyingExpression`` is a base-class for all multiplying expressions.
+
+- :py:class:`RemainderExpression`:
+  A ``MultiplyingExpression`` is a base-class for all multiplying expressions.
+
+- :py:class:`ModuloExpression`:
+  A ``MultiplyingExpression`` is a base-class for all multiplying expressions.
+
+- :py:class:`ExponentiationExpression`:
+  A ``MultiplyingExpression`` is a base-class for all multiplying expressions.
+
+- :py:class:`AndExpression`:
+  A ``LogicalExpression`` is a base-class for all logical expressions.
+
+- :py:class:`NandExpression`:
+  A ``LogicalExpression`` is a base-class for all logical expressions.
+
+- :py:class:`OrExpression`:
+  A ``LogicalExpression`` is a base-class for all logical expressions.
+
+- :py:class:`NorExpression`:
+  A ``LogicalExpression`` is a base-class for all logical expressions.
+
+- :py:class:`XorExpression`:
+  A ``LogicalExpression`` is a base-class for all logical expressions.
+
+- :py:class:`XnorExpression`:
+  A ``LogicalExpression`` is a base-class for all logical expressions.
+
+- :py:class:`EqualExpression`:
+  A ``RelationalExpression`` is a base-class for all shifting expressions.
+
+- :py:class:`UnequalExpression`:
+  A ``RelationalExpression`` is a base-class for all shifting expressions.
+
+- :py:class:`LessThanExpression`:
+  A ``RelationalExpression`` is a base-class for all shifting expressions.
+
+- :py:class:`LessEqualExpression`:
+  A ``RelationalExpression`` is a base-class for all shifting expressions.
+
+- :py:class:`GreaterThanExpression`:
+  A ``RelationalExpression`` is a base-class for all shifting expressions.
+
+- :py:class:`GreaterEqualExpression`:
+  A ``RelationalExpression`` is a base-class for all shifting expressions.
+
+- :py:class:`MatchingEqualExpression`:
+  A ``RelationalExpression`` is a base-class for all shifting expressions.
+
+- :py:class:`MatchingUnequalExpression`:
+  A ``RelationalExpression`` is a base-class for all shifting expressions.
+
+- :py:class:`MatchingLessThanExpression`:
+  A ``RelationalExpression`` is a base-class for all shifting expressions.
+
+- :py:class:`MatchingLessEqualExpression`:
+  A ``RelationalExpression`` is a base-class for all shifting expressions.
+
+- :py:class:`MatchingGreaterThanExpression`:
+  A ``RelationalExpression`` is a base-class for all shifting expressions.
+
+- :py:class:`MatchingGreaterEqualExpression`:
+  A ``RelationalExpression`` is a base-class for all shifting expressions.
+
+- :py:class:`ShiftRightLogicExpression`:
+  A ``ShiftExpression`` is a base-class for all shifting expressions.
+
+- :py:class:`ShiftLeftLogicExpression`:
+  A ``ShiftExpression`` is a base-class for all shifting expressions.
+
+- :py:class:`ShiftRightArithmeticExpression`:
+  A ``ShiftExpression`` is a base-class for all shifting expressions.
+
+- :py:class:`ShiftLeftArithmeticExpression`:
+  A ``ShiftExpression`` is a base-class for all shifting expressions.
+
+- :py:class:`RotateRightExpression`:
+  A ``ShiftExpression`` is a base-class for all shifting expressions.
+
+- :py:class:`RotateLeftExpression`:
+  A ``ShiftExpression`` is a base-class for all shifting expressions.
+
+- :py:class:`QualifiedExpression`:
+  A ``BaseExpression`` is a base-class for all expressions.
+
+- :py:class:`SubtypeAllocation`:
+  A ``BaseExpression`` is a base-class for all expressions.
+
+- :py:class:`QualifiedExpressionAllocation`:
+  A ``BaseExpression`` is a base-class for all expressions.
+
+- :py:class:`Aggregate`:
+  A ``BaseExpression`` is a base-class for all expressions.
+
+
+
+---------------------
+
+**Classes**
+
+
+
+
+.. autoclass:: InverseExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: InverseExpression
+      :parts: 1
+
+.. autoclass:: IdentityExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: IdentityExpression
+      :parts: 1
+
+.. autoclass:: NegationExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: NegationExpression
+      :parts: 1
+
+.. autoclass:: AbsoluteExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: AbsoluteExpression
+      :parts: 1
+
+.. autoclass:: ParenthesisExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ParenthesisExpression
+      :parts: 1
+
+.. autoclass:: TypeConversion
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: TypeConversion
+      :parts: 1
+
+.. autoclass:: FunctionCall
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: FunctionCall
+      :parts: 1
+
+.. autoclass:: AscendingRangeExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: AscendingRangeExpression
+      :parts: 1
+
+.. autoclass:: DescendingRangeExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: DescendingRangeExpression
+      :parts: 1
+
+.. autoclass:: AdditionExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: AdditionExpression
+      :parts: 1
+
+.. autoclass:: SubtractionExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: SubtractionExpression
+      :parts: 1
+
+.. autoclass:: ConcatenationExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ConcatenationExpression
+      :parts: 1
+
+.. autoclass:: MultiplyExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: MultiplyExpression
+      :parts: 1
+
+.. autoclass:: DivisionExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: DivisionExpression
+      :parts: 1
+
+.. autoclass:: RemainderExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: RemainderExpression
+      :parts: 1
+
+.. autoclass:: ModuloExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ModuloExpression
+      :parts: 1
+
+.. autoclass:: ExponentiationExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ExponentiationExpression
+      :parts: 1
+
+.. autoclass:: AndExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: AndExpression
+      :parts: 1
+
+.. autoclass:: NandExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: NandExpression
+      :parts: 1
+
+.. autoclass:: OrExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: OrExpression
+      :parts: 1
+
+.. autoclass:: NorExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: NorExpression
+      :parts: 1
+
+.. autoclass:: XorExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: XorExpression
+      :parts: 1
+
+.. autoclass:: XnorExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: XnorExpression
+      :parts: 1
+
+.. autoclass:: EqualExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: EqualExpression
+      :parts: 1
+
+.. autoclass:: UnequalExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: UnequalExpression
+      :parts: 1
+
+.. autoclass:: LessThanExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: LessThanExpression
+      :parts: 1
+
+.. autoclass:: LessEqualExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: LessEqualExpression
+      :parts: 1
+
+.. autoclass:: GreaterThanExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: GreaterThanExpression
+      :parts: 1
+
+.. autoclass:: GreaterEqualExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: GreaterEqualExpression
+      :parts: 1
+
+.. autoclass:: MatchingEqualExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: MatchingEqualExpression
+      :parts: 1
+
+.. autoclass:: MatchingUnequalExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: MatchingUnequalExpression
+      :parts: 1
+
+.. autoclass:: MatchingLessThanExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: MatchingLessThanExpression
+      :parts: 1
+
+.. autoclass:: MatchingLessEqualExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: MatchingLessEqualExpression
+      :parts: 1
+
+.. autoclass:: MatchingGreaterThanExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: MatchingGreaterThanExpression
+      :parts: 1
+
+.. autoclass:: MatchingGreaterEqualExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: MatchingGreaterEqualExpression
+      :parts: 1
+
+.. autoclass:: ShiftRightLogicExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ShiftRightLogicExpression
+      :parts: 1
+
+.. autoclass:: ShiftLeftLogicExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ShiftLeftLogicExpression
+      :parts: 1
+
+.. autoclass:: ShiftRightArithmeticExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ShiftRightArithmeticExpression
+      :parts: 1
+
+.. autoclass:: ShiftLeftArithmeticExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ShiftLeftArithmeticExpression
+      :parts: 1
+
+.. autoclass:: RotateRightExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: RotateRightExpression
+      :parts: 1
+
+.. autoclass:: RotateLeftExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: RotateLeftExpression
+      :parts: 1
+
+.. autoclass:: QualifiedExpression
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: QualifiedExpression
+      :parts: 1
+
+.. autoclass:: SubtypeAllocation
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: SubtypeAllocation
+      :parts: 1
+
+.. autoclass:: QualifiedExpressionAllocation
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: QualifiedExpressionAllocation
+      :parts: 1
+
+.. autoclass:: Aggregate
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Aggregate
+      :parts: 1

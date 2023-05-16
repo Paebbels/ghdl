@@ -1,0 +1,51 @@
+.. # Template modified  by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+===================================
+``pyGHDL.libghdl.vhdl.std_package``
+===================================
+
+.. automodule:: pyGHDL.libghdl.vhdl.std_package
+
+
+.. currentmodule:: pyGHDL.libghdl.vhdl.std_package
+
+
+**Variables**
+
+- :py:data:`Std_Location`
+  
+- :py:data:`Standard_Package`
+  
+- :py:data:`Character_Type_Definition`
+  
+
+
+---------------------
+
+**Variables**
+
+
+
+
+.. autodata:: Std_Location
+   :annotation:
+
+   .. code-block:: text
+
+      c_int(0)
+
+.. autodata:: Standard_Package
+   :annotation:
+
+   .. code-block:: text
+
+      c_int(0)
+
+.. autodata:: Character_Type_Definition
+   :annotation:
+
+   .. code-block:: text
+
+      c_int(0)

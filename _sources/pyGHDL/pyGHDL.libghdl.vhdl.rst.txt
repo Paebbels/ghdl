@@ -1,0 +1,36 @@
+.. # Template modified  by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+=======================
+``pyGHDL.libghdl.vhdl``
+=======================
+
+.. automodule:: pyGHDL.libghdl.vhdl
+
+
+
+**Submodules**
+
+
+.. toctree::
+
+   pyGHDL.libghdl.vhdl.canon
+   pyGHDL.libghdl.vhdl.elocations
+   pyGHDL.libghdl.vhdl.flists
+   pyGHDL.libghdl.vhdl.formatters
+   pyGHDL.libghdl.vhdl.ieee
+   pyGHDL.libghdl.vhdl.lists
+   pyGHDL.libghdl.vhdl.nodes
+   pyGHDL.libghdl.vhdl.nodes_meta
+   pyGHDL.libghdl.vhdl.nodes_utils
+   pyGHDL.libghdl.vhdl.parse
+   pyGHDL.libghdl.vhdl.prints
+   pyGHDL.libghdl.vhdl.scanner
+   pyGHDL.libghdl.vhdl.sem
+   pyGHDL.libghdl.vhdl.sem_lib
+   pyGHDL.libghdl.vhdl.std_package
+   pyGHDL.libghdl.vhdl.tokens
+   pyGHDL.libghdl.vhdl.utils
+
+.. currentmodule:: pyGHDL.libghdl.vhdl

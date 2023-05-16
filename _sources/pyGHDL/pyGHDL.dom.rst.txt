@@ -1,0 +1,100 @@
+.. # Template modified  by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+==============
+``pyGHDL.dom``
+==============
+
+.. automodule:: pyGHDL.dom
+
+
+
+**Submodules**
+
+
+.. toctree::
+
+   pyGHDL.dom.Aggregates
+   pyGHDL.dom.Attribute
+   pyGHDL.dom.Concurrent
+   pyGHDL.dom.DesignUnit
+   pyGHDL.dom.Expression
+   pyGHDL.dom.InterfaceItem
+   pyGHDL.dom.Literal
+   pyGHDL.dom.Misc
+   pyGHDL.dom.Names
+   pyGHDL.dom.NonStandard
+   pyGHDL.dom.Object
+   pyGHDL.dom.PSL
+   pyGHDL.dom.Range
+   pyGHDL.dom.Sequential
+   pyGHDL.dom.Subprogram
+   pyGHDL.dom.Symbol
+   pyGHDL.dom.Type
+   pyGHDL.dom._Translate
+   pyGHDL.dom._Utils
+   pyGHDL.dom.formatting
+
+.. currentmodule:: pyGHDL.dom
+
+
+**Exceptions**
+
+- :py:exc:`DOMException`:
+  Common base class for all non-exit exceptions.
+
+
+
+**Classes**
+
+- :py:class:`Position`:
+  Represents the source code position of a IIR node in a source file.
+
+- :py:class:`DOMMixin`:
+  Undocumented.
+
+
+
+---------------------
+
+**Exceptions**
+
+
+
+
+.. autoexception:: DOMException
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: DOMException
+      :parts: 1
+
+
+---------------------
+
+**Classes**
+
+
+
+
+.. autoclass:: Position
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Position
+      :parts: 1
+
+.. autoclass:: DOMMixin
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: DOMMixin
+      :parts: 1

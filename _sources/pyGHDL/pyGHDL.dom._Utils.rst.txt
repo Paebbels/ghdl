@@ -1,0 +1,47 @@
+.. # Template modified  by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+=====================
+``pyGHDL.dom._Utils``
+=====================
+
+.. automodule:: pyGHDL.dom._Utils
+
+
+.. currentmodule:: pyGHDL.dom._Utils
+
+
+**Functions**
+
+- :py:func:`CheckForErrors`:
+  Check if an error occurred in libghdl and raise an exception if so.
+
+- :py:func:`GetIirKindOfNode`:
+  Return the kind of a node in the IIR tree.
+
+- :py:func:`GetNameOfNode`:
+  Return the Python string from node ``node`` identifier.
+
+- :py:func:`GetDocumentationOfNode`:
+  Undocumented.
+
+- :py:func:`GetModeOfNode`:
+  Return the mode of a ``node``.
+
+
+
+---------------------
+
+**Functions**
+
+
+.. autofunction:: CheckForErrors
+
+.. autofunction:: GetIirKindOfNode
+
+.. autofunction:: GetNameOfNode
+
+.. autofunction:: GetDocumentationOfNode
+
+.. autofunction:: GetModeOfNode

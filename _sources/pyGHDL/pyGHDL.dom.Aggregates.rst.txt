@@ -1,0 +1,94 @@
+.. # Template modified  by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+=========================
+``pyGHDL.dom.Aggregates``
+=========================
+
+.. automodule:: pyGHDL.dom.Aggregates
+
+
+.. currentmodule:: pyGHDL.dom.Aggregates
+
+
+**Classes**
+
+- :py:class:`SimpleAggregateElement`:
+  A ``AggregateElement`` is a base-class for all aggregate elements.
+
+- :py:class:`IndexedAggregateElement`:
+  A ``AggregateElement`` is a base-class for all aggregate elements.
+
+- :py:class:`RangedAggregateElement`:
+  A ``AggregateElement`` is a base-class for all aggregate elements.
+
+- :py:class:`NamedAggregateElement`:
+  A ``AggregateElement`` is a base-class for all aggregate elements.
+
+- :py:class:`OthersAggregateElement`:
+  A ``AggregateElement`` is a base-class for all aggregate elements.
+
+
+
+---------------------
+
+**Classes**
+
+
+
+
+.. autoclass:: SimpleAggregateElement
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: SimpleAggregateElement
+      :parts: 1
+
+.. autoclass:: IndexedAggregateElement
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: IndexedAggregateElement
+      :parts: 1
+
+.. autoclass:: RangedAggregateElement
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: RangedAggregateElement
+      :parts: 1
+
+.. autoclass:: NamedAggregateElement
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: NamedAggregateElement
+      :parts: 1
+
+.. autoclass:: OthersAggregateElement
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: OthersAggregateElement
+      :parts: 1

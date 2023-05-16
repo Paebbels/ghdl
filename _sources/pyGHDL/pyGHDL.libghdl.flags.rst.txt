@@ -1,0 +1,131 @@
+.. # Template modified  by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+========================
+``pyGHDL.libghdl.flags``
+========================
+
+.. automodule:: pyGHDL.libghdl.flags
+
+
+.. currentmodule:: pyGHDL.libghdl.flags
+
+
+**Variables**
+
+- :py:data:`Flag_Elocations`
+  
+- :py:data:`Verbose`
+  
+- :py:data:`MB_Comment`
+  
+- :py:data:`Explicit`
+  
+- :py:data:`Relaxed`
+  
+- :py:data:`Flag_Elaborate_With_Outdated`
+  
+- :py:data:`Flag_Force_Analysis`
+  
+- :py:data:`AMS_Vhdl`
+  
+- :py:data:`Flag_Gather_Comments`
+  
+
+
+**Classes**
+
+- :py:class:`VhdlStandard`:
+  An enumeration representing libghdl's internal ``Vhdl_Std_Type`` enumeration type.
+
+
+
+---------------------
+
+**Variables**
+
+
+
+
+.. autodata:: Flag_Elocations
+   :annotation:
+
+   .. code-block:: text
+
+      c_bool(False)
+
+.. autodata:: Verbose
+   :annotation:
+
+   .. code-block:: text
+
+      c_bool(False)
+
+.. autodata:: MB_Comment
+   :annotation:
+
+   .. code-block:: text
+
+      c_bool(False)
+
+.. autodata:: Explicit
+   :annotation:
+
+   .. code-block:: text
+
+      c_bool(False)
+
+.. autodata:: Relaxed
+   :annotation:
+
+   .. code-block:: text
+
+      c_bool(True)
+
+.. autodata:: Flag_Elaborate_With_Outdated
+   :annotation:
+
+   .. code-block:: text
+
+      c_bool(False)
+
+.. autodata:: Flag_Force_Analysis
+   :annotation:
+
+   .. code-block:: text
+
+      c_bool(False)
+
+.. autodata:: AMS_Vhdl
+   :annotation:
+
+   .. code-block:: text
+
+      c_bool(False)
+
+.. autodata:: Flag_Gather_Comments
+   :annotation:
+
+   .. code-block:: text
+
+      c_bool(False)
+
+
+---------------------
+
+**Classes**
+
+
+
+
+.. autoclass:: VhdlStandard
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: VhdlStandard
+      :parts: 1

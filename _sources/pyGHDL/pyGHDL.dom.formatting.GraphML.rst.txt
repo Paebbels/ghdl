@@ -1,0 +1,80 @@
+.. # Template modified  by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+=================================
+``pyGHDL.dom.formatting.GraphML``
+=================================
+
+.. automodule:: pyGHDL.dom.formatting.GraphML
+
+
+.. currentmodule:: pyGHDL.dom.formatting.GraphML
+
+
+**Classes**
+
+- :py:class:`Formatter`:
+  Undocumented.
+
+- :py:class:`DependencyGraphFormatter`:
+  Undocumented.
+
+- :py:class:`HierarchyGraphFormatter`:
+  Undocumented.
+
+- :py:class:`CompileOrderGraphFormatter`:
+  Undocumented.
+
+
+
+---------------------
+
+**Classes**
+
+
+
+
+.. autoclass:: Formatter
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Formatter
+      :parts: 1
+
+.. autoclass:: DependencyGraphFormatter
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: DependencyGraphFormatter
+      :parts: 1
+
+.. autoclass:: HierarchyGraphFormatter
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: HierarchyGraphFormatter
+      :parts: 1
+
+.. autoclass:: CompileOrderGraphFormatter
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: CompileOrderGraphFormatter
+      :parts: 1

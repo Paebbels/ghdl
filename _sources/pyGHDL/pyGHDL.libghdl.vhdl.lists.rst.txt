@@ -1,0 +1,83 @@
+.. # Template modified  by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+=============================
+``pyGHDL.libghdl.vhdl.lists``
+=============================
+
+.. automodule:: pyGHDL.libghdl.vhdl.lists
+
+
+.. currentmodule:: pyGHDL.libghdl.vhdl.lists
+
+
+**Functions**
+
+- :py:func:`Iterate`:
+  Create an iterator for a given list.
+
+- :py:func:`Is_Valid`:
+  Check if iterator reached the end.
+
+- :py:func:`Next`:
+  Move iterator to the next element.
+
+- :py:func:`Get_Element`:
+  Get the current element from iterator.
+
+- :py:func:`Get_Nbr_Elements`:
+  Return the number of elements in the list.
+
+- :py:func:`Create_Iir_List`:
+  Create a list.
+
+- :py:func:`Destroy_Iir_List`:
+  Destroy a list.
+
+
+
+**Classes**
+
+- :py:class:`Iterator`:
+  Structure base class
+
+
+
+---------------------
+
+**Functions**
+
+
+.. autofunction:: Iterate
+
+.. autofunction:: Is_Valid
+
+.. autofunction:: Next
+
+.. autofunction:: Get_Element
+
+.. autofunction:: Get_Nbr_Elements
+
+.. autofunction:: Create_Iir_List
+
+.. autofunction:: Destroy_Iir_List
+
+
+---------------------
+
+**Classes**
+
+
+
+
+.. autoclass:: Iterator
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Iterator
+      :parts: 1

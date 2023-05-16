@@ -1,0 +1,48 @@
+.. # Template modified  by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+=============================
+``pyGHDL.libghdl.vhdl.parse``
+=============================
+
+.. automodule:: pyGHDL.libghdl.vhdl.parse
+
+
+.. currentmodule:: pyGHDL.libghdl.vhdl.parse
+
+
+**Variables**
+
+- :py:data:`Flag_Parse_Parenthesis`
+  
+
+
+**Functions**
+
+- :py:func:`Parse_Design_File`:
+  Parse a file.
+
+
+
+---------------------
+
+**Variables**
+
+
+
+
+.. autodata:: Flag_Parse_Parenthesis
+   :annotation:
+
+   .. code-block:: text
+
+      c_bool(False)
+
+
+---------------------
+
+**Functions**
+
+
+.. autofunction:: Parse_Design_File

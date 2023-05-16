@@ -1,0 +1,80 @@
+.. # Template modified  by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+==================
+``pyGHDL.dom.PSL``
+==================
+
+.. automodule:: pyGHDL.dom.PSL
+
+
+.. currentmodule:: pyGHDL.dom.PSL
+
+
+**Classes**
+
+- :py:class:`VerificationUnit`:
+  A ``PrimaryUnit`` is a base-class for all primary units.
+
+- :py:class:`VerificationProperty`:
+  A ``PrimaryUnit`` is a base-class for all primary units.
+
+- :py:class:`VerificationMode`:
+  A ``PrimaryUnit`` is a base-class for all primary units.
+
+- :py:class:`DefaultClock`:
+  ``ModelEntity`` is the base-class for all classes in the VHDL language model, except for mixin classes (see multiple
+
+
+
+---------------------
+
+**Classes**
+
+
+
+
+.. autoclass:: VerificationUnit
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: VerificationUnit
+      :parts: 1
+
+.. autoclass:: VerificationProperty
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: VerificationProperty
+      :parts: 1
+
+.. autoclass:: VerificationMode
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: VerificationMode
+      :parts: 1
+
+.. autoclass:: DefaultClock
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: DefaultClock
+      :parts: 1

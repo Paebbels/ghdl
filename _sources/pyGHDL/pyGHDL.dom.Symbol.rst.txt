@@ -1,0 +1,248 @@
+.. # Template modified  by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+=====================
+``pyGHDL.dom.Symbol``
+=====================
+
+.. automodule:: pyGHDL.dom.Symbol
+
+
+.. currentmodule:: pyGHDL.dom.Symbol
+
+
+**Classes**
+
+- :py:class:`LibraryReferenceSymbol`:
+  A library reference in a library clause.
+
+- :py:class:`PackageReferenceSymbol`:
+  A package reference in a use clause.
+
+- :py:class:`ContextReferenceSymbol`:
+  A context reference in a context clause.
+
+- :py:class:`PackageMemberReferenceSymbol`:
+  A package member reference in a use clause.
+
+- :py:class:`AllPackageMembersReferenceSymbol`:
+  A package reference in a use clause.
+
+- :py:class:`EntityInstantiationSymbol`:
+  An entity reference in a direct entity instantiation.
+
+- :py:class:`ComponentInstantiationSymbol`:
+  A component reference in a component instantiation.
+
+- :py:class:`ConfigurationInstantiationSymbol`:
+  A configuration reference in a configuration instantiation.
+
+- :py:class:`EntitySymbol`:
+  An entity reference in an architecture declaration.
+
+- :py:class:`ArchitectureSymbol`:
+  An entity reference in an entity instantiation with architecture name.
+
+- :py:class:`PackageSymbol`:
+  A package reference in a package body declaration.
+
+- :py:class:`SimpleSubtypeSymbol`:
+  A configuration reference in a configuration instantiation.
+
+- :py:class:`ConstrainedScalarSubtypeSymbol`:
+  A configuration reference in a configuration instantiation.
+
+- :py:class:`ConstrainedCompositeSubtypeSymbol`:
+  A configuration reference in a configuration instantiation.
+
+- :py:class:`SimpleObjectOrFunctionCallSymbol`:
+  Undocumented.
+
+- :py:class:`IndexedObjectOrFunctionCallSymbol`:
+  Undocumented.
+
+
+
+---------------------
+
+**Classes**
+
+
+
+
+.. autoclass:: LibraryReferenceSymbol
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: LibraryReferenceSymbol
+      :parts: 1
+
+.. autoclass:: PackageReferenceSymbol
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: PackageReferenceSymbol
+      :parts: 1
+
+.. autoclass:: ContextReferenceSymbol
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ContextReferenceSymbol
+      :parts: 1
+
+.. autoclass:: PackageMemberReferenceSymbol
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: PackageMemberReferenceSymbol
+      :parts: 1
+
+.. autoclass:: AllPackageMembersReferenceSymbol
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: AllPackageMembersReferenceSymbol
+      :parts: 1
+
+.. autoclass:: EntityInstantiationSymbol
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: EntityInstantiationSymbol
+      :parts: 1
+
+.. autoclass:: ComponentInstantiationSymbol
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ComponentInstantiationSymbol
+      :parts: 1
+
+.. autoclass:: ConfigurationInstantiationSymbol
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ConfigurationInstantiationSymbol
+      :parts: 1
+
+.. autoclass:: EntitySymbol
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: EntitySymbol
+      :parts: 1
+
+.. autoclass:: ArchitectureSymbol
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ArchitectureSymbol
+      :parts: 1
+
+.. autoclass:: PackageSymbol
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: PackageSymbol
+      :parts: 1
+
+.. autoclass:: SimpleSubtypeSymbol
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: SimpleSubtypeSymbol
+      :parts: 1
+
+.. autoclass:: ConstrainedScalarSubtypeSymbol
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ConstrainedScalarSubtypeSymbol
+      :parts: 1
+
+.. autoclass:: ConstrainedCompositeSubtypeSymbol
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ConstrainedCompositeSubtypeSymbol
+      :parts: 1
+
+.. autoclass:: SimpleObjectOrFunctionCallSymbol
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: SimpleObjectOrFunctionCallSymbol
+      :parts: 1
+
+.. autoclass:: IndexedObjectOrFunctionCallSymbol
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: IndexedObjectOrFunctionCallSymbol
+      :parts: 1

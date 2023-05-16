@@ -1,0 +1,32 @@
+.. # Template modified  by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+============================
+``pyGHDL.libghdl.str_table``
+============================
+
+.. automodule:: pyGHDL.libghdl.str_table
+
+
+.. currentmodule:: pyGHDL.libghdl.str_table
+
+
+**Functions**
+
+- :py:func:`_String8_Address`:
+  
+
+- :py:func:`Get_String8_Ptr`:
+  Get the address of string8 ID. Note that as soon as a character is appended
+
+
+
+---------------------
+
+**Functions**
+
+
+.. autofunction:: _String8_Address
+
+.. autofunction:: Get_String8_Ptr

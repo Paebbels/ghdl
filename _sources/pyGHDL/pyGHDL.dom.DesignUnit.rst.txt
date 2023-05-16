@@ -1,0 +1,178 @@
+.. # Template modified  by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+=========================
+``pyGHDL.dom.DesignUnit``
+=========================
+
+.. automodule:: pyGHDL.dom.DesignUnit
+
+
+.. currentmodule:: pyGHDL.dom.DesignUnit
+
+
+**Classes**
+
+- :py:class:`LibraryClause`:
+  ``ModelEntity`` is the base-class for all classes in the VHDL language model, except for mixin classes (see multiple
+
+- :py:class:`UseClause`:
+  ``ModelEntity`` is the base-class for all classes in the VHDL language model, except for mixin classes (see multiple
+
+- :py:class:`ContextReference`:
+  ``ModelEntity`` is the base-class for all classes in the VHDL language model, except for mixin classes (see multiple
+
+- :py:class:`Entity`:
+  A ``PrimaryUnit`` is a base-class for all primary units.
+
+- :py:class:`Architecture`:
+  A ``SecondaryUnit`` is a base-class for all secondary units.
+
+- :py:class:`Component`:
+  ``ModelEntity`` is the base-class for all classes in the VHDL language model, except for mixin classes (see multiple
+
+- :py:class:`Package`:
+  A ``PrimaryUnit`` is a base-class for all primary units.
+
+- :py:class:`PackageBody`:
+  A ``SecondaryUnit`` is a base-class for all secondary units.
+
+- :py:class:`PackageInstantiation`:
+  A ``PrimaryUnit`` is a base-class for all primary units.
+
+- :py:class:`Context`:
+  A ``PrimaryUnit`` is a base-class for all primary units.
+
+- :py:class:`Configuration`:
+  A ``PrimaryUnit`` is a base-class for all primary units.
+
+
+
+---------------------
+
+**Classes**
+
+
+
+
+.. autoclass:: LibraryClause
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: LibraryClause
+      :parts: 1
+
+.. autoclass:: UseClause
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: UseClause
+      :parts: 1
+
+.. autoclass:: ContextReference
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ContextReference
+      :parts: 1
+
+.. autoclass:: Entity
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Entity
+      :parts: 1
+
+.. autoclass:: Architecture
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Architecture
+      :parts: 1
+
+.. autoclass:: Component
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Component
+      :parts: 1
+
+.. autoclass:: Package
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Package
+      :parts: 1
+
+.. autoclass:: PackageBody
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: PackageBody
+      :parts: 1
+
+.. autoclass:: PackageInstantiation
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: PackageInstantiation
+      :parts: 1
+
+.. autoclass:: Context
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Context
+      :parts: 1
+
+.. autoclass:: Configuration
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Configuration
+      :parts: 1
