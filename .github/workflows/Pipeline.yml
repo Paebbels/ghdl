@@ -295,7 +295,7 @@ jobs:
       - Windows
       - Python
 #      - Sphinx
-    if: github.ref == 'refs/tags/nightly'
+    if: github.ref == 'refs/tags/testing'
     secrets: inherit
     permissions:
       contents: write
@@ -307,7 +307,7 @@ jobs:
         ghdl=${{ needs.Params.outputs.ghdl_version }}
         pyghdl=${{ needs.Params.outputs.pyghdl_version }}
         pacghdl=${{ needs.Params.outputs.pacghdl_version }}
-      nightly_name: nightly
+      nightly_name: testing
       nightly_description: |
         This *nightly* release contains all latest and important artifacts created by GHDL's CI pipeline.
 
