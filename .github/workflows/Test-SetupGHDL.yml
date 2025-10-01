@@ -58,6 +58,7 @@ jobs:
         with:
           msystem: ${{ inputs.runtime }}
           update: true
+          pacboy: "diffutils:p"
 
       - name: Setup GHDL ${{ inputs.ghdl_backend }}
         uses: ghdl/setup-ghdl@v1

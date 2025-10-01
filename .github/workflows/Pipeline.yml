@@ -424,7 +424,7 @@ jobs:
           - {icon: '🪟🟨', name: 'Windows', image: 'windows-2025', runtime: 'ucrt64',  backend: 'mcode'}
           - {icon: '🪟🟨', name: 'Windows', image: 'windows-2025', runtime: 'ucrt64',  backend: 'llvm'}
           - {icon: '🪟🟨', name: 'Windows', image: 'windows-2025', runtime: 'ucrt64',  backend: 'llvm-jit'}
-    if: (needs.Params.outputs.is_release_tag == 'true' || needs.Params.outputs.is_nightly_tag == 'true' || needs.Params.outputs.is_tagged_test == 'true') && !failure() && !cancelled()
+    if: (needs.Params.outputs.is_release_tag == 'true' || needs.Params.outputs.is_nightly_tag == 'true' || needs.Params.outputs.is_test_tag == 'true') && !failure() && !cancelled()
     with:
       os_image:              ${{ matrix.image }}
       os_name:               ${{ matrix.name }}
