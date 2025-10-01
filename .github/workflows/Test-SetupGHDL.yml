@@ -25,6 +25,11 @@ on:
         description: 'Expected version of the GHDL.'
         required: true
         type: string
+      testsuites:
+        description: "List of GHDL testsuites to execute while testing (space separated). Alternatively: 'all' or 'none'"
+        required: false
+        default: 'sanity'
+        type: string
 
 jobs:
   Setup-GHDL-Nightly:
@@ -32,6 +37,7 @@ jobs:
     runs-on: ${{ inputs.os_image }}
 
     steps:
+# BUG: GitHub Action doesn't accept contexts for shell
 #      - name: Detect correct shell
 #        id: detect
 #        shell: bash
@@ -42,6 +48,9 @@ jobs:
 #          else
 #            printf "shell=bash" >> $GITHUB_OUTPUT
 #          fi
+
+      - name: '⏬ Checkout'
+        uses: actions/checkout@v5
 
       - name: '🟦 Setup MSYS2 for ${{ inputs.runtime }}'
         uses: msys2/setup-msys2@v2
@@ -58,8 +67,9 @@ jobs:
           runtime: ${{ inputs.runtime }}
           investigate: true
 
-      - name: Verify GHDL version via Bash
+      - name: Verify GHDL version on Ubuntu or macOS via Bash
         if: inputs.os_name == 'Ubuntu' || inputs.os_name == 'macOS' || ( inputs.os_name == 'Windows' && inputs.runtime == '' )
+        # BUG: GitHub Action doesn't accept contexts for shell
         shell: bash   # ${{ steps.detect.outputs.shell }}
         run: |
           ANSI_LIGHT_RED=$'\x1b[91m'
@@ -79,7 +89,7 @@ jobs:
             ghdl --version
           fi
 
-      - name: Verify GHDL version via Bash
+      - name: Verify GHDL version on Windows+MSYS2 via Bash
         if: inputs.os_name == 'Windows' && inputs.runtime != ''
         # BUG: GitHub Action doesn't accept contexts for shell
         shell: "msys2 {0}"   # ${{ steps.detect.outputs.shell }}
@@ -101,9 +111,54 @@ jobs:
             ghdl --version
           fi
 
-      - name: Verify on Windows (native)
+      - name: Verify on Windows (native) via PowerShell
         if: inputs.os_name == 'Windows' && inputs.runtime == ''
         shell: powershell
         run: |
           echo $(Get-Command ghdl).Source
           ghdl --version
+
+      - name: Run testsuite(s) '${{ inputs.testsuites }}' on Ubuntu or macOS
+        if: inputs.os_name == 'Ubuntu' || inputs.os_name == 'macOS' || ( inputs.os_name == 'Windows' && inputs.runtime == '' )
+        # BUG: GitHub Action doesn't accept contexts for shell
+        shell: bash   # ${{ steps.detect.outputs.shell }}
+        run: |
+          cd testsuite
+
+          # no pyunit
+          if [ '${{ inputs.testsuites }}' == 'all' ]; then
+            TESTSUITES="sanity gna vests synth vpi vhpi"
+          else
+            TESTSUITES="${{ inputs.testsuites }}"
+          fi
+          ./testsuite.sh $TESTSUITES
+
+      - name: Run testsuite(s) '${{ inputs.testsuites }}' on Windows+MSYS2 via Bash
+        if: inputs.os_name == 'Windows' && inputs.runtime != ''
+        # BUG: GitHub Action doesn't accept contexts for shell
+        shell: "msys2 {0}"   # ${{ steps.detect.outputs.shell }}
+        run: |
+          cd testsuite
+
+          # no pyunit
+          if [ '${{ inputs.testsuites }}' == 'all' ]; then
+            TESTSUITES="sanity gna vests synth vpi vhpi"
+          else
+            TESTSUITES="${{ inputs.testsuites }}"
+          fi
+          ./testsuite.sh $TESTSUITES
+
+      - name: Run testsuite(s) '${{ inputs.testsuites }}' on Windows via Bash
+        if: inputs.os_name == 'Windows' && inputs.runtime == ''
+        # BUG: GitHub Action doesn't accept contexts for shell
+        shell: bash   # ${{ steps.detect.outputs.shell }}
+        run: |
+          cd testsuite
+
+          # no pyunit
+          if [ '${{ inputs.testsuites }}' == 'all' ]; then
+            TESTSUITES="sanity gna vests synth vpi vhpi"
+          else
+            TESTSUITES="${{ inputs.testsuites }}"
+          fi
+          ./testsuite.sh $TESTSUITES

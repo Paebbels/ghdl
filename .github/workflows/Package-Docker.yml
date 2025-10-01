@@ -35,7 +35,7 @@ on:
         default: 'ghdl'
         type: string
       testsuites:
-        description: 'GHDL testsuites'
+        description: "List of GHDL testsuites to execute while testing (space separated). Alternatively: 'all' or 'none'"
         required: true
         type: string
 
