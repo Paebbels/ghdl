@@ -241,7 +241,25 @@ jobs:
 #      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 #      CODACY_TOKEN:  ${{ secrets.CODACY_TOKEN }}
 
-  PublishTestResults:
+  PublishGHDLTestsuiteResults:
+    uses: pyTooling/Actions/.github/workflows/PublishTestResults.yml@r6
+    needs:
+      - macOS
+      - Ubuntu-fast
+      - Ubuntu
+      - Windows-fast
+      - Windows
+    if: success() || failure()
+    with:
+      unittest_artifacts_pattern: '*-JUnit'
+      merged_junit_artifact:      'GHDL-Unittest-XML'
+      additional_merge_args:      '-d "--render=tree" "--name=GHDL"'
+      dorny:   true
+#      codecov: true
+#    secrets:
+#      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+  PublishPytestResults:
     uses: pyTooling/Actions/.github/workflows/PublishTestResults.yml@r6
     needs:
       - macOS
@@ -250,8 +268,8 @@ jobs:
       - pyGHDL
     with:
       unittest_artifacts_pattern: '*-Unittest-XML-*'
-      merged_junit_artifact: 'pyGHDL-Unittest-XML'
-      additional_merge_args: '-d "--render=tree" "--name=pyGHDL" "--pytest=rewrite-dunder-init;reduce-depth:pytest.testsuite.pyunit;split:pytest"'
+      merged_junit_artifact:      'pyGHDL-Unittest-XML'
+      additional_merge_args:      '-d "--render=tree" "--name=pyGHDL" "--pytest=rewrite-dunder-init;reduce-depth:pytest.testsuite.pyunit;split:pytest"'
       dorny:   true
 #      codecov: true
 #    secrets:
@@ -261,7 +279,8 @@ jobs:
     uses: pyTooling/Actions/.github/workflows/IntermediateCleanUp.yml@r6
     needs:
       - PublishCoverageResults
-      - PublishTestResults
+      - PublishGHDLTestsuiteResults
+      - PublishPytestResults
     with:
       sqlite_coverage_artifacts_prefix: 'pyGHDL-Coverage-SQLite-'
       xml_unittest_artifacts_prefix:    'pyGHDL-Unittest-XML-'
@@ -278,7 +297,7 @@ jobs:
       - Params
       - Ubuntu-fast
       - PublishCoverageResults
-      - PublishTestResults
+      - PublishPytestResults
     with:
       ghdl_artifact:  ${{ needs.Params.outputs.ghdl_basename }}-ubuntu-24.04-x86_64-mcode
       html_artifact:  'documentation-HTML'
@@ -376,7 +395,8 @@ jobs:
       - StaticTypeCheck
       - DocCoverage
       - PublishCoverageResults
-      - PublishTestResults
+      - PublishGHDLTestsuiteResults
+      - PublishPytestResults
     permissions:
       contents: write
       actions:  write
