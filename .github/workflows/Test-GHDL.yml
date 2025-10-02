@@ -125,6 +125,6 @@ jobs:
         with:
           name: ${{ inputs.ghdl_artifact }}-JUnit
           working-directory: 'testsuite'
-          path:              'testsuite.xml'
+          path:              'testsuites.xml'
           if-no-files-found: error
           retention-days:    1
