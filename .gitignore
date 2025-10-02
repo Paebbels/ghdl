@@ -55,7 +55,10 @@ e~*.lst
 /testsuite/get_entities
 /testsuite/test_ok
 /testsuite/gna/**/*.out
+/testsuite/gna/**/*.vcd
+/testsuite/gna/**/*.txt
 /testsuite/vpi/**/*.out
+/testsuite/synth/**/*.v
 /testsuite/synth/**/*.out
 /testsuite/synth/sns01/*.ref
 /testsuite/synth/snsuns01/*.ref

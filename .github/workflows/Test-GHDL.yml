@@ -111,3 +111,20 @@ jobs:
             TESTSUITES="${{ inputs.testsuites }}"
           fi
           ./testsuite.sh $TESTSUITES
+
+          # Debug generated JUnit XML file
+          ANSI_LIGHT_BLUE=$'\x1b[94m'
+          ANSI_NOCOLOR=$'\x1b[0m'
+
+          printf "::group::${ANSI_LIGHT_BLUE}%s${ANSI_NOCOLOR}\n" "testsuites.xml"
+          cat testsuites.xml
+          printf "::endgroup::\n"
+
+      - name: 📤 Upload 'Testsuite' artifact
+        uses: pyTooling/upload-artifact@v4
+        with:
+          name: ${{ inputs.ghdl_artifact }}-JUnit
+          working-directory: 'testsuite'
+          path:              'testsuite.xml'
+          if-no-files-found: error
+          retention-days:    1
