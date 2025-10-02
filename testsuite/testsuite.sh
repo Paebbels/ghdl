@@ -65,13 +65,28 @@ _vests () {
   gstart "[GHDL - test] vests"
   cd vests
 
-  if ./testsuite.sh > vests.log 2>&1; then
+  startTime=$(date +%s%N)
+
+  ./testsuite.sh > vests.log 2>&1
+  exitCode=$?
+
+  stopTime=$(date +%s%N)
+  elapsedTime=$(((stopTime - startTime) / 1000000))
+  elapsedTime="$((elapsedTime / 1000)).$((elapsedTime % 1000))"
+
+  if [ $exitCode -eq 0 ]; then
     printf "${ANSI_GREEN}Vests is OK$ANSI_NOCOLOR\n"
     wc -l vests.log
+
+    printf '    <testcase classname="%s" name="%s" time="%s" />' \
+      "vests" "all" "$elapsedTime" > "../vests.testresults"
   else
     cat vests.log
     printf "${ANSI_RED}Vests failure$ANSI_NOCOLOR\n"
     failures=vests
+
+    printf '    <testcase classname="%s" name="%s" time="%s"><failure /></testcase>' \
+      "vests" "all" "$elapsedTime" > "../vests.testresults"
   fi
 
   cd ..
@@ -105,6 +120,11 @@ fi
 
 command -v "$GHWDUMP" >/dev/null || die "ghwdump executable not found: $GHWDUMP"
 command -v "diff"     >/dev/null || die "diff executable not found"
+
+command -v "gdate"    >/dev/null && gdate +%s%N
+command -v "gdate"    >/dev/null && gdate +%s%N
+alias
+date --help
 
 # Set working directory to directory of this script
 cd $(dirname "$0")
@@ -142,20 +162,25 @@ printf "> args: %s\n" "$@"
 do_test() {
   case $1 in
     help)
-      echo "Usage:"
-      echo "  ./testsuite.sh                     run all testsuites"
-      echo "  ./testsuite.sh <suite>             run single testsuite"
-      echo "  ./testsuite.sh <suite> <suite> ... run multiple testsuites"
-
-      echo "Supported testsuites:"
-      echo " * sanity"
-      echo " * gna"
-      echo " * synth"
-      echo " * vpi"
-      echo " * vhpi"
-      echo " * vests"
-      echo " * pyunit"
-      echo ""
+      printf "Usage:\n"
+      printf "  ./testsuite.sh                     run all testsuites\n"
+      printf "  ./testsuite.sh <suite>             run single testsuite\n"
+      printf "  ./testsuite.sh <suite> <suite> ... run multiple testsuites\n"
+      printf "  ./testsuite.sh <suite> -- <option> options after -- are passed to the suite\n"
+      printf "\n"
+      printf "Options:\n"
+      printf "  -j<N>                              run testcases using <N> parallel jobs\n"
+      printf "  -k  --keep-going                   continue after errors\n"
+      printf "\n"
+      printf "Supported testsuites:\n"
+      printf " * sanity\n"
+      printf " * gna\n"
+      printf " * synth\n"
+      printf " * vpi\n"
+      printf " * vhpi\n"
+      printf " * vests\n"
+      printf " * pyunit\n"
+      printf "\n"
       exit
       ;;
     sanity|gna|synth|vpi|vhpi)
@@ -194,7 +219,7 @@ gstart "GHDL help"
 $GHDL help
 gend
 
-totalStartTime=$(date +%s%3N)
+totalStartTime=$(date +%s%N)
 totalTestCount=0
 totalFailedCount=0
 totalErroredCount=0
@@ -202,13 +227,13 @@ totalSkippedCount=0
 # Run testsuites individually in a sequence.
 # Each testsuite might run testcases in parallel.
 for t in $tests; do
-  startTime=$(date +%s%3N)
+  startTime=$(date +%s%N)
 
   # Run a testsuite
   do_test "$t" "$@"
 
-  stopTime=$(date +%s%3N)
-  elapsedTime=$((stopTime - startTime))
+  stopTime=$(date +%s%N)
+  elapsedTime=$(((stopTime - startTime) / 1000000))
   elapsedTime="$((elapsedTime / 1000)).$((elapsedTime % 1000))"
 
   # Extract statistics from
@@ -223,19 +248,20 @@ for t in $tests; do
   totalSkippedCount=$((totalSkippedCount + skippedCount))
 
   # Create a partial XML file for every testsuite
-  printf '  <testsuite name="%s" tests="%s" failures="%s" errors="%s" skipped="%s" time="%s">\n' \
+  printf '  <testsuite name="%s" tests="%s" failures="%s" errors="%s" skipped="%s" time="%s" hostname="">\n' \
     "$t" "$testCount" "$failedCount" "$erroredCount" "$skippedCount" "$elapsedTime" \
                              > "$t.testresults.xml"
   cat "$t.testresults"      >> "$t.testresults.xml"
   printf '  </testsuite>\n' >> "$t.testresults.xml"
 done
 
-totalStopTime=$(date +%s%3N)
-totalElapsedTime=$((totalStopTime - totalStartTime))
+totalStopTime=$(date +%s%N)
+totalElapsedTime=$(((totalStopTime - totalStartTime) / 1000000))
 totalElapsedTime="$((totalElapsedTime / 1000)).$((totalElapsedTime % 1000))"
 timestamp="$(date +"%Y-%m-%dT%H:%M:%S%:z")"
 
 # Create final testsuites XML file
+gstart "Merge testreports"
 printf "<?xml version=\"1.0\" encoding=\"utf-8\"?>
 <testsuites name=\"ghdl\" tests=\"%s\" failures=\"%s\" errors=\"%s\" skipped=\"%s\" time=\"%s\" timestamp=\"%s\">\n" \
   "$totalTestCount" "$totalFailedCount" "$totalErroredCount" "$totalSkippedCount" "$totalElapsedTime" "$timestamp" \
@@ -244,6 +270,7 @@ for t in $tests; do
   cat "$t.testresults.xml" >> "testsuites.xml"
 done
 printf "</testsuites>\n"   >> "testsuites.xml"
+gend
 
 printf "${ANSI_GREEN}[GHDL - test] SUCCESSFUL${ANSI_NOCOLOR}\n"
 touch test_ok

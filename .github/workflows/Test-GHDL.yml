@@ -66,6 +66,7 @@ jobs:
       - name: Prepare test environment (macOS)
         if: startsWith(inputs.os_image, 'macos')
         run: |
+          brew install coreutils
           echo "PATH=$(pwd)/install/bin:$PATH" >> $GITHUB_ENV
           cat $GITHUB_ENV
 
@@ -102,6 +103,7 @@ jobs:
       - name: Run tests in testsuite
         run: |
           [ '${{ inputs.runtime }}' != '' ] && export PATH=$(pwd)/install/bin:$PATH
+          [ ${{ startsWith(inputs.os_image, 'macos') }} ] && alias date=gdate
           cd testsuite
 
           # no pyunit

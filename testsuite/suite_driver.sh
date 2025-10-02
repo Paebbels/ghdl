@@ -56,13 +56,13 @@ parse_cmdline () {
 
 singlerun() {
   cd "$1"
-  startTime=$(date +%s%3N)
+  startTime=$(date +%s%N)
 
   ./testsuite.sh > test.log 2>&1
   exitCode=$?
 
-  stopTime=$(date +%s%3N)
-  elapsedTime=$((stopTime - startTime))
+  stopTime=$(date +%s%N)
+  elapsedTime=$(((stopTime - startTime) / 1000000))
   elapsedTime="$((elapsedTime / 1000)).$((elapsedTime % 1000))"
   if [ $exitCode -eq 0 ]; then
     printf "$_suite $1: ${ANSI_GREEN}ok${ANSI_NOCOLOR}\n"

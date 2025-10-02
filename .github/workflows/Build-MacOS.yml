@@ -92,7 +92,7 @@ jobs:
 
       - name: 🔧 Install dependencies
         run: |
-          brew install llvm
+          brew install llvm coreutils
 
           tee "${GITHUB_ENV}" <<EOF
           LLVM_BINARY_PATH=$(brew --prefix llvm)/bin
@@ -205,6 +205,7 @@ jobs:
 
       - name: "🚦 Run testsuite: 'sanity'"
         run: |
+          alias date=gdate
           export GHDL=$(pwd)/install/bin/ghdl
           cd testsuite
 

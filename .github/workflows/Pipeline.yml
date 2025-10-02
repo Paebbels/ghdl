@@ -149,7 +149,7 @@ jobs:
       matrix:
         include:
 ###       - {icon: '🪟', runtime: 'mingw32', backend: 'mcode',    testsuites: '${{ needs.Params.outputs.testsuites }}'}   # No gcc-ada package for MinGW32, support was dropped
-#          - {icon: '🪟', runtime: 'mingw64', backend: 'mcode',    testsuites: '${{ needs.Params.outputs.testsuites }}'}
+          - {icon: '🪟', runtime: 'mingw64', backend: 'mcode',    testsuites: '${{ needs.Params.outputs.testsuites }}'}
 #          - {icon: '🪟', runtime: 'mingw64', backend: 'llvm',     testsuites: 'sanity gna synth vpi vhpi'}                # no vests (too slow)
 #          - {icon: '🪟', runtime: 'mingw64', backend: 'llvm-jit', testsuites: 'sanity vpi vhpi'}                          # gna and synth fail (#2726); no vests (too slow)
 ###       - {icon: '🪟', runtime: 'ucrt64',  backend: 'mcode',    testsuites: '${{ needs.Params.outputs.testsuites }}'}   # used by Windows-fast
