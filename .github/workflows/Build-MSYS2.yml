@@ -527,6 +527,15 @@ jobs:
           fi
           ./testsuite.sh $TESTSUITES
 
+      - name: 📤 Upload 'Testsuite' artifact
+        uses: pyTooling/upload-artifact@v4
+        with:
+          name: ${{ needs.Build.outputs.pacman_artifact }}-JUnit
+          working-directory: 'testsuite'
+          path:              'testsuites.xml'
+          if-no-files-found: error
+          retention-days:    1
+
   StandalonePackage:
     name: Install GHDL on Windows Server
     runs-on: windows-${{ inputs.windows_version }}

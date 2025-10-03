@@ -452,3 +452,17 @@ jobs:
       ghdl_backend:          ${{ matrix.backend }}
       runtime:               ${{ matrix.runtime }}
       expected_ghdl_version: ${{ needs.Params.outputs.ghdl_version }}
+      unittest_artifact:     'Setup-${{ matrix.image }}-${{ matrix.runtime }}-${{ matrix.backend }}-JUnit'
+
+  PublishSetupGHDLTestsuiteResults:
+    uses: pyTooling/Actions/.github/workflows/PublishTestResults.yml@r6
+    needs:
+      - Test-SetupGHDL
+    with:
+      unittest_artifacts_pattern: 'Setup-*-JUnit'
+      merged_junit_artifact:      'SetupGHDL-Unittest-XML'
+      additional_merge_args:      '-d "--render=tree" "--name=GHDL"'
+      dorny:   true
+#      codecov: true
+#    secrets:
+#      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

@@ -30,6 +30,10 @@ on:
         required: false
         default: 'sanity'
         type: string
+      unittest_artifact:
+        description: "Name of the artifact containing the JUnit report for executed testsuites."
+        required: true
+        type: string
 
 jobs:
   Setup-GHDL-Nightly:
@@ -129,3 +133,12 @@ jobs:
         # BUG: GitHub Action doesn't accept contexts for shell
         shell: bash   # ${{ steps.detect.outputs.shell }}
         run: *runTestsuites
+
+      - name: 📤 Upload 'Testsuite' artifact
+        uses: pyTooling/upload-artifact@v4
+        with:
+          name: ${{ inputs.unittest_artifact }}
+          working-directory: 'testsuite'
+          path:              'testsuites.xml'
+          if-no-files-found: error
+          retention-days:    1

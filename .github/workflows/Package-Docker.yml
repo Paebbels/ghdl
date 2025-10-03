@@ -127,14 +127,24 @@ jobs:
         run: |
           docker container run --rm -v $(pwd):/data ghdl:current /bin/bash -c 'cd /data/testsuite; ./testsuite.sh ${{ inputs.testsuites }}'
 
+      - name: 📤 Upload 'Testsuite' artifact
+        uses: pyTooling/upload-artifact@v4
+        with:
+          name: ${{ inputs.ghdl_artifact }}-LocalDocker-JUnit
+          working-directory: 'testsuite'
+          path:              'testsuites.xml'
+          if-no-files-found: error
+          retention-days:    1
+
   TestDocker:
     uses: ./.github/workflows/Test-Docker.yml
     needs:
       - Ubuntu
     if: inputs.publish
     with:
-      os_image:     ${{ inputs.ubuntu_image }}
-      ghdl_image:   ${{ needs.Ubuntu.outputs.ghdl_image }}
-      ghdl_backend: ${{ inputs.ghdl_backend }}
-      ghdl_version: ${{ inputs.ghdl_version }}
-      testsuites:   ${{ inputs.testsuites }}
+      os_image:          ${{ inputs.ubuntu_image }}
+      ghdl_image:        ${{ needs.Ubuntu.outputs.ghdl_image }}
+      ghdl_backend:      ${{ inputs.ghdl_backend }}
+      ghdl_version:      ${{ inputs.ghdl_version }}
+      testsuites:        ${{ inputs.testsuites }}
+      unittest_artifact: ${{ inputs.ghdl_artifact }}-Docker-JUnit

@@ -103,7 +103,7 @@ jobs:
       - name: Run tests in testsuite
         run: |
           [ '${{ inputs.runtime }}' != '' ] && export PATH=$(pwd)/install/bin:$PATH
-          [ ${{ startsWith(inputs.os_image, 'macos') }} ] && alias date=gdate
+          [ ${{ startsWith(inputs.os_image, 'macos') }} ] && export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
           cd testsuite
 
           # no pyunit
@@ -113,14 +113,6 @@ jobs:
             TESTSUITES="${{ inputs.testsuites }}"
           fi
           ./testsuite.sh $TESTSUITES
-
-          # Debug generated JUnit XML file
-          ANSI_LIGHT_BLUE=$'\x1b[94m'
-          ANSI_NOCOLOR=$'\x1b[0m'
-
-          printf "::group::${ANSI_LIGHT_BLUE}%s${ANSI_NOCOLOR}\n" "testsuites.xml"
-          cat testsuites.xml
-          printf "::endgroup::\n"
 
       - name: 📤 Upload 'Testsuite' artifact
         uses: pyTooling/upload-artifact@v4

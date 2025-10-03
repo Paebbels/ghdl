@@ -23,6 +23,10 @@ on:
         description: "List of GHDL testsuites to execute while testing (space separated). Alternatively: 'all' or 'none'"
         required: true
         type: string
+      unittest_artifact:
+        description: "Name of the artifact containing the JUnit report for executed testsuites."
+        required: true
+        type: string
 
 jobs:
   Test:
@@ -97,3 +101,12 @@ jobs:
             TESTSUITES="${{ inputs.testsuites }}"
           fi
           ./testsuite.sh $TESTSUITES
+
+      - name: 📤 Upload 'Testsuite' artifact
+        uses: pyTooling/upload-artifact@v4
+        with:
+          name: ${{ inputs.unittest_artifact }}
+          working-directory: 'testsuite'
+          path:              'testsuites.xml'
+          if-no-files-found: error
+          retention-days:    1
