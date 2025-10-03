@@ -219,6 +219,7 @@ gstart "GHDL help"
 $GHDL help
 gend
 
+globalTimestamp="$(date +"%Y-%m-%dT%H:%M:%S%:z")"
 totalStartTime=$(date +%s%N)
 totalTestCount=0
 totalFailedCount=0
@@ -227,6 +228,7 @@ totalSkippedCount=0
 # Run testsuites individually in a sequence.
 # Each testsuite might run testcases in parallel.
 for t in $tests; do
+  timestamp="$(date +"%Y-%m-%dT%H:%M:%S%:z")"
   startTime=$(date +%s%N)
 
   # Run a testsuite
@@ -248,8 +250,8 @@ for t in $tests; do
   totalSkippedCount=$((totalSkippedCount + skippedCount))
 
   # Create a partial XML file for every testsuite
-  printf '  <testsuite name="%s" tests="%s" failures="%s" errors="%s" skipped="%s" time="%s" hostname="">\n' \
-    "$t" "$testCount" "$failedCount" "$erroredCount" "$skippedCount" "$elapsedTime" \
+  printf '  <testsuite name="%s" tests="%s" failures="%s" errors="%s" skipped="%s" time="%s" timestamp="%s" hostname="">\n' \
+    "$t" "$testCount" "$failedCount" "$erroredCount" "$skippedCount" "$elapsedTime" "$timestamp" \
                              > "$t.testresults.xml"
   cat "$t.testresults"      >> "$t.testresults.xml"
   printf '  </testsuite>\n' >> "$t.testresults.xml"
@@ -258,13 +260,12 @@ done
 totalStopTime=$(date +%s%N)
 totalElapsedTime=$(((totalStopTime - totalStartTime) / 1000000))
 totalElapsedTime="$((totalElapsedTime / 1000)).$((totalElapsedTime % 1000))"
-timestamp="$(date +"%Y-%m-%dT%H:%M:%S%:z")"
 
 # Create final testsuites XML file
 gstart "Merge testreports"
-printf "<?xml version=\"1.0\" encoding=\"utf-8\"?>
-<testsuites name=\"ghdl\" tests=\"%s\" failures=\"%s\" errors=\"%s\" skipped=\"%s\" time=\"%s\" timestamp=\"%s\">\n" \
-  "$totalTestCount" "$totalFailedCount" "$totalErroredCount" "$totalSkippedCount" "$totalElapsedTime" "$timestamp" \
+printf '<?xml version="1.0" encoding="utf-8"?>
+<testsuites name="ghdl" tests="%s" failures="%s" errors="%s" skipped="%s" time="%s" timestamp="%s">\n' \
+  "$totalTestCount" "$totalFailedCount" "$totalErroredCount" "$totalSkippedCount" "$totalElapsedTime" "$globalTimestamp" \
                            >  "testsuites.xml"
 for t in $tests; do
   cat "$t.testresults.xml" >> "testsuites.xml"
