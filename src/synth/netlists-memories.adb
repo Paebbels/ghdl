@@ -1162,8 +1162,14 @@ package body Netlists.Memories is
    is
       pragma Assert (Depth /= 0);
       Mem_Wd : constant Width := Wd * Depth;
+      Cst_Out : constant Net := Get_Output (Cst, 0);
       Res : Instance;
    begin
+      if Off = 0 and then Get_Width (Cst_Out) = Mem_Wd then
+         --  Whole memory, nothing to extract.
+         return Cst_Out;
+      end if;
+
       case Get_Id (Cst) is
          when Id_Const_Bit =>
             Res := Build_Const_Bit (Ctxt, Mem_Wd);
