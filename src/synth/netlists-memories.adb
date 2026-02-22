@@ -256,8 +256,7 @@ package body Netlists.Memories is
                pragma Assert (Res = 0);
                pragma Assert (Get_Width (N) = 0);
                return 0;
-            when others =>
-               raise Internal_Error;
+            when others => raise Internal_Error;
          end case;
       end loop;
    end Count_Memidx;
@@ -290,8 +289,7 @@ package body Netlists.Memories is
                pragma Assert (Get_Id (Memidx) = Id_Memidx);
                --  Extract next element in the chain
                N := Get_Input_Net (Ninst, 1);
-            when others =>
-               raise Internal_Error;
+            when others => raise Internal_Error;
          end case;
 
          Memidx_Arr (P) := Memidx;
@@ -344,8 +342,7 @@ package body Netlists.Memories is
 
                   Inst := Get_Net_Parent (Inp_Net);
                end;
-            when others =>
-               raise Internal_Error;
+            when others => raise Internal_Error;
          end case;
       end loop;
    end Remove_Memidx;
@@ -915,8 +912,7 @@ package body Netlists.Memories is
                                  pragma Assert (N_Inst = No_Instance);
                                  N_Inst := In_Inst;
                               end if;
-                           when others =>
-                              raise Internal_Error;
+                           when others => raise Internal_Error;
                         end case;
                         Inp := Get_Next_Sink (Inp);
                      end loop;
@@ -924,8 +920,7 @@ package body Netlists.Memories is
                      exit when Inst = Sig;
                   end;
                end loop;
-            when others =>
-               raise Internal_Error;
+            when others => raise Internal_Error;
          end case;
          Inp2 := Get_Next_Sink (Inp2);
       end loop;
@@ -968,8 +963,7 @@ package body Netlists.Memories is
             when Id_Dyn_Insert
               | Id_Dyn_Insert_En =>
                Inst := Get_Input_Instance (Dyn_Inst, 2);
-            when others =>
-               raise Internal_Error;
+            when others => raise Internal_Error;
          end case;
 
          Data.Nbr_Ports := Data.Nbr_Ports + 1;
@@ -988,8 +982,7 @@ package body Netlists.Memories is
                   --  Just handle the memidx.
                   Idx := Inst;
                   Inst := No_Instance;
-               when others =>
-                  raise Internal_Error;
+               when others => raise Internal_Error;
             end case;
             if Res.Dim = 0 then
                Res.Data_Wd := Get_Param_Uns32 (Idx, 0);
@@ -1211,8 +1204,7 @@ package body Netlists.Memories is
             end;
          when Id_Const_X =>
             return Build_Const_X (Ctxt, Mem_Wd);
-         when others =>
-            raise Internal_Error;
+         when others => raise Internal_Error;
       end case;
    end Extract_Sub_Constant;
 
@@ -1259,8 +1251,7 @@ package body Netlists.Memories is
             Is_Logic := True;
          when Id_Const_X =>
             return Cst;
-         when others =>
-            raise Internal_Error;
+         when others => raise Internal_Error;
       end case;
 
       --  Copy content in reverse order.
@@ -1334,8 +1325,7 @@ package body Netlists.Memories is
                when Id_Dyn_Insert
                   | Id_Dyn_Insert_En =>
                   Idx := Get_Input (P, 2);
-               when others =>
-                  raise Internal_Error;
+               when others => raise Internal_Error;
             end case;
             Ports (I) := Get_Net_Parent (Get_Driver (Idx));
          end;
@@ -1362,8 +1352,7 @@ package body Netlists.Memories is
                   when Id_Addidx =>
                      M := Get_Input_Instance (M, 0);
                      pragma Assert (Get_Id (M) = Id_Memidx);
-                  when others =>
-                     raise Internal_Error;
+                  when others => raise Internal_Error;
                end case;
 
                --  Check the steps, max and directions match.
@@ -1406,8 +1395,7 @@ package body Netlists.Memories is
                      Ports (I) := Get_Input_Instance (M, 1);
                      M := Get_Input_Instance (M, 0);
                      pragma Assert (Get_Id (M) = Id_Memidx);
-                  when others =>
-                     raise Internal_Error;
+                  when others => raise Internal_Error;
                end case;
 
                if Is_Reverse then
@@ -1467,8 +1455,7 @@ package body Netlists.Memories is
                end;
             when Id_Signal =>
                null;
-            when others =>
-               raise Internal_Error;
+            when others => raise Internal_Error;
          end case;
       end if;
 
@@ -1566,8 +1553,7 @@ package body Netlists.Memories is
                Remove_Instance (Extr_Inst);
 
                Last := Get_Output (Port_Inst, 0);
-            when others =>
-               raise Internal_Error;
+            when others => raise Internal_Error;
          end case;
          Inp := Next_Inp;
       end loop;
@@ -2084,8 +2070,7 @@ package body Netlists.Memories is
               | Id_Dyn_Insert =>
                Off := Get_Param_Uns32 (Inst, 0);
                Wd := Get_Width (Get_Input_Net (Inst, 1));
-            when others =>
-               raise Internal_Error;
+            when others => raise Internal_Error;
          end case;
 
          Ow := (Off, Off + Wd);
@@ -2199,8 +2184,7 @@ package body Netlists.Memories is
             when Id_Dyn_Insert_En
               | Id_Dyn_Insert =>
                null;
-            when others =>
-               raise Internal_Error;
+            when others => raise Internal_Error;
          end case;
          Inp2 := N_Inp2;
       end loop;
@@ -2303,8 +2287,7 @@ package body Netlists.Memories is
                when Id_Signal
                   | Id_Isignal =>
                   null;
-               when others =>
-                  raise Internal_Error;
+               when others => raise Internal_Error;
             end case;
 
             --  Check gates connected to the output.
@@ -2366,8 +2349,7 @@ package body Netlists.Memories is
                         pragma Assert (N_Inst = No_Instance);
                         N_Inst := In_Inst;
                      end if;
-                  when others =>
-                     raise Internal_Error;
+                  when others => raise Internal_Error;
                end case;
                Inp := N_Inp;
             end loop;
@@ -2392,8 +2374,7 @@ package body Netlists.Memories is
                when Id_Signal
                   | Id_Isignal =>
                   null;
-               when others =>
-                  raise Internal_Error;
+               when others => raise Internal_Error;
             end case;
 
             Inst := N_Inst;
@@ -2562,8 +2543,7 @@ package body Netlists.Memories is
                         Mem_W, Offs (I), Data_Wd, Mem_Depth));
                when Id_Signal =>
                   Heads (I) := Build_Memory (Ctxt, Name, Mem_Wd);
-               when others =>
-                  raise Internal_Error;
+               when others => raise Internal_Error;
             end case;
             Copy_Instance_Attributes (Heads (I), Sig);
             Tails (I) := Get_Output (Heads (I), 0);
@@ -2584,8 +2564,7 @@ package body Netlists.Memories is
             Disconnect (Get_Input (Inst, 1));
          when Id_Signal =>
             null;
-         when others =>
-            raise Internal_Error;
+         when others => raise Internal_Error;
       end case;
 
       declare
@@ -2686,8 +2665,7 @@ package body Netlists.Memories is
                   Inst := Walk_From_Insert (Inst);
                when Id_Dyn_Extract =>
                   Inst := Walk_From_Extract (Inst);
-               when others =>
-                  raise Internal_Error;
+               when others => raise Internal_Error;
             end case;
             if Inst /= No_Instance
               and then not Get_Mark_Flag (Inst)
@@ -2721,8 +2699,7 @@ package body Netlists.Memories is
                  | Id_Const_Log
                  | Id_Const_UB32 =>
                   null;
-               when others =>
-                  raise Internal_Error;
+               when others => raise Internal_Error;
             end case;
 
             if Is_Const_Input (Inst) then
@@ -2867,8 +2844,7 @@ package body Netlists.Memories is
                pragma Assert (Tail_In = No_Net);
                Tail_Out := Inst;
                exit;
-            when others =>
-               raise Internal_Error;
+            when others => raise Internal_Error;
          end case;
          --  If this is the head, keep it.
          if Head_Out = No_Instance then
