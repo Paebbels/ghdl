@@ -224,12 +224,10 @@ package body Netlists.Memories is
          end loop;
       end;
 
-      if Data_W = 0 then
-         Info_Msg_Synth (+Orig, "memory %n is never read", (1 => +Orig));
-         Data_W := 0;
-      else
-         Size := Get_Width (Orig_Net) / Data_W;
-      end if;
+      --  Memory must be read.
+      pragma Assert (Data_W /= 0);
+
+      Size := Get_Width (Orig_Net) / Data_W;
    end Check_Memory_Read_Ports;
 
    --  Count the number of memidx in a memory address.
