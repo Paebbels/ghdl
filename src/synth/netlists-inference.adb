@@ -244,7 +244,7 @@ package body Netlists.Inference is
         and then Can_Infere_RAM (Data, Prev_Val)
       then
          --  Maybe it is a RAM.
-         Ndata := Infere_RAM (Ctxt, Data, Els_Net, No_Net, Clk_Enable);
+         Ndata := Infere_RAM (Ctxt, Data, Els_Net, Clk_Enable);
       else
          if Clk_Enable /= No_Net then
             --  If there is a condition with the clock, that's an enable which

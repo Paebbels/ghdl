@@ -2774,7 +2774,6 @@ package body Netlists.Memories is
    end One_Write_Connection;
 
    procedure Reduce_Muxes_Mux2 (Ctxt : Context_Acc;
-                                Clk  : Net;
                                 Psel : Net;
                                 Head : in out Instance;
                                 Tail : out Instance);
@@ -2782,7 +2781,6 @@ package body Netlists.Memories is
    --  Remove the mux2 MUX (by adding enable to dyn_insert).
    --  Return the new head.
    procedure Reduce_Muxes (Ctxt : Context_Acc;
-                           Clk : Net;
                            Sel : Net;
                            Head_In : Net;
                            Tail_In : Net;
@@ -2803,26 +2801,12 @@ package body Netlists.Memories is
          case Get_Id (Inst) is
             when Id_Mux2 =>
                --  Recurse on the mux.
-               Reduce_Muxes_Mux2 (Ctxt, Clk, Sel, Inst, Tail_Out);
+               Reduce_Muxes_Mux2 (Ctxt, Sel, Inst, Tail_Out);
             when Id_Dyn_Insert =>
                --  Transform dyn_insert to dyn_insert_en.
-               declare
-                  En : Net;
-               begin
-                  if Clk /= No_Net then
-                     if Sel /= No_Net then
-                        En := Build_Dyadic (Ctxt, Id_And, Clk, Sel);
-                        Copy_Location (En, Sel);
-                     else
-                        En := Clk;
-                     end if;
-                  else
-                     En := Sel;
-                  end if;
-                  if En /= No_Net then
-                     Inst := Add_Enable_To_Dyn_Insert (Ctxt, Inst, En);
-                  end if;
-               end;
+               if Sel /= No_Net then
+                  Inst := Add_Enable_To_Dyn_Insert (Ctxt, Inst, Sel);
+               end if;
                Tail_Out := Inst;
             when Id_Dyn_Insert_En =>
                --  Simply add SEL to the enable input.
@@ -2835,10 +2819,6 @@ package body Netlists.Memories is
                   if Sel /= No_Net then
                      En := Build_Dyadic (Ctxt, Id_And, En, Sel);
                      Copy_Location (En, Sel);
-                  end if;
-                  if Clk /= No_Net then
-                     En := Build_Dyadic (Ctxt, Id_And, Clk, En);
-                     Copy_Location (En, Inst);
                   end if;
                   Connect (En_Inp, En);
                end;
@@ -2899,7 +2879,6 @@ package body Netlists.Memories is
    --  Remove the mux2 HEAD (by adding enable to dyn_insert).
    --  Return the new head.
    procedure Reduce_Muxes_Mux2 (Ctxt : Context_Acc;
-                                Clk : Net;
                                 Psel : Net;
                                 Head : in out Instance;
                                 Tail : out Instance)
@@ -2973,7 +2952,7 @@ package body Netlists.Memories is
       --  Transform dyn_insert to dyn_insert_en by adding SEL, or simply add
       --  SEL to existing dyn_insert_en.
       --  RES is the head of the result chain.
-      Reduce_Muxes (Ctxt, Clk, Sel, Drv, Src, Res, Tail);
+      Reduce_Muxes (Ctxt, Sel, Drv, Src, Res, Tail);
 
       Redirect_Inputs (Muxout, Get_Output (Res, 0));
       Remove_Instance (Mux);
@@ -2981,9 +2960,8 @@ package body Netlists.Memories is
       Head := Res;
    end Reduce_Muxes_Mux2;
 
-   function Infere_RAM
-     (Ctxt : Context_Acc; Val : Net; Tail : Net; Clk : Net; En : Net)
-      return Net
+   function Infere_RAM (Ctxt : Context_Acc; Val : Net; Tail : Net; En : Net)
+                       return Net
    is
       --  pragma Assert (not Is_Connected (Val));
       New_Tail : Instance;
@@ -2993,7 +2971,7 @@ package body Netlists.Memories is
       --  be transformed to dyn_insert_en.
       --  At the end, the loop is linear and without muxes.
       --  Return the new head.
-      Reduce_Muxes (Ctxt, Clk, En, Val, Tail, Res, New_Tail);
+      Reduce_Muxes (Ctxt, En, Val, Tail, Res, New_Tail);
       return Get_Output (Res, 0);
    end Infere_RAM;
 

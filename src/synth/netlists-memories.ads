@@ -25,9 +25,8 @@ package Netlists.Memories is
    function Can_Infere_RAM (Val : Net; Prev_Val : Net) return Boolean;
 
    --  Pre-transform VAL to a RAM: try to merge Mux2 into the dyn_insert.
-   function Infere_RAM
-     (Ctxt : Context_Acc; Val : Net; Tail : Net; Clk : Net; En : Net)
-      return Net;
+   function Infere_RAM (Ctxt : Context_Acc; Val : Net; Tail : Net; En : Net)
+                       return Net;
 
    --  Try to convert dyn_insert/dyn_extract to memory ports.
    procedure Extract_Memories (Ctxt : Context_Acc; M : Module);
