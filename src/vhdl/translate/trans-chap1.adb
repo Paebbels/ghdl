@@ -300,10 +300,15 @@ package body Trans.Chap1 is
                   else
                      Clear_Scope (P_Ent_Info.Block_Scope);
                   end if;
+
+                  --  Recurse
+                  if P_Ent_Info.Block_Origin_Field /= O_Fnode_Null then
+                     Push_Pop_Instantiated_Architecture_Scope
+                       (P_Ent, P_Ent_Info, Is_Push);
+                  end if;
                end;
 
-               --  TODO: continue recursion.
-               exit;
+               return;
             when Iir_Kind_Block_Statement
               | Iir_Kind_Case_Generate_Statement
               | Iir_Kind_For_Generate_Statement
