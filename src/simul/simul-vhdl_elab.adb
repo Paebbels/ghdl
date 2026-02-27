@@ -91,24 +91,6 @@ package body Simul.Vhdl_Elab is
       end case;
    end Convert_Type_Width;
 
-   function Get_Concrete_Type (Inst : Synth_Instance_Acc;
-                               Atype : Node) return Node
-   is
-      Res : Node;
-   begin
-      Res := Atype;
-
-      while Get_Kind (Res) = Iir_Kind_Interface_Type_Definition loop
-         declare
-            Ntyp : Type_Acc;
-         begin
-            Get_Interface_Type (Inst, Res, Ntyp, Res);
-            pragma Unreferenced (Ntyp);
-         end;
-      end loop;
-      return Res;
-   end Get_Concrete_Type;
-
    --  For each scalar element, set Vec (off).Total to 1 if the signal is
    --  resolved.
    procedure Mark_Resolved_Signals (Inst : Synth_Instance_Acc;

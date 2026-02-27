@@ -130,9 +130,14 @@ package body Elab.Vhdl_Debug is
       end case;
    end Disp_Discrete_Value;
 
-   procedure Disp_Value_Vector (Mem : Memtyp; A_Type: Node; Bound : Bound_Type)
+   procedure Disp_Value_Vector (Mem : Memtyp;
+                                Inst : Synth_Instance_Acc;
+                                A_Type: Node;
+                                Bound : Bound_Type)
    is
-      El_Type : constant Node := Get_Base_Type (Get_Element_Subtype (A_Type));
+      El_Stype : constant Node :=
+        Get_Concrete_Type (Inst, Get_Element_Subtype (A_Type));
+      El_Type : constant Node := Get_Base_Type (El_Stype);
       El_Typ : constant Type_Acc := Get_Array_Element (Mem.Typ);
       type Last_Enum_Type is (None, Char, Identifier);
       Last_Enum : Last_Enum_Type;
@@ -188,20 +193,21 @@ package body Elab.Vhdl_Debug is
                Put (", ");
             end if;
             Disp_Memtyp ((El_Typ, Mem.Mem + Size_Type (I - 1) * El_Typ.Sz),
-                         El_Type);
+                         null, El_Type);
          end loop;
          Put (")");
       end if;
    end Disp_Value_Vector;
 
-   procedure Disp_Value_Array (Mem : Memtyp; A_Type: Node)
+   procedure Disp_Value_Array
+     (Mem : Memtyp; Inst : Synth_Instance_Acc; A_Type: Node)
    is
       Stride : Size_Type;
       Len : Uns32;
    begin
       if Mem.Typ.Alast then
          --  Last dimension
-         Disp_Value_Vector (Mem, A_Type, Mem.Typ.Abound);
+         Disp_Value_Vector (Mem, Inst, A_Type, Mem.Typ.Abound);
       else
          Stride := Mem.Typ.Arr_El.Sz;
          Len := Mem.Typ.Abound.Len;
@@ -213,13 +219,14 @@ package body Elab.Vhdl_Debug is
             end if;
             Disp_Value_Array ((Mem.Typ.Arr_El,
                                Mem.Mem + Size_Type (Len - I) * Stride),
-                              A_Type);
+                              Inst, A_Type);
          end loop;
          Put (")");
       end if;
    end Disp_Value_Array;
 
-   procedure Disp_Value_Record (M : Memtyp; Vtype: Node)
+   procedure Disp_Value_Record
+     (M : Memtyp; Inst : Synth_Instance_Acc; Vtype: Node)
    is
       El_List : Iir_Flist;
       El : Node;
@@ -235,12 +242,14 @@ package body Elab.Vhdl_Debug is
          Put (": ");
          Disp_Memtyp ((M.Typ.Rec.E (I).Typ,
                        M.Mem + M.Typ.Rec.E (I).Offs.Mem_Off),
-                      Get_Type (El));
+                       Inst, Get_Concrete_Type (Inst, Get_Type (El)));
       end loop;
       Put (")");
    end Disp_Value_Record;
 
-   procedure Disp_Memtyp (M : Memtyp; Vtype : Node) is
+   procedure Disp_Memtyp (M : Memtyp; Inst : Synth_Instance_Acc; Vtype : Node)
+   is
+      C_Type : constant Node := Get_Concrete_Type (Inst, Vtype);
    begin
       if M.Mem = null then
          Put ("*NULL*");
@@ -252,11 +261,11 @@ package body Elab.Vhdl_Debug is
            | Type_Bit
            | Type_Logic =>
             Disp_Discrete_Value
-              (Grt.Stdio.stdout, Read_Discrete (M), Get_Base_Type (Vtype));
+              (Grt.Stdio.stdout, Read_Discrete (M), Get_Base_Type (C_Type));
          when Type_Vector =>
-            Disp_Value_Vector (M, Vtype, M.Typ.Abound);
+            Disp_Value_Vector (M, Inst, C_Type, M.Typ.Abound);
          when Type_Array =>
-            Disp_Value_Array (M, Vtype);
+            Disp_Value_Array (M, Inst, C_Type);
          when Type_Float =>
             Put_Fp64 (Read_Fp64 (M));
          when Type_Slice =>
@@ -264,7 +273,7 @@ package body Elab.Vhdl_Debug is
          when Type_File =>
             Put ("*file*");
          when Type_Record =>
-            Disp_Value_Record (M, Vtype);
+            Disp_Value_Record (M, Inst, C_Type);
          when Type_Access =>
             declare
                Ptr : constant Heap_Ptr := Read_Access (M);
@@ -310,16 +319,16 @@ package body Elab.Vhdl_Debug is
             Put ("terminal");
          when Value_Const =>
             Put ("const: ");
-            Disp_Memtyp (Get_Memtyp (Vt), Vtype);
+            Disp_Memtyp (Get_Memtyp (Vt), null, Vtype);
          when Value_Alias =>
             Put ("alias");
-            Disp_Memtyp (Get_Memtyp (Vt), Vtype);
+            Disp_Memtyp (Get_Memtyp (Vt), null, Vtype);
          when Value_Dyn_Alias =>
             Put ("dyn alias");
          when Value_Sig_Val =>
             Put ("sig val");
          when Value_Memory =>
-            Disp_Memtyp (Get_Memtyp (Vt), Vtype);
+            Disp_Memtyp (Get_Memtyp (Vt), null, Vtype);
       end case;
    end Disp_Value;
 
@@ -1577,7 +1586,7 @@ package body Elab.Vhdl_Debug is
       end if;
       if Res /= No_Valtyp then
          if Res.Val.Kind = Value_Memory then
-            Disp_Memtyp (Get_Memtyp (Res), Get_Type (Expr));
+            Disp_Memtyp (Get_Memtyp (Res), Cur_Inst, Get_Type (Expr));
          else
             Elab.Vhdl_Values.Debug.Debug_Valtyp (Res);
          end if;

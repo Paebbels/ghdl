@@ -435,7 +435,7 @@ package body Simul.Vhdl_Debug is
          if S.Typ.Sz > Opts.Max_Sz then
             Put ("[too large]");
          else
-            Disp_Memtyp ((S.Typ, S.Val), Get_Type (S.Decl));
+            Disp_Memtyp ((S.Typ, S.Val), S.Inst, Get_Type (S.Decl));
          end if;
       end if;
       New_Line;
@@ -542,7 +542,7 @@ package body Simul.Vhdl_Debug is
          Put ("value (");
          Put_Addr (S.Val.all'Address);
          Put ("): ");
-         Disp_Memtyp ((S.Typ, S.Val), Get_Type (S.Decl));
+         Disp_Memtyp ((S.Typ, S.Val), S.Inst, Get_Type (S.Decl));
          New_Line;
       end if;
 
@@ -768,7 +768,7 @@ package body Simul.Vhdl_Debug is
             Put (", Idx: ");
             Put_Uns32 (Uns32 (Q.Sq_Idx));
             Put (", val: ");
-            Disp_Memtyp ((Q.Typ, Q.Val), Get_Type (Q.Decl));
+            Disp_Memtyp ((Q.Typ, Q.Val), Q.Inst, Get_Type (Q.Decl));
             New_Line;
             Info_Scalar_Quantity (Q.Sq_Idx, Q.Typ.W);
          end;
@@ -797,7 +797,7 @@ package body Simul.Vhdl_Debug is
             Put_Uns32 (T.Across_Typ.W);
             Put (", val: ");
             Disp_Memtyp ((T.Across_Typ, T.Ref_Val),
-                         Get_Across_Type (Get_Nature (T.Decl)));
+                         T.Inst, Get_Across_Type (Get_Nature (T.Decl)));
             New_Line;
             Info_Scalar_Quantity (T.Ref_Idx, T.Across_Typ.W);
          end;

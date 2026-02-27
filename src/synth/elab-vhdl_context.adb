@@ -782,6 +782,24 @@ package body Elab.Vhdl_Context is
       Def := Obj_Inst.Objects (Info.Slot).T_Def;
    end Get_Interface_Type;
 
+   function Get_Concrete_Type (Inst : Synth_Instance_Acc;
+                               Atype : Node) return Node
+   is
+      Res : Node;
+   begin
+      Res := Atype;
+
+      while Get_Kind (Res) = Iir_Kind_Interface_Type_Definition loop
+         declare
+            Ntyp : Type_Acc;
+         begin
+            Get_Interface_Type (Inst, Res, Ntyp, Res);
+            pragma Unreferenced (Ntyp);
+         end;
+      end loop;
+      return Res;
+   end Get_Concrete_Type;
+
    function Get_Interface_Subprogram (Syn_Inst : Synth_Instance_Acc;
                                       Decl : Node) return Node
    is

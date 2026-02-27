@@ -216,6 +216,10 @@ package Elab.Vhdl_Context is
                                  Typ : out Type_Acc;
                                  Def : out Node);
 
+   --  Return the actual type if ATYPE is an interface type.
+   function Get_Concrete_Type (Inst : Synth_Instance_Acc;
+                               Atype : Node) return Node;
+
    --  Low-level function to get the subprogram associated to an
    --  interface subprogram.  Use Get_Subprogeam_Implementation.
    function Get_Interface_Subprogram (Syn_Inst : Synth_Instance_Acc;

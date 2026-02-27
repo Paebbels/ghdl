@@ -26,7 +26,8 @@ with Elab.Vhdl_Objtypes; use Elab.Vhdl_Objtypes;
 with Elab.Vhdl_Context; use Elab.Vhdl_Context;
 
 package Elab.Vhdl_Debug is
-   procedure Disp_Memtyp (M : Memtyp; Vtype : Node);
+   procedure Disp_Memtyp (M : Memtyp; Inst : Synth_Instance_Acc; Vtype : Node);
+
    function Walk_Declarations (Cb : Walk_Cb) return Walk_Status;
 
    procedure Disp_Integer_Value (Stream : Grt.Stdio.FILEs;
