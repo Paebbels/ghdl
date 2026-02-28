@@ -848,8 +848,7 @@ package body Netlists.Disp_Verilog is
                   Disp_Template ("    if (\i3)" & NL, Inst);
                end if;
                Disp_Template
-                 ("    \o0 [\i2 + \p0 +: \n0] = \i1;" & NL,
-                  Inst, (0 => Iw - 1));
+                 ("    \o0 [\i2 + \p0 +: \n0] = \i1;" & NL, Inst, (0 => Iw));
                Disp_Template ("  end" & NL, Inst);
             end;
          when Id_Const_UB32
