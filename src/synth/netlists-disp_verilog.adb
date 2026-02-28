@@ -751,13 +751,13 @@ package body Netlists.Disp_Verilog is
             Col : Natural;
          begin
             Files_Map.Location_To_Position (Loc, File, Line, Col);
-            Wr ("  /* ");
+            Wr ("  /*# ");
             Put_Id (File);
             Wr (':');
             Wr_Uns32 (Uns32 (Line));
             Wr (':');
             Wr_Uns32 (Uns32 (Col));
-            Wr ("  */");
+            Wr (" */");
             Wr_Line;
          end;
       end if;
@@ -819,11 +819,11 @@ package body Netlists.Disp_Verilog is
             declare
                Step : constant Uns32 := Get_Param_Uns32 (Inst, 0);
             begin
-               Disp_Template
-                 ("  assign \o0 = \i0 * \p0;" & NL, Inst, (0 => Step));
+               Disp_Template ("  assign \o0 = \i0 * \p0; // memidx" & NL,
+                              Inst, (0 => Step));
             end;
          when Id_Addidx =>
-            Disp_Template ("  \o0 <= \i0 + \i1;" & NL, Inst);
+            Disp_Template ("  \o0 <= \i0 + \i1; // addidx " & NL, Inst);
          when Id_Dyn_Extract =>
             declare
                O : constant Net := Get_Output (Inst, 0);
@@ -831,7 +831,7 @@ package body Netlists.Disp_Verilog is
                Off : constant Uns32 := Get_Param_Uns32 (Inst, 0);
             begin
                Disp_Template
-                 ("  assign \o0 = \i0[\i1 + \n0 +: \n1]; //(dyn_extract)" & NL,
+                 ("  assign \o0 = \i0[\i1 + \n0 +: \n1]; // dyn_extract" & NL,
                   Inst, (0 => Off, 1 => Wd));
             end;
          when Id_Dyn_Insert
@@ -841,7 +841,7 @@ package body Netlists.Disp_Verilog is
                --  P0: offset
                Iw : constant Width := Get_Width (Get_Input_Net (Inst, 1));
             begin
-               Wr ("  always @* begin // (dyn_insert)" & NL);
+               Wr ("  always @* begin // dyn_insert" & NL);
                Disp_Template ("    \o0 = \i0;" & NL, Inst);
                if Id = Id_Dyn_Insert_En then
                   --  TODO: fix indentation.
@@ -1013,7 +1013,7 @@ package body Netlists.Disp_Verilog is
                pragma Assert (Ow > Iw);
                Disp_Template ("  assign \o0 = {", Inst);
                Wr_Uns32 (Ow - Iw);
-               Disp_Template ("'b0, \i0};  //  uext" & NL, Inst);
+               Disp_Template ("'b0, \i0};  // uext" & NL, Inst);
             end;
          when Id_Sextend =>
             declare
