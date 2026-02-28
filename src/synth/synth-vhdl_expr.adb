@@ -889,7 +889,6 @@ package body Synth.Vhdl_Expr is
       Voff := No_Net;
       Off := (0, 0);
       Error := False;
-      Stride := 1;
       El_Typ := Arr_Typ;
 
       for I in Flist_First .. Flist_Last (Indexes) loop
@@ -929,9 +928,8 @@ package body Synth.Vhdl_Expr is
             --  Dynamic index.
             Ivoff := Dyn_Index_To_Offset (Ctxt, Bnd, Idx_Val, Idx_Expr);
             Ivoff := Build_Memidx
-              (Get_Build (Syn_Inst), Ivoff, Stride,
-               Bnd.Len - 1,
-               Width (Clog2 (Uns64 (Bnd.Len))));
+              (Get_Build (Syn_Inst), Ivoff, Stride, Bnd.Len - 1,
+               Clog2 (El_Typ.W));
             Set_Location (Ivoff, Idx_Expr);
 
             if Voff = No_Net then
