@@ -445,7 +445,7 @@ package body Netlists.Disp_Vhdl is
               | Conv_Slv =>
                Disp_Net_Name (N);
             when Conv_Sensitivity =>
-               if Need_Name (Net_Inst) then
+               if Get_Id (Net_Inst) not in Constant_Module_Id then
                   Wr (", ");
                   Disp_Net_Name (N);
                end if;
@@ -907,9 +907,10 @@ package body Netlists.Disp_Vhdl is
                   Disp_Template
                     ("  \o0 <= std_logic_vector (resize (resize (", Inst);
                   Disp_Template
-                    ("\ui0, \n0) * \up0, \n0));" & NL, Inst, (0 => Wd));
+                    ("\ui0, \n0) * \up0, \n0)); -- memidx" & NL,
+                     Inst, (0 => Wd));
                else
-                  Disp_Template ("  \o0 <= \i0;" & NL, Inst);
+                  Disp_Template ("  \o0 <= \i0; -- memidx" & NL, Inst);
                end if;
             end;
          when Id_Addidx =>
@@ -919,18 +920,18 @@ package body Netlists.Disp_Vhdl is
             begin
                if W0 > W1 then
                   Disp_Template
-                    ("  \o0 <= std_logic_vector (\ui0 + resize(\ui1, \n0));"
-                       & NL, Inst, (0 => W0));
+                    ("  \o0 <= std_logic_vector (\ui0 + resize(\ui1, \n0));",
+                     Inst, (0 => W0));
                elsif W0 < W1 then
                   Disp_Template
-                    ("  \o0 <= std_logic_vector (resize (\ui0, \n0) + \ui1);"
-                       & NL, Inst, (0 => W1));
+                    ("  \o0 <= std_logic_vector (resize (\ui0, \n0) + \ui1);",
+                     Inst, (0 => W1));
                else
                   pragma Assert (W0 = W1);
                   Disp_Template
-                    ("  \o0 <= std_logic_vector (\ui0 + \ui1);"
-                       & NL, Inst);
+                    ("  \o0 <= std_logic_vector (\ui0 + \ui1);", Inst);
                end if;
+               Wr_Line (" -- addidx");
             end;
          when Id_Dyn_Extract =>
             declare
@@ -966,7 +967,7 @@ package body Netlists.Disp_Vhdl is
                         Disp_Template (" + \n0", Inst, (0 => Off));
                      end if;
                   end if;
-                  Wr (");");
+                  Wr ("); -- dyn_extract");
                   Wr_Line;
                   Wr_Line ("    else");
                   Disp_Template ("      \o0 <= ", Inst);
