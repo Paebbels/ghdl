@@ -662,10 +662,10 @@ package body Elab.Vhdl_Debug is
                null;
             when Iir_Kinds_Process_Statement =>
                --  Note: processes are not elaborated.
+               Put_Indent (Cfg.Indent);
+               Put (Image (Get_Label (Stmt)));
+               Put_Line (": process");
                if Cfg.With_Objs then
-                  Put_Indent (Cfg.Indent);
-                  Put (Image (Get_Label (Stmt)));
-                  Put_Line (": process");
                   declare
                      Sub_Inst : constant Synth_Instance_Acc :=
                        Get_Sub_Instance (Inst, Stmt);
@@ -1077,6 +1077,8 @@ package body Elab.Vhdl_Debug is
            | Iir_Kind_Block_Statement =>
             Stmt := Find_Concurrent_Statement_By_Name
               (Get_Concurrent_Statement_Chain (Scope), Id);
+         when Iir_Kinds_Process_Statement =>
+            return null;
          when others =>
             Vhdl.Errors.Error_Kind ("get_sub_instance(1)", Scope);
       end case;
@@ -1105,7 +1107,8 @@ package body Elab.Vhdl_Debug is
                end case;
             end;
          when Iir_Kind_If_Generate_Statement
-           | Iir_Kind_Block_Statement =>
+           | Iir_Kind_Block_Statement
+           | Iir_Kinds_Process_Statement =>
             if Has_Index then
                return null;
             end if;
