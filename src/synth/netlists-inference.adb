@@ -1278,8 +1278,13 @@ package body Netlists.Inference is
       Outp : constant Net := Get_Output (Inst, 0);
       Inpp : constant Input := Get_Input (Inst, 0);
       Inpd : constant Net := Get_Driver (Inpp);
-      Drv : constant Instance := Get_Net_Parent (Inpd);
+      Drv : Instance;
    begin
+      if Inpd = No_Net then
+         return;
+      end if;
+
+      Drv := Get_Net_Parent (Inpd);
       case Get_Id (Drv) is
          when Id_Mem_Multiport =>
             Infere_On_Port (Ctxt, Get_Input (Drv, 0), 0, Outp, Inst);
