@@ -23,6 +23,7 @@ with Mutils;
 with Grt.Algos;
 
 with Netlists.Gates; use Netlists.Gates;
+with Netlists.Gates_Ports; use Netlists.Gates_Ports;
 with Netlists.Utils; use Netlists.Utils;
 with Netlists.Locations; use Netlists.Locations;
 with Netlists.Errors; use Netlists.Errors;
@@ -177,7 +178,7 @@ package body Netlists.Memories is
                      Idx := Get_Net_Parent (Get_Input_Net (Idx, 0));
                   end if;
                   pragma Assert (Get_Id (Idx) = Id_Memidx);
-                  Step := Get_Param_Uns32 (Idx, 0);
+                  Step := Get_Memidx_Step (Idx);
 
                   --  Check offset
                   if Get_Param_Uns32 (Extr_Inst, 0) /= 0 then
@@ -295,8 +296,8 @@ package body Netlists.Memories is
          --  Check memidx are ordered by increasing step.
          pragma Assert
            (P = Memidx_Arr'First
-              or else (Get_Param_Uns32 (Memidx, 0)
-                         >= Get_Param_Uns32 (Memidx_Arr (P - 1), 0)));
+              or else (Get_Memidx_Step (Memidx)
+                         >= Get_Memidx_Step (Memidx_Arr (P - 1))));
 
          P := P + 1;
 
@@ -391,7 +392,7 @@ package body Netlists.Memories is
                Copy_Location (Addr, Inst);
             end if;
          end if;
-         Max := Get_Param_Uns32 (Inst, 1);
+         Max := Get_Memidx_Max (Inst);
          Max_Width := Clog2 (Max + 1);
       end loop;
    end Lower_Memidx_Address;
@@ -402,7 +403,7 @@ package body Netlists.Memories is
    is
       Addr : constant Net := Get_Input_Net (Inst, 0);
       Addr_W : constant Width := Get_Width (Addr);
-      Max : constant Uns32 := Get_Param_Uns32 (Inst, 1);
+      Max : constant Uns32 := Get_Memidx_Max (Inst);
       Max_W : constant Width := Clog2 (Max + 1);
    begin
       --  Check addr width.
@@ -433,14 +434,14 @@ package body Netlists.Memories is
    begin
       Gather_Memidx (Addr, Indexes);
 
-      Step1 := Get_Param_Uns32 (Indexes (1), 0);
+      Step1 := Get_Memidx_Step (Indexes (1));
 
       --  Do checks on memidx.
       Is_Pow2 := True;
       for I in Indexes'Range loop
          declare
             Inst : constant Instance := Indexes (I);
-            Step : constant Uns32 := Get_Param_Uns32 (Inst, 0);
+            Step : constant Uns32 := Get_Memidx_Step (Inst);
 
             Step_Addr : constant Uns32 := Step / Step1;
          begin
@@ -983,10 +984,10 @@ package body Netlists.Memories is
                when others => raise Internal_Error;
             end case;
             if Res.Dim = 0 then
-               Res.Data_Wd := Get_Param_Uns32 (Idx, 0);
+               Res.Data_Wd := Get_Memidx_Step (Idx);
             end if;
             Res.Dim := Res.Dim + 1;
-            Res.Depth := Res.Depth * (Get_Param_Uns32 (Idx, 1) + 1);
+            Res.Depth := Res.Depth * (Get_Memidx_Max (Idx) + 1);
 
             exit when Inst = No_Instance;
          end loop;
@@ -1291,7 +1292,7 @@ package body Netlists.Memories is
       if Get_Id (Val) /= Id_Const_UB32 then
          return False;
       end if;
-      return Get_Param_Uns32 (Val, 0) = Get_Param_Uns32 (Midx, 1);
+      return Get_Param_Uns32 (Val, 0) = Get_Memidx_Max (Midx);
    end Is_Reverse_Range;
 
    --  Direction TO in address port generates a sub (as vectors are normalized
@@ -1363,8 +1364,8 @@ package body Netlists.Memories is
                Idx := Get_Input_Net (M, 0);
                if I = 1 then
                   W := Get_Width (Idx);
-                  Step := Get_Param_Uns32 (M, 0);
-                  Max := Get_Param_Uns32 (M, 1);
+                  Step := Get_Memidx_Step (M);
+                  Max := Get_Memidx_Max (M);
                   Is_Reverse := Is_Reverse_Range (M);
 
                   Cell := (W => W,
@@ -1373,8 +1374,8 @@ package body Netlists.Memories is
                            Reversed => Is_Reverse);
                else
                   if Get_Width (Idx) /= W
-                    or else Get_Param_Uns32 (M, 0) /= Step
-                    or else Get_Param_Uns32 (M, 1) /= Max
+                    or else Get_Memidx_Step (M) /= Step
+                    or else Get_Memidx_Max (M) /= Max
                     or else Is_Reverse_Range (M) /= Is_Reverse
                   then
                      --  Different width, steps or direction.

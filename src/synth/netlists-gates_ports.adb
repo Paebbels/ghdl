@@ -40,4 +40,15 @@ package body Netlists.Gates_Ports is
    begin
       return Get_Input (Inst, 2);
    end Get_Mux2_I1;
+
+   function Get_Memidx_Step (Inst : Instance) return Uns32 is
+   begin
+      return Get_Param_Uns32 (Inst, 0);
+   end Get_Memidx_Step;
+
+   function Get_Memidx_Max (Inst : Instance) return Uns32 is
+   begin
+      return Get_Param_Uns32 (Inst, 1);
+   end Get_Memidx_Max;
+
 end Netlists.Gates_Ports;

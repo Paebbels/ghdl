@@ -17,7 +17,15 @@
 --  along with this program.  If not, see <gnu.org/licenses>.
 
 package Netlists.Gates_Ports is
+   --  Mux2
    function Get_Mux2_Sel (Inst : Instance) return Input;
    function Get_Mux2_I0 (Inst : Instance) return Input;
    function Get_Mux2_I1 (Inst : Instance) return Input;
+
+   --  Memidx
+   function Get_Memidx_Step (Inst : Instance) return Uns32;
+   function Get_Memidx_Max (Inst : Instance) return Uns32;
+
+   pragma Inline (Get_Memidx_Step);
+   pragma Inline (Get_Memidx_Max);
 end Netlists.Gates_Ports;

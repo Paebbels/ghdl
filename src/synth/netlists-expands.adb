@@ -19,6 +19,7 @@
 with Mutils; use Mutils;
 
 with Netlists.Gates; use Netlists.Gates;
+with Netlists.Gates_Ports; use Netlists.Gates_Ports;
 with Netlists.Utils; use Netlists.Utils;
 with Netlists.Locations; use Netlists.Locations;
 with Netlists.Memories; use Netlists.Memories;
@@ -34,7 +35,7 @@ package body Netlists.Expands is
    begin
       Res := 1;
       for I in Memidx_Arr'Range loop
-         Res := Res * Natural (Get_Param_Uns32 (Memidx_Arr (I), 1) + 1);
+         Res := Res * Natural (Get_Memidx_Max (Memidx_Arr (I)) + 1);
       end loop;
       return Res;
    end Count_Nbr_Els;
@@ -61,7 +62,7 @@ package body Netlists.Expands is
       for I in Idx_Arr'Range loop
          declare
             Inst : constant Instance := Idx_Arr (I);
-            Step : constant Uns32 := Get_Param_Uns32 (Inst, 0);
+            Step : constant Uns32 := Get_Memidx_Step (Inst);
          begin
             if Step mod Wd /= 0 then
                return False;
@@ -76,7 +77,7 @@ package body Netlists.Expands is
    function Extract_Bmux
      (Ctxt : Context_Acc; Idx_Arr : Instance_Array; Inp : Net) return Net
    is
-      Out_Wd : constant Uns32 := Get_Param_Uns32 (Idx_Arr (Idx_Arr'First), 0);
+      Out_Wd : constant Uns32 := Get_Memidx_Step (Idx_Arr (Idx_Arr'First));
       Inst : Instance;
       I, Il : Nat32;
       Res : Net;
@@ -97,7 +98,7 @@ package body Netlists.Expands is
          Inst := Idx_Arr (I);
 
          --  We will work with memidx whose step is STEP
-         Step := Get_Param_Uns32 (Inst, 0);
+         Step := Get_Memidx_Step (Inst);
 
          --  Try to gather several memidx to reduce the number of bmux.
          --  Gather memidx whose step is a divider of the largest one.
@@ -107,7 +108,7 @@ package body Netlists.Expands is
          while Il > Idx_Arr'First loop
             declare
                Inst1 : constant Instance := Idx_Arr (Il - 1);
-               Step1 : constant Uns32 := Get_Param_Uns32 (Inst1, 0);
+               Step1 : constant Uns32 := Get_Memidx_Step (Inst1);
             begin
                exit when Step mod Step1 /= 0;
                Stepl := Step1;
@@ -120,8 +121,8 @@ package body Netlists.Expands is
          for J in Il .. I loop
             declare
                Inst1 : constant Instance := Idx_Arr (J);
-               Step1 : constant Uns32 := Get_Param_Uns32 (Inst1, 0);
-               Len1 : constant Uns32 := Get_Param_Uns32 (Inst1, 1) + 1;
+               Step1 : constant Uns32 := Get_Memidx_Step (Inst1);
+               Len1 : constant Uns32 := Get_Memidx_Max (Inst1) + 1;
                Log2_Len : constant Uns32 := Clog2 (Len1 * Step1);
                Idx : Net;
             begin
@@ -204,7 +205,7 @@ package body Netlists.Expands is
          --  dyn_extract is not a memory, the address is a bit offset (and
          --  not a data address).  Need to multiply by the first step.
          Addr := Build2_Umul
-           (Ctxt, Addr, Get_Param_Uns32 (Memidx_Arr (1), 0),
+           (Ctxt, Addr, Get_Memidx_Step (Memidx_Arr (1)),
             Get_Location (Memidx_Arr (1)));
 
          Remove_Memidx (Addr_Net);
@@ -296,8 +297,8 @@ package body Netlists.Expands is
          declare
             Inst : constant Instance := Memidx_Arr (I);
          begin
-            Count (I) := (Step => Get_Param_Uns32 (Inst, 0),
-                          Max => Get_Param_Uns32 (Inst, 1),
+            Count (I) := (Step => Get_Memidx_Step (Inst),
+                          Max => Get_Memidx_Max (Inst),
                           Val => 0);
          end;
       end loop;
