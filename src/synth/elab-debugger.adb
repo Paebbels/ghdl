@@ -610,7 +610,11 @@ package body Elab.Debugger is
       Res : Synth_Instance_Acc;
    begin
       F := Skip_Blanks (Line);
-      if Line (F .. Line'Last) = ".." then
+      if F > Line'Last or Line (F .. Line'Last) = "-h" then
+         Put_Line ("usage: ch ..");
+         Put_Line ("       ch LABEL");
+         return;
+      elsif Line (F .. Line'Last) = ".." then
          Res := Get_Instance_Path_Parent (Current_Instance);
          if Res = null then
             Put_Line ("already at top");
