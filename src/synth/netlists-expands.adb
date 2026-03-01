@@ -56,17 +56,29 @@ package body Netlists.Expands is
       end if;
    end Truncate_Address;
 
+   --  Return TRUE if steps of memidx from IDX_ARR are such that there is
+   --  no overlap.
+   --  This is probably overkill as overlap never happens in memories and
+   --  only memories can have more than one dimension.
    function Memidx_No_Overlap (Idx_Arr : Instance_Array; Wd : Width)
-                              return Boolean is
+                              return Boolean
+   is
+      Pstep : Uns32;
    begin
-      for I in Idx_Arr'Range loop
+      Pstep := Get_Memidx_Step (Idx_Arr (1));
+      if Pstep < Wd then
+         return False;
+      end if;
+
+      for I in 2 .. Idx_Arr'Last loop
          declare
             Inst : constant Instance := Idx_Arr (I);
             Step : constant Uns32 := Get_Memidx_Step (Inst);
          begin
-            if Step mod Wd /= 0 then
+            if Step mod Pstep /= 0 then
                return False;
             end if;
+            Pstep := Step;
          end;
       end loop;
       return True;
