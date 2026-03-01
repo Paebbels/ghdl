@@ -4,7 +4,9 @@
 
 GHDL_STD_FLAGS=--std=08
 
-TESTS="memmux01 memmux02 memmux02b memmux03 memmux03b memmux04 memmux05 memmux07"
+TESTS="
+memmux01 memmux02 memmux02b memmux03 memmux03b memmux03c
+memmux04 memmux05 memmux07"
 
 for t in $TESTS; do
     GHDL_SYNTH_FLAGS=
