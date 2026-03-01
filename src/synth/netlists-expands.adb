@@ -201,6 +201,12 @@ package body Netlists.Expands is
          --  2. Compute index
          Lower_Memidx_Address (Ctxt, Memidx_Arr, Addr);
 
+         --  dyn_extract is not a memory, the address is a bit offset (and
+         --  not a data address).  Need to multiply by the first step.
+         Addr := Build2_Umul
+           (Ctxt, Addr, Get_Param_Uns32 (Memidx_Arr (1), 0),
+            Get_Location (Memidx_Arr (1)));
+
          Remove_Memidx (Addr_Net);
          --  Keep Dyn_Extract, but the index is a single value
          Connect (Get_Input (Inst, 1), Addr);

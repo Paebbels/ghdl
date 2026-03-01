@@ -114,6 +114,12 @@ package Netlists.Folds is
                               R, L : Net;
                               Keep : Boolean) return Net;
 
+   --  Build IDX*MUL
+   function Build2_Umul (Ctxt : Context_Acc;
+                         Idx : Net;
+                         Mul : Uns32;
+                         Loc : Location_Type) return Net;
+
    --  Build IDX*MUL+ADD
    --  If ADD is No_Net, simply compute IDX*MUL
    --  Optimize if MUL is a power of 2.
