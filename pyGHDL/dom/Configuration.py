@@ -36,7 +36,7 @@ This module implements derived configuration classes from :mod:`pyVHDLModel.Conf
 
 from typing import List, Generator, Union
 
-from pyTooling.Decorators import export
+from pyTooling.Decorators import export, InheritDocString
 
 from pyVHDLModel.Symbol import Symbol, PossibleReference
 from pyVHDLModel.Name import Name
@@ -60,7 +60,12 @@ from pyGHDL.dom.Symbol import EntitySymbol, ArchitectureSymbol, ConfigurationSym
 
 
 @export
+@InheritDocString(VHDLModel_EntityAspectEntity, merge=True)
 class EntityAspectEntity(VHDLModel_EntityAspectEntity, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Configuration.EntityAspectEntity`.
+    """
+
     def __init__(self, node: Iir, entity: EntitySymbol, architecture: ArchitectureSymbol = None) -> None:
         super().__init__(entity, architecture)
         DOMMixin.__init__(self, node)
@@ -83,7 +88,12 @@ class EntityAspectEntity(VHDLModel_EntityAspectEntity, DOMMixin):
 
 
 @export
+@InheritDocString(VHDLModel_EntityAspectConfiguration, merge=True)
 class EntityAspectConfiguration(VHDLModel_EntityAspectConfiguration, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Configuration.EntityAspectConfiguration`.
+    """
+
     def __init__(self, node: Iir, configuration: ConfigurationSymbol) -> None:
         super().__init__(configuration)
         DOMMixin.__init__(self, node)
@@ -99,7 +109,12 @@ class EntityAspectConfiguration(VHDLModel_EntityAspectConfiguration, DOMMixin):
 
 
 @export
+@InheritDocString(VHDLModel_EntityAspectOpen, merge=True)
 class EntityAspectOpen(VHDLModel_EntityAspectOpen, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Configuration.EntityAspectOpen`.
+    """
+
     def __init__(self, node: Iir) -> None:
         super().__init__()
         DOMMixin.__init__(self, node)
@@ -130,7 +145,12 @@ def GetEntityAspectFromNode(entityAspectNode: Iir) -> VHDLModel_EntityAspect:
 
 
 @export
+@InheritDocString(VHDLModel_BindingIndication, merge=True)
 class BindingIndication(VHDLModel_BindingIndication, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Configuration.BindingIndication`.
+    """
+
     def __init__(
         self,
         node: Iir,
@@ -155,14 +175,24 @@ class BindingIndication(VHDLModel_BindingIndication, DOMMixin):
 
 
 @export
+@InheritDocString(VHDLModel_AllInstantiationList, merge=True)
 class AllInstantiationList(VHDLModel_AllInstantiationList, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Configuration.AllInstantiationList`.
+    """
+
     def __init__(self, node: Iir) -> None:
         super().__init__()
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_OthersInstantiationList, merge=True)
 class OthersInstantiationList(VHDLModel_OthersInstantiationList, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Configuration.OthersInstantiationList`.
+    """
+
     def __init__(self, node: Iir) -> None:
         super().__init__()
         DOMMixin.__init__(self, node)
@@ -214,7 +244,12 @@ class ComponentConfiguration(VHDLModel_ComponentConfiguration, DOMMixin):
 
 
 @export
+@InheritDocString(VHDLModel_BlockConfiguration, merge=True)
 class BlockConfiguration(VHDLModel_BlockConfiguration, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Configuration.BlockConfiguration`.
+    """
+
     def __init__(
         self,
         node: Iir,

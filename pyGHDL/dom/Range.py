@@ -46,7 +46,12 @@ from pyGHDL.dom import DOMMixin
 
 
 @export
+@InheritDocString(VHDLModel_SimpleRange, merge=True)
 class SimpleRange(VHDLModel_SimpleRange, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Base.SimpleRange`.
+    """
+
     @InheritDocString(VHDLModel_SimpleRange)
     def __init__(
         self, node: Iir, leftBound: ExpressionUnion, rightBound: ExpressionUnion, direction: Direction
@@ -56,7 +61,12 @@ class SimpleRange(VHDLModel_SimpleRange, DOMMixin):
 
 
 @export
+@InheritDocString(VHDLModel_RangeFromName, merge=True)
 class RangeFromName(VHDLModel_RangeFromName, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Base.RangeFromName`.
+    """
+
     @InheritDocString(VHDLModel_RangeFromName)
     def __init__(self, node: Iir, symbol: Symbol) -> None:
         super().__init__(symbol)
