@@ -36,7 +36,7 @@ This module implements derived concurrent statement classes from :mod:`pyVHDLMod
 
 from typing import Iterable, List, Optional as Nullable
 
-from pyTooling.Decorators import export
+from pyTooling.Decorators import export, InheritDocString
 
 from pyVHDLModel.Base import ExpressionUnion, WaveformElement as VHDLModel_WaveformElement, ModelEntity, Range
 from pyVHDLModel.Common import (
@@ -92,28 +92,48 @@ from pyGHDL.dom.Symbol import (
 
 
 @export
+@InheritDocString(VHDLModel_GenericAssociationItem, merge=True)
 class GenericAssociationItem(VHDLModel_GenericAssociationItem, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Association.GenericAssociationItem`.
+    """
+
     def __init__(self, associationNode: Iir, formal: Symbol, actual: ExpressionUnion) -> None:
         super().__init__(formal, actual)
         DOMMixin.__init__(self, associationNode)
 
 
 @export
+@InheritDocString(VHDLModel_PortAssociationItem, merge=True)
 class PortAssociationItem(VHDLModel_PortAssociationItem, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Association.PortAssociationItem`.
+    """
+
     def __init__(self, associationNode: Iir, formal: Symbol, actual: ExpressionUnion) -> None:
         super().__init__(formal, actual)
         DOMMixin.__init__(self, associationNode)
 
 
 @export
+@InheritDocString(VHDLModel_ParameterAssociationItem, merge=True)
 class ParameterAssociationItem(VHDLModel_ParameterAssociationItem, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Association.ParameterAssociationItem`.
+    """
+
     def __init__(self, associationNode: Iir, formal: Symbol, actual: ExpressionUnion) -> None:
         super().__init__(formal, actual)
         DOMMixin.__init__(self, associationNode)
 
 
 @export
+@InheritDocString(VHDLModel_ComponentInstantiation, merge=True)
 class ComponentInstantiation(VHDLModel_ComponentInstantiation, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Concurrent.ComponentInstantiation`.
+    """
+
     def __init__(
         self,
         instantiationNode: Iir,
@@ -137,7 +157,12 @@ class ComponentInstantiation(VHDLModel_ComponentInstantiation, DOMMixin):
 
 
 @export
+@InheritDocString(VHDLModel_EntityInstantiation, merge=True)
 class EntityInstantiation(VHDLModel_EntityInstantiation, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Concurrent.EntityInstantiation`.
+    """
+
     def __init__(
         self,
         instantiationNode: Iir,
@@ -171,7 +196,12 @@ class EntityInstantiation(VHDLModel_EntityInstantiation, DOMMixin):
 
 
 @export
+@InheritDocString(VHDLModel_ConfigurationInstantiation, merge=True)
 class ConfigurationInstantiation(VHDLModel_ConfigurationInstantiation, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Concurrent.ConfigurationInstantiation`.
+    """
+
     def __init__(
         self,
         instantiationNode: Iir,
@@ -197,7 +227,12 @@ class ConfigurationInstantiation(VHDLModel_ConfigurationInstantiation, DOMMixin)
 
 
 @export
+@InheritDocString(VHDLModel_ConcurrentBlockStatement, merge=True)
 class ConcurrentBlockStatement(VHDLModel_ConcurrentBlockStatement, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Concurrent.ConcurrentBlockStatement`.
+    """
+
     def __init__(
         self,
         blockNode: Iir,
@@ -260,7 +295,12 @@ class ConcurrentBlockStatement(VHDLModel_ConcurrentBlockStatement, DOMMixin):
 
 
 @export
+@InheritDocString(VHDLModel_ProcessStatement, merge=True)
 class ProcessStatement(VHDLModel_ProcessStatement, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Concurrent.ProcessStatement`.
+    """
+
     def __init__(
         self,
         processNode: Iir,
@@ -295,7 +335,12 @@ class ProcessStatement(VHDLModel_ProcessStatement, DOMMixin):
 
 
 @export
+@InheritDocString(VHDLModel_IfGenerateBranch, merge=True)
 class IfGenerateBranch(VHDLModel_IfGenerateBranch, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Concurrent.IfGenerateBranch`.
+    """
+
     def __init__(
         self,
         branchNode: Iir,
@@ -327,7 +372,12 @@ class IfGenerateBranch(VHDLModel_IfGenerateBranch, DOMMixin):
 
 
 @export
+@InheritDocString(VHDLModel_ElsifGenerateBranch, merge=True)
 class ElsifGenerateBranch(VHDLModel_ElsifGenerateBranch, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Concurrent.ElsifGenerateBranch`.
+    """
+
     def __init__(
         self,
         branchNode: Iir,
@@ -359,7 +409,12 @@ class ElsifGenerateBranch(VHDLModel_ElsifGenerateBranch, DOMMixin):
 
 
 @export
+@InheritDocString(VHDLModel_ElseGenerateBranch, merge=True)
 class ElseGenerateBranch(VHDLModel_ElseGenerateBranch, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Concurrent.ElseGenerateBranch`.
+    """
+
     def __init__(
         self,
         branchNode: Iir,
@@ -388,7 +443,12 @@ class ElseGenerateBranch(VHDLModel_ElseGenerateBranch, DOMMixin):
 
 
 @export
+@InheritDocString(VHDLModel_IfGenerateStatement, merge=True)
 class IfGenerateStatement(VHDLModel_IfGenerateStatement, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Concurrent.IfGenerateStatement`.
+    """
+
     def __init__(
         self,
         generateNode: Iir,
@@ -423,21 +483,36 @@ class IfGenerateStatement(VHDLModel_IfGenerateStatement, DOMMixin):
 
 
 @export
+@InheritDocString(VHDLModel_IndexedGenerateChoice, merge=True)
 class IndexedGenerateChoice(VHDLModel_IndexedGenerateChoice, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Concurrent.IndexedGenerateChoice`.
+    """
+
     def __init__(self, node: Iir, expression: ExpressionUnion) -> None:
         super().__init__(expression)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_RangedGenerateChoice, merge=True)
 class RangedGenerateChoice(VHDLModel_RangedGenerateChoice, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Concurrent.RangedGenerateChoice`.
+    """
+
     def __init__(self, node: Iir, rng: Range) -> None:
         super().__init__(rng)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_GenerateCase, merge=True)
 class GenerateCase(VHDLModel_GenerateCase, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Concurrent.GenerateCase`.
+    """
+
     def __init__(
         self,
         node: Iir,
@@ -467,7 +542,12 @@ class GenerateCase(VHDLModel_GenerateCase, DOMMixin):
 
 
 @export
+@InheritDocString(VHDLModel_OthersGenerateCase, merge=True)
 class OthersGenerateCase(VHDLModel_OthersGenerateCase, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Concurrent.OthersGenerateCase`.
+    """
+
     def __init__(
         self,
         caseNode: Iir,
@@ -496,7 +576,12 @@ class OthersGenerateCase(VHDLModel_OthersGenerateCase, DOMMixin):
 
 
 @export
+@InheritDocString(VHDLModel_CaseGenerateStatement, merge=True)
 class CaseGenerateStatement(VHDLModel_CaseGenerateStatement, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Concurrent.CaseGenerateStatement`.
+    """
+
     def __init__(
         self,
         generateNode: Iir,
@@ -588,7 +673,12 @@ class CaseGenerateStatement(VHDLModel_CaseGenerateStatement, DOMMixin):
 
 
 @export
+@InheritDocString(VHDLModel_ForGenerateStatement, merge=True)
 class ForGenerateStatement(VHDLModel_ForGenerateStatement, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Concurrent.ForGenerateStatement`.
+    """
+
     def __init__(
         self,
         generateNode: Iir,
@@ -624,7 +714,12 @@ class ForGenerateStatement(VHDLModel_ForGenerateStatement, DOMMixin):
 
 
 @export
+@InheritDocString(VHDLModel_WaveformElement, merge=True)
 class WaveformElement(VHDLModel_WaveformElement, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Base.WaveformElement`.
+    """
+
     def __init__(self, waveNode: Iir, expression: ExpressionUnion, after: ExpressionUnion) -> None:
         super().__init__(expression, after)
         DOMMixin.__init__(self, waveNode)
@@ -738,7 +833,12 @@ def GetSelectedWaveformsFromChainedNodes(nodeChain: Iir) -> Iterable:
 
 
 @export
+@InheritDocString(VHDLModel_ConditionalWaveform, merge=True)
 class ConditionalWaveform(VHDLModel_ConditionalWaveform, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Common.ConditionalWaveform`.
+    """
+
     def __init__(self, node: Iir, waveform: Iterable[WaveformElement], condition: ExpressionUnion = None) -> None:
         super().__init__(waveform, condition)
         DOMMixin.__init__(self, node)
@@ -754,21 +854,36 @@ class ConditionalWaveform(VHDLModel_ConditionalWaveform, DOMMixin):
 
 
 @export
+@InheritDocString(VHDLModel_SelectedWaveform, merge=True)
 class SelectedWaveform(VHDLModel_SelectedWaveform, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Common.SelectedWaveform`.
+    """
+
     def __init__(self, node: Iir, choices: Iterable, waveform: Iterable[WaveformElement]) -> None:
         super().__init__(choices, waveform)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_OthersSelectedWaveform, merge=True)
 class OthersSelectedWaveform(VHDLModel_OthersSelectedWaveform, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Common.OthersSelectedWaveform`.
+    """
+
     def __init__(self, node: Iir, waveform: Iterable[WaveformElement]) -> None:
         super().__init__(waveform)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_ConcurrentSimpleSignalAssignment, merge=True)
 class ConcurrentSimpleSignalAssignment(VHDLModel_ConcurrentSimpleSignalAssignment, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Concurrent.ConcurrentSimpleSignalAssignment`.
+    """
+
     def __init__(
         self,
         assignmentNode: Iir,
@@ -792,7 +907,12 @@ class ConcurrentSimpleSignalAssignment(VHDLModel_ConcurrentSimpleSignalAssignmen
 
 
 @export
+@InheritDocString(VHDLModel_ConcurrentConditionalSignalAssignment, merge=True)
 class ConcurrentConditionalSignalAssignment(VHDLModel_ConcurrentConditionalSignalAssignment, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Concurrent.ConcurrentConditionalSignalAssignment`.
+    """
+
     def __init__(
         self,
         assignmentNode: Iir,
@@ -817,7 +937,12 @@ class ConcurrentConditionalSignalAssignment(VHDLModel_ConcurrentConditionalSigna
 
 
 @export
+@InheritDocString(VHDLModel_ConcurrentSelectedSignalAssignment, merge=True)
 class ConcurrentSelectedSignalAssignment(VHDLModel_ConcurrentSelectedSignalAssignment, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Concurrent.ConcurrentSelectedSignalAssignment`.
+    """
+
     def __init__(
         self,
         assignmentNode: Iir,
@@ -842,7 +967,12 @@ class ConcurrentSelectedSignalAssignment(VHDLModel_ConcurrentSelectedSignalAssig
 
 
 @export
+@InheritDocString(VHDLModel_ConcurrentProcedureCall, merge=True)
 class ConcurrentProcedureCall(VHDLModel_ConcurrentProcedureCall, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Concurrent.ConcurrentProcedureCall`.
+    """
+
     def __init__(
         self,
         callNode: Iir,
@@ -867,7 +997,12 @@ class ConcurrentProcedureCall(VHDLModel_ConcurrentProcedureCall, DOMMixin):
 
 
 @export
+@InheritDocString(VHDLModel_ConcurrentAssertStatement, merge=True)
 class ConcurrentAssertStatement(VHDLModel_ConcurrentAssertStatement, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Concurrent.ConcurrentAssertStatement`.
+    """
+
     def __init__(
         self,
         assertNode: Iir,

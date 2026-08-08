@@ -36,7 +36,7 @@ This module implements derived name classes from :mod:`pyVHDLModel.Name`.
 
 from typing import List
 
-from pyTooling.Decorators import export
+from pyTooling.Decorators import export, InheritDocString
 
 from pyVHDLModel.Name import Name as VHDLModel_Name
 from pyVHDLModel.Name import SimpleName as VHDLModel_SimpleName
@@ -92,7 +92,12 @@ class ParenthesisName(VHDLModel_ParenthesisName, DOMMixin):
 
 
 @export
+@InheritDocString(VHDLModel_IndexedName, merge=True)
 class IndexedName(VHDLModel_IndexedName, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Name.IndexedName`.
+    """
+
     def __init__(self, node: Iir, identifier: str) -> None:
         super().__init__(identifier)
         DOMMixin.__init__(self, node)

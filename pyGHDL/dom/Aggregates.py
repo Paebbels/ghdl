@@ -40,7 +40,7 @@ This module contains all DOM classes for VHDL's design units (:class:`context <E
 
 """
 
-from pyTooling.Decorators import export
+from pyTooling.Decorators import export, InheritDocString
 
 from pyVHDLModel.Base import ExpressionUnion, Range
 from pyVHDLModel.Symbol import Symbol
@@ -55,35 +55,60 @@ from pyGHDL.dom import DOMMixin
 
 
 @export
+@InheritDocString(VHDLModel_SimpleAggregateElement, merge=True)
 class SimpleAggregateElement(VHDLModel_SimpleAggregateElement, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.SimpleAggregateElement`.
+    """
+
     def __init__(self, node: Iir, expression: ExpressionUnion) -> None:
         super().__init__(expression)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_IndexedAggregateElement, merge=True)
 class IndexedAggregateElement(VHDLModel_IndexedAggregateElement, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.IndexedAggregateElement`.
+    """
+
     def __init__(self, node: Iir, index: ExpressionUnion, expression: ExpressionUnion) -> None:
         super().__init__(index, expression)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_RangedAggregateElement, merge=True)
 class RangedAggregateElement(VHDLModel_RangedAggregateElement, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.RangedAggregateElement`.
+    """
+
     def __init__(self, node: Iir, rng: Range, expression: ExpressionUnion) -> None:
         super().__init__(rng, expression)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_NamedAggregateElement, merge=True)
 class NamedAggregateElement(VHDLModel_NamedAggregateElement, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.NamedAggregateElement`.
+    """
+
     def __init__(self, node: Iir, name: Symbol, expression: ExpressionUnion) -> None:
         super().__init__(name, expression)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_OthersAggregateElement, merge=True)
 class OthersAggregateElement(VHDLModel_OthersAggregateElement, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.OthersAggregateElement`.
+    """
+
     def __init__(self, node: Iir, expression: ExpressionUnion) -> None:
         super().__init__(expression)
         DOMMixin.__init__(self, node)

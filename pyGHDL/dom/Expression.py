@@ -36,7 +36,7 @@ This module implements derived expression classes from :mod:`pyVHDLModel.Express
 
 from typing import List, Union
 
-from pyTooling.Decorators import export
+from pyTooling.Decorators import export, InheritDocString
 from pyTooling.MetaClasses import ExtendedType
 
 from pyVHDLModel.Base import ExpressionUnion
@@ -116,6 +116,13 @@ from pyGHDL.dom.Aggregates import (
 
 
 class _ParseUnaryExpressionMixin(metaclass=ExtendedType, mixin=True):
+    """
+    Mixin providing a :meth:`parse` classmethod for all unary expressions.
+
+    The IIR node of a unary expression carries its single operand in the ``Operand`` field, so the same
+    translation applies to every operator and only the concrete class differs.
+    """
+
     @classmethod
     def parse(cls, node: Iir) -> VHDLModel_UnaryExpression:
         from pyGHDL.dom._Translate import GetExpressionFromNode
@@ -125,6 +132,13 @@ class _ParseUnaryExpressionMixin(metaclass=ExtendedType, mixin=True):
 
 
 class _ParseBinaryExpressionMixin(metaclass=ExtendedType, mixin=True):
+    """
+    Mixin providing a :meth:`parse` classmethod for all binary expressions.
+
+    The IIR node of a binary expression carries its operands in the ``Left`` and ``Right`` fields, so the
+    same translation applies to every operator and only the concrete class differs.
+    """
+
     @classmethod
     def parse(cls, node: Iir) -> VHDLModel_BinaryExpression:
         from pyGHDL.dom._Translate import GetExpressionFromNode
@@ -135,35 +149,60 @@ class _ParseBinaryExpressionMixin(metaclass=ExtendedType, mixin=True):
 
 
 @export
+@InheritDocString(VHDLModel_InverseExpression, merge=True)
 class InverseExpression(VHDLModel_InverseExpression, DOMMixin, _ParseUnaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.InverseExpression`.
+    """
+
     def __init__(self, node: Iir, operand: ExpressionUnion) -> None:
         super().__init__(operand)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_IdentityExpression, merge=True)
 class IdentityExpression(VHDLModel_IdentityExpression, DOMMixin, _ParseUnaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.IdentityExpression`.
+    """
+
     def __init__(self, node: Iir, operand: ExpressionUnion) -> None:
         super().__init__(operand)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_NegationExpression, merge=True)
 class NegationExpression(VHDLModel_NegationExpression, DOMMixin, _ParseUnaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.NegationExpression`.
+    """
+
     def __init__(self, node: Iir, operand: ExpressionUnion) -> None:
         super().__init__(operand)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_AbsoluteExpression, merge=True)
 class AbsoluteExpression(VHDLModel_AbsoluteExpression, DOMMixin, _ParseUnaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.AbsoluteExpression`.
+    """
+
     def __init__(self, node: Iir, operand: ExpressionUnion) -> None:
         super().__init__(operand)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_ParenthesisExpression, merge=True)
 class ParenthesisExpression(VHDLModel_ParenthesisExpression, DOMMixin, _ParseUnaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.SubExpression`.
+    """
+
     def __init__(self, node: Iir, operand: ExpressionUnion) -> None:
         super().__init__(operand)
         DOMMixin.__init__(self, node)
@@ -199,13 +238,23 @@ class TypeConversion(VHDLModel_TypeConversion, DOMMixin):
 
 
 @export
+@InheritDocString(VHDLModel_FunctionCall, merge=True)
 class FunctionCall(VHDLModel_FunctionCall, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.FunctionCall`.
+    """
+
     def __init__(self, node: Iir, operand: ExpressionUnion) -> None:
         super().__init__()
         DOMMixin.__init__(self, node)
 
 
+@InheritDocString(VHDLModel_RangeExpression, merge=True)
 class RangeExpression(VHDLModel_RangeExpression, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.RangeExpression`.
+    """
+
     @classmethod
     def parse(cls, node: Iir) -> Union["AscendingRangeExpression", "DescendingRangeExpression"]:
         from pyGHDL.dom._Translate import GetExpressionFromNode
@@ -221,287 +270,492 @@ class RangeExpression(VHDLModel_RangeExpression, DOMMixin):
 
 
 @export
+@InheritDocString(VHDLModel_AscendingRangeExpression, merge=True)
 class AscendingRangeExpression(VHDLModel_AscendingRangeExpression, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.AscendingRangeExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_DescendingRangeExpression, merge=True)
 class DescendingRangeExpression(VHDLModel_DescendingRangeExpression, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.DescendingRangeExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_AdditionExpression, merge=True)
 class AdditionExpression(VHDLModel_AdditionExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.AdditionExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_SubtractionExpression, merge=True)
 class SubtractionExpression(VHDLModel_SubtractionExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.SubtractionExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_ConcatenationExpression, merge=True)
 class ConcatenationExpression(VHDLModel_ConcatenationExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.ConcatenationExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_MultiplyExpression, merge=True)
 class MultiplyExpression(VHDLModel_MultiplyExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.MultiplyExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_DivisionExpression, merge=True)
 class DivisionExpression(VHDLModel_DivisionExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.DivisionExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_RemainderExpression, merge=True)
 class RemainderExpression(VHDLModel_RemainderExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.RemainderExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_ModuloExpression, merge=True)
 class ModuloExpression(VHDLModel_ModuloExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.ModuloExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_ExponentiationExpression, merge=True)
 class ExponentiationExpression(VHDLModel_ExponentiationExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.ExponentiationExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_AndExpression, merge=True)
 class AndExpression(VHDLModel_AndExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.AndExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_NandExpression, merge=True)
 class NandExpression(VHDLModel_NandExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.NandExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_OrExpression, merge=True)
 class OrExpression(VHDLModel_OrExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.OrExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_NorExpression, merge=True)
 class NorExpression(VHDLModel_NorExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.NorExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_XorExpression, merge=True)
 class XorExpression(VHDLModel_XorExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.XorExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_XnorExpression, merge=True)
 class XnorExpression(VHDLModel_XnorExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.XnorExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_UnaryAndExpression, merge=True)
 class UnaryAndExpression(VHDLModel_UnaryAndExpression, DOMMixin, _ParseUnaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.UnaryAndExpression`.
+    """
+
     def __init__(self, node: Iir, operand: ExpressionUnion) -> None:
         super().__init__(operand)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_UnaryNandExpression, merge=True)
 class UnaryNandExpression(VHDLModel_UnaryNandExpression, DOMMixin, _ParseUnaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.UnaryNandExpression`.
+    """
+
     def __init__(self, node: Iir, operand: ExpressionUnion) -> None:
         super().__init__(operand)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_UnaryOrExpression, merge=True)
 class UnaryOrExpression(VHDLModel_UnaryOrExpression, DOMMixin, _ParseUnaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.UnaryOrExpression`.
+    """
+
     def __init__(self, node: Iir, operand: ExpressionUnion) -> None:
         super().__init__(operand)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_UnaryNorExpression, merge=True)
 class UnaryNorExpression(VHDLModel_UnaryNorExpression, DOMMixin, _ParseUnaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.UnaryNorExpression`.
+    """
+
     def __init__(self, node: Iir, operand: ExpressionUnion) -> None:
         super().__init__(operand)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_UnaryXorExpression, merge=True)
 class UnaryXorExpression(VHDLModel_UnaryXorExpression, DOMMixin, _ParseUnaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.UnaryXorExpression`.
+    """
+
     def __init__(self, node: Iir, operand: ExpressionUnion) -> None:
         super().__init__(operand)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_UnaryXnorExpression, merge=True)
 class UnaryXnorExpression(VHDLModel_UnaryXnorExpression, DOMMixin, _ParseUnaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.UnaryXnorExpression`.
+    """
+
     def __init__(self, node: Iir, operand: ExpressionUnion) -> None:
         super().__init__(operand)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_EqualExpression, merge=True)
 class EqualExpression(VHDLModel_EqualExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.EqualExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_UnequalExpression, merge=True)
 class UnequalExpression(VHDLModel_UnequalExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.UnequalExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_LessThanExpression, merge=True)
 class LessThanExpression(VHDLModel_LessThanExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.LessThanExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_LessEqualExpression, merge=True)
 class LessEqualExpression(VHDLModel_LessEqualExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.LessEqualExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_GreaterThanExpression, merge=True)
 class GreaterThanExpression(VHDLModel_GreaterThanExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.GreaterThanExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_GreaterEqualExpression, merge=True)
 class GreaterEqualExpression(VHDLModel_GreaterEqualExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.GreaterEqualExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_MatchingEqualExpression, merge=True)
 class MatchingEqualExpression(VHDLModel_MatchingEqualExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.MatchingEqualExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_MatchingUnequalExpression, merge=True)
 class MatchingUnequalExpression(VHDLModel_MatchingUnequalExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.MatchingUnequalExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_MatchingLessThanExpression, merge=True)
 class MatchingLessThanExpression(VHDLModel_MatchingLessThanExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.MatchingLessThanExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_MatchingLessEqualExpression, merge=True)
 class MatchingLessEqualExpression(VHDLModel_MatchingLessEqualExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.MatchingLessEqualExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_MatchingGreaterThanExpression, merge=True)
 class MatchingGreaterThanExpression(VHDLModel_MatchingGreaterThanExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.MatchingGreaterThanExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_MatchingGreaterEqualExpression, merge=True)
 class MatchingGreaterEqualExpression(VHDLModel_MatchingGreaterEqualExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.MatchingGreaterEqualExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_ShiftRightLogicExpression, merge=True)
 class ShiftRightLogicExpression(VHDLModel_ShiftRightLogicExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.ShiftRightLogicExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_ShiftLeftLogicExpression, merge=True)
 class ShiftLeftLogicExpression(VHDLModel_ShiftLeftLogicExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.ShiftLeftLogicExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_ShiftRightArithmeticExpression, merge=True)
 class ShiftRightArithmeticExpression(VHDLModel_ShiftRightArithmeticExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.ShiftRightArithmeticExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_ShiftLeftArithmeticExpression, merge=True)
 class ShiftLeftArithmeticExpression(VHDLModel_ShiftLeftArithmeticExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.ShiftLeftArithmeticExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_RotateRightExpression, merge=True)
 class RotateRightExpression(VHDLModel_RotateRightExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.RotateRightExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_RotateLeftExpression, merge=True)
 class RotateLeftExpression(VHDLModel_RotateLeftExpression, DOMMixin, _ParseBinaryExpressionMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.RotateLeftExpression`.
+    """
+
     def __init__(self, node: Iir, left: ExpressionUnion, right: ExpressionUnion) -> None:
         super().__init__(left, right)
         DOMMixin.__init__(self, node)
 
 
 @export
+@InheritDocString(VHDLModel_QualifiedExpression, merge=True)
 class QualifiedExpression(VHDLModel_QualifiedExpression, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.QualifiedExpression`.
+    """
+
     def __init__(self, node: Iir, subtype: Symbol, operand: ExpressionUnion) -> None:
         super().__init__(subtype, operand)
         DOMMixin.__init__(self, node)
@@ -517,7 +771,12 @@ class QualifiedExpression(VHDLModel_QualifiedExpression, DOMMixin):
 
 
 @export
+@InheritDocString(VHDLModel_SubtypeAllocation, merge=True)
 class SubtypeAllocation(VHDLModel_SubtypeAllocation, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.SubtypeAllocation`.
+    """
+
     def __init__(self, node: Iir, subtype: Symbol) -> None:
         super().__init__(subtype)
         DOMMixin.__init__(self, node)
@@ -532,7 +791,12 @@ class SubtypeAllocation(VHDLModel_SubtypeAllocation, DOMMixin):
 
 
 @export
+@InheritDocString(VHDLModel_QualifiedExpressionAllocation, merge=True)
 class QualifiedExpressionAllocation(VHDLModel_QualifiedExpressionAllocation, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.QualifiedExpressionAllocation`.
+    """
+
     def __init__(self, node: Iir, qualifiedExpression: QualifiedExpression) -> None:
         super().__init__(qualifiedExpression)
         DOMMixin.__init__(self, node)
@@ -547,7 +811,12 @@ class QualifiedExpressionAllocation(VHDLModel_QualifiedExpressionAllocation, DOM
 
 
 @export
+@InheritDocString(VHDLModel_Aggregate, merge=True)
 class Aggregate(VHDLModel_Aggregate, DOMMixin):
+    """
+    This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.Aggregate`.
+    """
+
     def __init__(self, node: Iir, elements: List[AggregateElement]) -> None:
         super().__init__(elements)
         DOMMixin.__init__(self, node)
