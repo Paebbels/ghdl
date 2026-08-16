@@ -272,6 +272,7 @@ jobs:
     with:
       unittest_artifacts_pattern: '*-Unittest-XML-*'
       merged_junit_artifact:      'pyGHDL-Unittest-XML'
+      merge-input-dialect:        'Any-JUnit'
       additional_merge_args:      '-d "--render=tree" "--name=pyGHDL" "--pytest=rewrite-dunder-init;reduce-depth:pytest.testsuite.pyunit;split:pytest"'
       dorny:   true
 #      codecov: true
