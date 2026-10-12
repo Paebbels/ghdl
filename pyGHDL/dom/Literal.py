@@ -37,7 +37,6 @@ This module implements derived literal classes from :mod:`pyVHDLModel.Expression
 from typing import Union, Optional as Nullable
 
 from pyTooling.Decorators import export, InheritDocString
-from pyTooling.Warning import WarningCollector
 
 from pyVHDLModel.Expression import NullLiteral as VHDLModel_NullLiteral
 from pyVHDLModel.Expression import EnumerationLiteral as VHDLModel_EnumerationLiteral
@@ -55,7 +54,7 @@ from pyVHDLModel.Expression import HexadecimalBitStringLiteral as VHDLModel_Hexa
 from pyGHDL.libghdl import name_table, str_table
 from pyGHDL.libghdl._types import Iir
 from pyGHDL.libghdl.vhdl import nodes, utils
-from pyGHDL.dom import DOMMixin
+from pyGHDL.dom import DOMMixin, DOMException, Position
 from pyGHDL.dom._Utils import GetNameOfNode
 
 
@@ -377,8 +376,9 @@ class StringLiteral(VHDLModel_StringLiteral, DOMMixin):
         """
         Translates the IIR node of the literal to a :class:`StringLiteral`.
 
-        :param literalNode: The IIR node of the literal.
-        :returns:           The translated literal.
+        :param literalNode:   The IIR node of the literal.
+        :returns:             The translated literal.
+        :raises DOMException: If the literal's base is not handled.
         """
         base = nodes.Get_Bit_String_Base(literalNode)
         isSigned = nodes.Get_Has_Signed(literalNode) if nodes.Get_Has_Sign(literalNode) else None
@@ -403,4 +403,5 @@ class StringLiteral(VHDLModel_StringLiteral, DOMMixin):
             value = str_table.Get_String8_Ptr(nodes.Get_String8_Id(literalNode), nodes.Get_String_Length(literalNode))
             return HexadecimalBitStringLiteral(literalNode, value, length, isSigned)
         else:
-            WarningCollector.Raise(NotImplementedError("Bit String Literal not supported yet"))
+            position = Position.parse(literalNode)
+            raise DOMException(f"Unknown bit string base '{base.name}' of literal at {position}.")
