@@ -377,10 +377,10 @@ class StringLiteral(VHDLModel_StringLiteral, DOMMixin):
         """
         Translates the IIR node of the literal to a :class:`StringLiteral`.
 
-        :param literalNode:                  The IIR node of the literal.
-        :returns:                            The translated literal.
-        :raises UnhandledExceptionException: If the literal's base is not handled and no
-                                             :class:`~pyTooling.Warning.WarningCollector` is active.
+        :param literalNode:              The IIR node of the literal.
+        :returns:                        The translated literal.
+        :raises UnhandledExceptionError: If the literal's base is not handled and no
+                                         :class:`~pyTooling.Warning.WarningCollector` is active.
         """
         base = nodes.Get_Bit_String_Base(literalNode)
         isSigned = nodes.Get_Has_Signed(literalNode) if nodes.Get_Has_Sign(literalNode) else None
