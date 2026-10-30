@@ -34,6 +34,7 @@ from pathlib import Path
 from unittest import TestCase
 
 from pyTooling.Common import firstValue
+from pyTooling.Stopwatch import Duration
 
 from pyGHDL.dom.NonStandard import Design, Document
 
@@ -178,3 +179,36 @@ class SimplePackage(TestCase):
             print(f"    {line}")
         self.assertEqual("utilities", packageBodies.Identifier)
         self.assertEqual(0, len(packageBodies.Documentation.splitlines()))
+
+
+class DocumentDurations(TestCase):
+    """
+    The durations a document measures while it is constructed are ``None`` for the steps that were skipped.
+    """
+
+    _root = Path(__file__).resolve().parent.parent
+    _filename: Path = _root / "dom/examples/SimpleEntity.vhdl"
+
+    def test_ParseAndTranslate(self) -> None:
+        design = Design()
+        document = Document(self._filename)
+        design.Documents.append(document)
+
+        self.assertIsInstance(document.LibGHDLProcessingDuration, Duration)
+        self.assertIsInstance(document.DOMTranslationDuration, Duration)
+
+    def test_DontTranslate(self) -> None:
+        design = Design()
+        document = Document(self._filename, dontTranslate=True)
+        design.Documents.append(document)
+
+        self.assertIsInstance(document.LibGHDLProcessingDuration, Duration)
+        self.assertIsNone(document.DOMTranslationDuration)
+
+    def test_DontParse(self) -> None:
+        design = Design()
+        document = Document(self._filename, dontParse=True)
+        design.Documents.append(document)
+
+        self.assertIsNone(document.LibGHDLProcessingDuration)
+        self.assertIsNone(document.DOMTranslationDuration)
