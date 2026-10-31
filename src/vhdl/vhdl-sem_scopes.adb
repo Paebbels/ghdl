@@ -350,6 +350,24 @@ package body Vhdl.Sem_Scopes is
       return Res;
    end Strip_Non_Object_Alias;
 
+   --  Return the named entity denoted by DECL if DECL is an alias that
+   --  denotes the same named entity as the declaration of that entity:
+   --  a nonobject alias, or an object alias of a whole object without a
+   --  subtype indication.  Otherwise return DECL.
+   function Strip_Alias (Decl : Iir) return Iir
+   is
+      Res : Iir;
+   begin
+      Res := Decl;
+      while Get_Kind (Res) = Iir_Kind_Object_Alias_Declaration
+        and then Get_Subtype_Indication (Res) = Null_Iir
+        and then Get_Kind (Get_Name (Res)) in Iir_Kinds_Denoting_Name
+      loop
+         Res := Get_Named_Entity (Get_Name (Res));
+      end loop;
+      return Strip_Non_Object_Alias (Res);
+   end Strip_Alias;
+
    function Get_Non_Alias_Declaration (Ni : Name_Interpretation_Type)
                                       return Iir is
    begin
@@ -887,10 +905,13 @@ package body Vhdl.Sem_Scopes is
             --  Each of two declarations is said to be a homograph of the
             --  other if and only if both declarations have the same
             --  designator; and they denote different named entities, [...]
+            --
+            --  LRM08 6.6.1 Alias declarations
+            --  An alias declaration declares an alternate name for an
+            --  existing named entity.
+            --  GHDL: this applies to object aliases too.
             if Flags.Vhdl_Std >= Vhdl_08 then
-               if Strip_Non_Object_Alias (Decl)
-                 = Strip_Non_Object_Alias (Current_Decl)
-               then
+               if Strip_Alias (Decl) = Strip_Alias (Current_Decl) then
                   return;
                end if;
             end if;
