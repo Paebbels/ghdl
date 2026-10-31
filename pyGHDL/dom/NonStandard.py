@@ -70,7 +70,7 @@ from pyGHDL.libghdl.flags import Flag_Gather_Comments
 from pyGHDL.libghdl.vhdl import nodes, sem_lib
 from pyGHDL.libghdl.vhdl.parse import Flag_Parse_Parenthesis
 from pyGHDL.dom import DOMException, Position
-from pyGHDL.dom._Utils import GetIirKindOfNode, CheckForErrors, GetNameOfNode, GetDocumentationOfNode
+from pyGHDL.dom._Utils import GetIirKindOfNode, CheckForErrors, GetNameOfNode, GetDocumentationOfDesignUnit
 from pyGHDL.dom.Name import SimpleName
 from pyGHDL.dom.Symbol import LibraryReferenceSymbol
 from pyGHDL.dom.DesignUnit import (
@@ -333,7 +333,7 @@ class Document(VHDLModel_Document):
                                          :class:`~pyTooling.Warning.WarningCollector` is active.
         """
         firstUnit = nodes.Get_First_Design_Unit(self.__ghdlFile)
-        self._documentation = GetDocumentationOfNode(firstUnit)
+        self._documentation, _ = GetDocumentationOfDesignUnit(firstUnit)
 
         for unit in utils.chain_iter(firstUnit):
             libraryUnit = nodes.Get_Library_Unit(unit)
