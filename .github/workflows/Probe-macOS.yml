@@ -4,41 +4,21 @@ on:
   push:
 
 jobs:
-  Probe:
-    name: ${{ matrix.image }} - GNAT ${{ matrix.gnat }} - ${{ matrix.variant }}
-    runs-on: ${{ matrix.image }}
+  GHDL:
+    uses: ./.github/workflows/Build-MacOS.yml
     strategy:
       fail-fast: false
       matrix:
-        image:   ['macos-15', 'macos-26']
-        gnat:    ['14.2.0-1', '15.3.0-1', '16.1.0-1']
-        variant: ['plain', 'sdkroot']
-    steps:
-      - name: Install GNAT ${{ matrix.gnat }}
-        run: |
-          name="gnat-aarch64-darwin-${{ matrix.gnat }}"
-          url="https://github.com/alire-project/GNAT-FSF-builds/releases/download/gnat-${{ matrix.gnat }}/${name}.tar.gz"
-          if ! curl -fsSL -o gnat.tar.gz "${url}"; then
-            printf -- "::error title=Download::Can't download '%s'.\n" "${url}"
-            exit 1
-          fi
-          tar -xzf gnat.tar.gz
-          mv "${name}" gnat
-
-      - name: Export SDKROOT and LIBRARY_PATH
-        if: matrix.variant == 'sdkroot'
-        run: |
-          sdk="$(xcrun --sdk macosx --show-sdk-path)"
-          printf -- 'SDKROOT=%s\n' "${sdk}" >> "${GITHUB_ENV}"
-          printf -- 'LIBRARY_PATH=%s/usr/lib\n' "${sdk}" >> "${GITHUB_ENV}"
-
-      - name: Build and run an Ada program
-        run: |
-          export PATH="$(pwd)/gnat/bin:${PATH}"
-          sw_vers
-          printf -- 'SDK: %s\n' "$(xcrun --sdk macosx --show-sdk-path)"
-          printf -- 'SDKROOT: %s\n' "${SDKROOT:-<unset>}"
-          gcc --version | head -n 1
-          printf -- '%s\n' 'with Ada.Text_IO; procedure Hello is begin Ada.Text_IO.Put_Line ("Hello"); end Hello;' > hello.adb
-          gnatmake -v hello.adb
-          ./hello
+        include:
+          - {macos_image: 'macos-26', gnat_version: '15.3.0-1'}
+          - {macos_image: 'macos-26', gnat_version: '16.1.0-1'}
+          - {macos_image: 'macos-15', gnat_version: '16.1.0-1'}
+    with:
+      macos_image:    ${{ matrix.macos_image }}
+      gnat_arch:      'aarch64'
+      gnat_version:   ${{ matrix.gnat_version }}
+      backend:        'llvm'
+      testsuites:     'sanity'
+      macos_artifact: probe-${{ matrix.macos_image }}-gnat-${{ matrix.gnat_version }}
+      unittesting:    false
+      coverage:       false
