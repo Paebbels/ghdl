@@ -105,7 +105,7 @@ class ParenthesisName(VHDLModel_ParenthesisName, DOMMixin):
 
 
 @export
-@InheritDocString(VHDLModel_IndexedName, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_IndexedName, strategy=DocStringMergeStrategy.BaseLast)
 class IndexedName(VHDLModel_IndexedName, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Name.IndexedName`.

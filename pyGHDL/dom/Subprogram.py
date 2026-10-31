@@ -52,7 +52,7 @@ from pyGHDL.dom.Symbol import SimpleSubtypeSymbol
 
 
 @export
-@InheritDocString(VHDLModel_Function, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_Function, strategy=DocStringMergeStrategy.BaseLast)
 class Function(VHDLModel_Function, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Subprogram.Function`.
@@ -147,7 +147,7 @@ class Function(VHDLModel_Function, DOMMixin):
 
 
 @export
-@InheritDocString(VHDLModel_Procedure, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_Procedure, strategy=DocStringMergeStrategy.BaseLast)
 class Procedure(VHDLModel_Procedure, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Subprogram.Procedure`.

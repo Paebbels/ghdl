@@ -87,7 +87,7 @@ from pyGHDL.dom.PSL import VerificationUnit, VerificationProperty, VerificationM
 
 
 @export
-@InheritDocString(VHDLModel_Design, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_Design, strategy=DocStringMergeStrategy.BaseLast)
 class Design(VHDLModel_Design):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Design`.
@@ -197,7 +197,7 @@ class Design(VHDLModel_Design):
 
 
 @export
-@InheritDocString(VHDLModel_Library, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_Library, strategy=DocStringMergeStrategy.BaseLast)
 class Library(VHDLModel_Library):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Library`.
@@ -207,7 +207,7 @@ class Library(VHDLModel_Library):
 
 
 @export
-@InheritDocString(VHDLModel_Document, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_Document, strategy=DocStringMergeStrategy.BaseLast)
 class Document(VHDLModel_Document):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Document`.

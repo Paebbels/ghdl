@@ -56,7 +56,7 @@ from pyGHDL.dom.Symbol import SimpleSubtypeSymbol
 
 
 @export
-@InheritDocString(VHDLModel_Attribute, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_Attribute, strategy=DocStringMergeStrategy.BaseLast)
 class Attribute(VHDLModel_Attribute, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Declaration.Attribute`.
@@ -120,7 +120,7 @@ Translation table of *libghdl* tokens to pyVHDLModel entity class enumeration va
 
 
 @export
-@InheritDocString(VHDLModel_AttributeSpecification, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_AttributeSpecification, strategy=DocStringMergeStrategy.BaseLast)
 class AttributeSpecification(VHDLModel_AttributeSpecification, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Declaration.AttributeSpecification`.

@@ -67,7 +67,7 @@ from pyGHDL.dom.Symbol import ModeViewSymbol, SimpleSubtypeSymbol
 
 
 @export
-@InheritDocString(VHDLModel_GenericConstantInterfaceItem, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_GenericConstantInterfaceItem, strategy=DocStringMergeStrategy.BaseLast)
 class GenericConstantInterfaceItem(VHDLModel_GenericConstantInterfaceItem, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Interface.GenericConstantInterfaceItem`.
@@ -118,7 +118,7 @@ class GenericConstantInterfaceItem(VHDLModel_GenericConstantInterfaceItem, DOMMi
 
 
 @export
-@InheritDocString(VHDLModel_GenericTypeInterfaceItem, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_GenericTypeInterfaceItem, strategy=DocStringMergeStrategy.BaseLast)
 class GenericTypeInterfaceItem(VHDLModel_GenericTypeInterfaceItem, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Interface.GenericTypeInterfaceItem`.
@@ -150,7 +150,7 @@ class GenericTypeInterfaceItem(VHDLModel_GenericTypeInterfaceItem, DOMMixin):
 
 
 @export
-@InheritDocString(VHDLModel_GenericPackageInterfaceItem, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_GenericPackageInterfaceItem, strategy=DocStringMergeStrategy.BaseLast)
 class GenericPackageInterfaceItem(VHDLModel_GenericPackageInterfaceItem, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Interface.GenericPackageInterfaceItem`.
@@ -182,7 +182,7 @@ class GenericPackageInterfaceItem(VHDLModel_GenericPackageInterfaceItem, DOMMixi
 
 
 @export
-@InheritDocString(VHDLModel_GenericProcedureInterfaceItem, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_GenericProcedureInterfaceItem, strategy=DocStringMergeStrategy.BaseLast)
 class GenericProcedureInterfaceItem(VHDLModel_GenericProcedureInterfaceItem, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Interface.GenericProcedureInterfaceItem`.
@@ -214,7 +214,7 @@ class GenericProcedureInterfaceItem(VHDLModel_GenericProcedureInterfaceItem, DOM
 
 
 @export
-@InheritDocString(VHDLModel_GenericFunctionInterfaceItem, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_GenericFunctionInterfaceItem, strategy=DocStringMergeStrategy.BaseLast)
 class GenericFunctionInterfaceItem(VHDLModel_GenericFunctionInterfaceItem, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Interface.GenericFunctionInterfaceItem`.
@@ -251,7 +251,7 @@ class GenericFunctionInterfaceItem(VHDLModel_GenericFunctionInterfaceItem, DOMMi
 
 
 @export
-@InheritDocString(VHDLModel_PortSimpleSignalInterfaceItem, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_PortSimpleSignalInterfaceItem, strategy=DocStringMergeStrategy.BaseLast)
 class PortSimpleSignalInterfaceItem(VHDLModel_PortSimpleSignalInterfaceItem, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Interface.PortSimpleSignalInterfaceItem`.
@@ -359,7 +359,7 @@ class PortViewSignalInterfaceItem(VHDLModel_PortViewSignalInterfaceItem, DOMMixi
 
 
 @export
-@InheritDocString(VHDLModel_ParameterConstantInterfaceItem, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_ParameterConstantInterfaceItem, strategy=DocStringMergeStrategy.BaseLast)
 class ParameterConstantInterfaceItem(VHDLModel_ParameterConstantInterfaceItem, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Interface.ParameterConstantInterfaceItem`.
@@ -411,7 +411,7 @@ class ParameterConstantInterfaceItem(VHDLModel_ParameterConstantInterfaceItem, D
 
 
 @export
-@InheritDocString(VHDLModel_ParameterVariableInterfaceItem, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_ParameterVariableInterfaceItem, strategy=DocStringMergeStrategy.BaseLast)
 class ParameterVariableInterfaceItem(VHDLModel_ParameterVariableInterfaceItem, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Interface.ParameterVariableInterfaceItem`.
@@ -463,7 +463,7 @@ class ParameterVariableInterfaceItem(VHDLModel_ParameterVariableInterfaceItem, D
 
 
 @export
-@InheritDocString(VHDLModel_ParameterSimpleSignalInterfaceItem, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_ParameterSimpleSignalInterfaceItem, strategy=DocStringMergeStrategy.BaseLast)
 class ParameterSimpleSignalInterfaceItem(VHDLModel_ParameterSimpleSignalInterfaceItem, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Interface.ParameterSimpleSignalInterfaceItem`.
@@ -571,7 +571,7 @@ class ParameterViewSignalInterfaceItem(VHDLModel_ParameterViewSignalInterfaceIte
 
 
 @export
-@InheritDocString(VHDLModel_ParameterFileInterfaceItem, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_ParameterFileInterfaceItem, strategy=DocStringMergeStrategy.BaseLast)
 class ParameterFileInterfaceItem(VHDLModel_ParameterFileInterfaceItem, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Interface.ParameterFileInterfaceItem`.

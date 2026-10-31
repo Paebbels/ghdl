@@ -53,7 +53,7 @@ from pyGHDL.dom import DOMMixin
 
 
 @export
-@InheritDocString(VHDLModel_SimpleAggregateElement, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_SimpleAggregateElement, strategy=DocStringMergeStrategy.BaseLast)
 class SimpleAggregateElement(VHDLModel_SimpleAggregateElement, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.SimpleAggregateElement`.
@@ -71,7 +71,7 @@ class SimpleAggregateElement(VHDLModel_SimpleAggregateElement, DOMMixin):
 
 
 @export
-@InheritDocString(VHDLModel_IndexedAggregateElement, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_IndexedAggregateElement, strategy=DocStringMergeStrategy.BaseLast)
 class IndexedAggregateElement(VHDLModel_IndexedAggregateElement, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.IndexedAggregateElement`.
@@ -90,7 +90,7 @@ class IndexedAggregateElement(VHDLModel_IndexedAggregateElement, DOMMixin):
 
 
 @export
-@InheritDocString(VHDLModel_RangedAggregateElement, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_RangedAggregateElement, strategy=DocStringMergeStrategy.BaseLast)
 class RangedAggregateElement(VHDLModel_RangedAggregateElement, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.RangedAggregateElement`.
@@ -109,7 +109,7 @@ class RangedAggregateElement(VHDLModel_RangedAggregateElement, DOMMixin):
 
 
 @export
-@InheritDocString(VHDLModel_NamedAggregateElement, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_NamedAggregateElement, strategy=DocStringMergeStrategy.BaseLast)
 class NamedAggregateElement(VHDLModel_NamedAggregateElement, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.NamedAggregateElement`.
@@ -128,7 +128,7 @@ class NamedAggregateElement(VHDLModel_NamedAggregateElement, DOMMixin):
 
 
 @export
-@InheritDocString(VHDLModel_OthersAggregateElement, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_OthersAggregateElement, strategy=DocStringMergeStrategy.BaseLast)
 class OthersAggregateElement(VHDLModel_OthersAggregateElement, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Expression.OthersAggregateElement`.

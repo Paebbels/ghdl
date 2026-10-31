@@ -46,7 +46,7 @@ from pyGHDL.dom._Utils import GetNameOfNode, GetDocumentationOfNode, GetIirKindO
 
 
 @export
-@InheritDocString(VHDLModel_Alias, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_Alias, strategy=DocStringMergeStrategy.BaseLast)
 class Alias(VHDLModel_Alias, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Declaration.Alias`.
