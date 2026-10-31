@@ -464,7 +464,7 @@ class EntitySymbol(VHDLModel_EntitySymbol, DOMMixin):
 
 
 @export
-@InheritDocString(VHDLModel_ArchitectureSymbol, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_ArchitectureSymbol, strategy=DocStringMergeStrategy.BaseLast)
 class ArchitectureSymbol(VHDLModel_ArchitectureSymbol, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Symbol.ArchitectureSymbol`.
@@ -513,7 +513,7 @@ class PackageSymbol(VHDLModel_PackageSymbol, DOMMixin):
 
 
 @export
-@InheritDocString(VHDLModel_SimpleSubtypeSymbol, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_SimpleSubtypeSymbol, strategy=DocStringMergeStrategy.BaseLast)
 class SimpleSubtypeSymbol(VHDLModel_SimpleSubtypeSymbol, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Symbol.SimpleSubtypeSymbol`.
@@ -531,7 +531,7 @@ class SimpleSubtypeSymbol(VHDLModel_SimpleSubtypeSymbol, DOMMixin):
 
 
 @export
-@InheritDocString(VHDLModel_ConstrainedScalarSubtypeSymbol, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_ConstrainedScalarSubtypeSymbol, strategy=DocStringMergeStrategy.BaseLast)
 class ConstrainedScalarSubtypeSymbol(VHDLModel_ConstrainedScalarSubtypeSymbol, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Symbol.ConstrainedScalarSubtypeSymbol`.
@@ -550,7 +550,7 @@ class ConstrainedScalarSubtypeSymbol(VHDLModel_ConstrainedScalarSubtypeSymbol, D
 
 
 @export
-@InheritDocString(VHDLModel_ConstrainedArraySubtypeSymbol, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_ConstrainedArraySubtypeSymbol, strategy=DocStringMergeStrategy.BaseLast)
 class ConstrainedArraySubtypeSymbol(VHDLModel_ConstrainedArraySubtypeSymbol, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Symbol.ConstrainedArraySubtypeSymbol`.
@@ -573,7 +573,7 @@ class ConstrainedArraySubtypeSymbol(VHDLModel_ConstrainedArraySubtypeSymbol, DOM
 
 
 @export
-@InheritDocString(VHDLModel_ConstrainedRecordSubtypeSymbol, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_ConstrainedRecordSubtypeSymbol, strategy=DocStringMergeStrategy.BaseLast)
 class ConstrainedRecordSubtypeSymbol(VHDLModel_ConstrainedRecordSubtypeSymbol, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Symbol.ConstrainedRecordSubtypeSymbol`.
@@ -602,7 +602,7 @@ class ConstrainedRecordSubtypeSymbol(VHDLModel_ConstrainedRecordSubtypeSymbol, D
 
 
 @export
-@InheritDocString(VHDLModel_RecordElementSymbol, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_RecordElementSymbol, strategy=DocStringMergeStrategy.BaseLast)
 class RecordElementSymbol(VHDLModel_RecordElementSymbol, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Symbol.RecordElementSymbol`.
@@ -620,7 +620,7 @@ class RecordElementSymbol(VHDLModel_RecordElementSymbol, DOMMixin):
 
 
 @export
-@InheritDocString(VHDLModel_RangeAttributeSymbol, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_RangeAttributeSymbol, strategy=DocStringMergeStrategy.BaseLast)
 class RangeAttributeSymbol(VHDLModel_RangeAttributeSymbol, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Symbol.RangeAttributeSymbol`.
@@ -638,7 +638,7 @@ class RangeAttributeSymbol(VHDLModel_RangeAttributeSymbol, DOMMixin):
 
 
 @export
-@InheritDocString(VHDLModel_SimpleObjectOrFunctionCallSymbol, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_SimpleObjectOrFunctionCallSymbol, strategy=DocStringMergeStrategy.BaseLast)
 class SimpleObjectOrFunctionCallSymbol(VHDLModel_SimpleObjectOrFunctionCallSymbol, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Symbol.SimpleObjectOrFunctionCallSymbol`.
@@ -670,7 +670,7 @@ class SimpleObjectOrFunctionCallSymbol(VHDLModel_SimpleObjectOrFunctionCallSymbo
 
 
 @export
-@InheritDocString(VHDLModel_IndexedObjectOrFunctionCallSymbol, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_IndexedObjectOrFunctionCallSymbol, strategy=DocStringMergeStrategy.BaseLast)
 class IndexedObjectOrFunctionCallSymbol(VHDLModel_IndexedObjectOrFunctionCallSymbol, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Symbol.IndexedObjectOrFunctionCallSymbol`.

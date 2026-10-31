@@ -65,7 +65,7 @@ from pyGHDL.dom.Subprogram import Function, Procedure
 
 
 @export
-@InheritDocString(VHDLModel_AnonymousType, strategy=DocStringMergeStrategy.BaseFirst)
+@InheritDocString(VHDLModel_AnonymousType, strategy=DocStringMergeStrategy.BaseLast)
 class IncompleteType(VHDLModel_AnonymousType, DOMMixin):
     """
     This class implements a :mod:`pyGHDL.dom` object derived from :class:`pyVHDLModel.Type.AnonymousType`.
