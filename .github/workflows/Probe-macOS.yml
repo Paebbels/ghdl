@@ -10,15 +10,16 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - {macos_image: 'macos-26', gnat_version: '15.3.0-1'}
-          - {macos_image: 'macos-26', gnat_version: '16.1.0-1'}
-          - {macos_image: 'macos-15', gnat_version: '16.1.0-1'}
+          - {macos_image: 'macos-26', gnat_version: '16.1.0-1', try: 1}
+          - {macos_image: 'macos-26', gnat_version: '16.1.0-1', try: 2}
+          - {macos_image: 'macos-26', gnat_version: '16.1.0-1', try: 3}
+          - {macos_image: 'macos-26', gnat_version: '16.1.0-1', try: 4}
     with:
       macos_image:    ${{ matrix.macos_image }}
       gnat_arch:      'aarch64'
       gnat_version:   ${{ matrix.gnat_version }}
-      backend:        'llvm'
+      backend:        'llvm-jit'
       testsuites:     'sanity'
-      macos_artifact: probe-${{ matrix.macos_image }}-gnat-${{ matrix.gnat_version }}
+      macos_artifact: probe-${{ matrix.macos_image }}-gnat-${{ matrix.gnat_version }}-${{ matrix.try }}
       unittesting:    false
       coverage:       false
