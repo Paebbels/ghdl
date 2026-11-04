@@ -883,17 +883,8 @@ package body Vhdl.Sem_Scopes is
                raise Internal_Error;
             end if;
 
-            --  LRM08 12.3 Visibility
-            --  Each of two declarations is said to be a homograph of the
-            --  other if and only if both declarations have the same
-            --  designator; and they denote different named entities, [...]
-            if Flags.Vhdl_Std >= Vhdl_08 then
-               if Strip_Non_Object_Alias (Decl)
-                 = Strip_Non_Object_Alias (Current_Decl)
-               then
-                  return;
-               end if;
-            end if;
+            --  GHDL: this rule is about the designator, not about homographs:
+            --  it also applies to an alias and the named entity it denotes.
 
             --  Conflict.
             Add_New_Interpretation (True, Null_Iir);
