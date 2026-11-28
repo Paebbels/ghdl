@@ -3,9 +3,8 @@ from sys import executable, platform
 from io import BytesIO
 from json import load as json_load, loads as json_loads, dumps as json_dumps
 from pathlib import Path
-from urllib.parse import quote
 from subprocess import run as subprocess_run, PIPE
-from typing import Optional
+from typing import Any, ClassVar, Optional
 from unittest import TestCase
 from pytest import mark
 
@@ -16,47 +15,18 @@ from pyGHDL.lsp.lsp import LanguageProtocolServer, LSPConn
 class StrConn:
     __res: str
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.__res = ""
 
-    def write(self, s):
+    def write(self, s: str) -> None:
         self.__res += s
 
     @property
-    def res(self):
+    def res(self) -> str:
         return self.__res
 
 
-def show_diffs(name, ref, res):
-    if isinstance(ref, dict) and isinstance(res, dict):
-        for k in ref:
-            if k not in res:
-                print(f"{name}.{k} not in the result")
-            else:
-                show_diffs(f"{name}.{k}", ref[k], res[k])
-        for k in res:
-            if k not in ref:
-                print(f"{name}.{k} unexpected in the result")
-    elif isinstance(ref, str) and isinstance(res, str):
-        if res != ref:
-            print(f"{name}: mismatch (ref: {ref}, result: {res})")
-    elif isinstance(ref, int) and isinstance(res, int):
-        if res != ref:
-            print(f"{name}: mismatch (ref: {ref}, result: {res})")
-    elif isinstance(ref, list) and isinstance(res, list):
-        for i in range(max(len(ref), len(res))):
-            if i >= len(res):
-                print(f"{name}[{i}]: missing element:")
-                print(f" {ref[i]}")
-            elif i >= len(ref):
-                print(f"{name}[{i}]: extra elements")
-            else:
-                show_diffs(f"{name}[{i}]", ref[i], res[i])
-    else:
-        print(f"unhandle type {type(ref)} in {name}")
-
-
-def root_subst(obj, path, uri):
+def root_subst(obj: Any, path: str, uri: str) -> Any:
     """Substitute in all strings of :param obj: @ROOT@ with :param root:
     URI in LSP are supposed to contain an absolute path.  But putting an
     hard absolute path would make the test suite not portable.  So we use
@@ -70,7 +40,7 @@ def root_subst(obj, path, uri):
             if isinstance(v, str):
                 if k in ("rootUri", "uri"):
                     assert v.startswith("file://@ROOT@/")
-                    obj[k] = "file://" + uri + v[13:]
+                    obj[k] = f"file://{uri}{v[13:]}"
                 elif k in ("rootPath", "message"):
                     obj[k] = v.replace("@ROOT@", path)
                 elif k == "version" and v == "@VERSION@":
@@ -81,10 +51,7 @@ def root_subst(obj, path, uri):
     elif obj is None or isinstance(obj, (str, int)):
         return obj
     elif isinstance(obj, list):
-        res = []
-        for v in obj:
-            res.append(root_subst(v, path, uri))
-        return res
+        return [root_subst(v, path, uri) for v in obj]
     else:
         raise AssertionError(f"root_subst: unhandled type {type(obj)}")
 
@@ -92,16 +59,16 @@ def root_subst(obj, path, uri):
 class JSONTest(TestCase):
     _LSPTestDirectory = Path(__file__).parent.resolve()
 
-    subdir = None
+    subdir: ClassVar[Path]
 
-    def _RequestResponse(self, requestName: str, responseName: Optional[str] = None):
+    def _RequestResponse(self, requestName: str, responseName: Optional[str] = None) -> None:
         root = str(self._LSPTestDirectory)
         root_uri = self._LSPTestDirectory.as_uri()
         assert root_uri.startswith("file://")
         root_uri = root_uri[7:]
         requestFile = self._LSPTestDirectory / self.subdir / requestName
         # Convert the JSON input file to an LSP string.
-        with requestFile.open("r") as file:
+        with requestFile.open("r", encoding="utf-8") as file:
             res = json_load(file)
             res = root_subst(res, root, root_uri)
 
@@ -130,7 +97,7 @@ class JSONTest(TestCase):
         in_io = BytesIO(p.stdout)
         conn = LSPConn(in_io, None)
         ls = LanguageProtocolServer(None, conn)
-        with responseFile.open("r") as file:
+        with responseFile.open("r", encoding="utf-8") as file:
             ref = json_load(file)
             ref = root_subst(ref, root, root_uri)
 
@@ -148,7 +115,7 @@ class JSONTest(TestCase):
             # 			self.assertEqual(rep, r, f"reply does not match for {requestFile!s}")
             if rep != r:
                 print(self.__class__.__name__)
-                show_diffs(f"[{i}]", r, rep)
+                self._CompareJSONResult(f"[{i}]", r, rep)
                 errs += 1
 
         rep = ls.read_request()
@@ -156,15 +123,45 @@ class JSONTest(TestCase):
 
         if errs != 0:
             print(f"FAILURE between output and {responseFile!s} (for {requestFile!s})")
-            print("Writing result output to result.json")
-            with open("result.json", "w") as f:
+            resultJSON = Path.cwd() / "result.json"
+            requestJSON = Path.cwd() / "request.json"
+            print(f"Writing result output to '{resultJSON}' and request to '{requestJSON}'")
+            with resultJSON.open("w", encoding="utf-8") as f:
                 f.write(json_dumps(json_res, indent=2))
                 f.write("\n")
-            with open("request.json", "w") as f:
+            with requestJSON.open("w", encoding="utf-8") as f:
                 f.write(json_dumps(res, indent=2))
                 f.write("\n")
 
             self.fail()
+
+    def _CompareJSONResult(self, name: str, ref: Any, res: Any) -> None:
+        if isinstance(ref, dict) and isinstance(res, dict):
+            for k in ref:
+                if k not in res:
+                    print(f"{name}.{k} not in the result")
+                else:
+                    self._CompareJSONResult(f"{name}.{k}", ref[k], res[k])
+            for k in res:
+                if k not in ref:
+                    print(f"{name}.{k} unexpected in the result")
+        elif isinstance(ref, str) and isinstance(res, str):
+            if res != ref:
+                print(f"{name}: mismatch (ref: {ref}, result: {res})")
+        elif isinstance(ref, int) and isinstance(res, int):
+            if res != ref:
+                print(f"{name}: mismatch (ref: {ref}, result: {res})")
+        elif isinstance(ref, list) and isinstance(res, list):
+            for i in range(max(len(ref), len(res))):
+                if i >= len(res):
+                    print(f"{name}[{i}]: missing element:")
+                    print(f" {ref[i]}")
+                elif i >= len(ref):
+                    print(f"{name}[{i}]: extra elements")
+                else:
+                    self._CompareJSONResult(f"{name}[{i}]", ref[i], res[i])
+        else:
+            print(f"unhandled type {type(ref)} in {name}")
 
 
 class JSONTest_Single(JSONTest):
@@ -182,6 +179,7 @@ class Test001_Simple(JSONTest_Single):
 
 class Test002_Coverage(JSONTest_Single):
     subdir = Path("002coverage")
+
 
 class Test003_Errors(JSONTest):
     subdir = Path("003errors")
